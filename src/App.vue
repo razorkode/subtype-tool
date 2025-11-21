@@ -3,22 +3,10 @@ import MainNav from '@/components/MainNav.vue'
 </script>
 
 <template>
-    <div id="app">
+    <div class="min-h-screen flex flex-col">
         <MainNav />
-        <main>
+        <main class="flex-1">
             <router-view />
         </main>
     </div>
 </template>
-
-<style scoped>
-#app {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-main {
-    flex: 1;
-}
-</style>
