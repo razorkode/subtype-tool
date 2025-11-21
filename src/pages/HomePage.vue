@@ -1,5 +1,6 @@
 <script setup>
 import { useCounterStore } from '@/stores/counter'
+import GradientButton from '@/components/GradientButton.vue'
 
 const counterStore = useCounterStore()
 </script>
@@ -24,6 +25,23 @@ const counterStore = useCounterStore()
                 >
                     Increment Counter
                 </button>
+            </div>
+        </div>
+
+        <div class="mt-12">
+            <h2 class="text-2xl font-semibold text-slate-800 mb-6">Gradient Button Styles</h2>
+            <div class="flex flex-col gap-4 items-center">
+                <GradientButton variant="cyan"> Cyan Gradient </GradientButton>
+                <GradientButton variant="teal"> Teal Gradient </GradientButton>
+                <GradientButton variant="purple"> Purple Gradient </GradientButton>
+                <GradientButton variant="purple">
+                    <div class="text-center leading-[1.1rem]">
+                        <div>Ocular surface cellular</div>
+                        <div>damage / disruption</div>
+                    </div>
+                </GradientButton>
+                <GradientButton variant="gray"> Gray Gradient </GradientButton>
+                <GradientButton variant="blue"> Solid Blue </GradientButton>
             </div>
         </div>
     </div>
