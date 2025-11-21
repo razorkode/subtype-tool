@@ -1,25 +1,19 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomePage from '@/pages/HomePage.vue'
-import AboutPage from '@/pages/AboutPage.vue'
-import ContactPage from '@/pages/ContactPage.vue'
+import { createRouter, createMemoryHistory } from 'vue-router'
+import ComponentPage from '@/pages/ComponentPage.vue'
+import ToolPage from '@/pages/ToolPage.vue'
 
 const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
+    history: createMemoryHistory(),
     routes: [
         {
             path: '/',
             name: 'home',
-            component: HomePage,
+            component: ComponentPage,
         },
         {
-            path: '/about',
-            name: 'about',
-            component: AboutPage,
-        },
-        {
-            path: '/contact',
-            name: 'contact',
-            component: ContactPage,
+            path: '/tool',
+            name: 'tool',
+            component: ToolPage,
         },
     ],
 })

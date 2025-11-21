@@ -17,23 +17,15 @@
                         to="/"
                         class="text-white no-underline font-medium transition-colors py-2 hover:text-emerald-400 [&.router-link-active]:text-emerald-400 [&.router-link-active]:border-b-2 [&.router-link-active]:border-emerald-400"
                     >
-                        Home
+                        Components
                     </router-link>
                 </li>
                 <li>
                     <router-link
-                        to="/about"
+                        to="/tool"
                         class="text-white no-underline font-medium transition-colors py-2 hover:text-emerald-400 [&.router-link-active]:text-emerald-400 [&.router-link-active]:border-b-2 [&.router-link-active]:border-emerald-400"
                     >
-                        About
-                    </router-link>
-                </li>
-                <li>
-                    <router-link
-                        to="/contact"
-                        class="text-white no-underline font-medium transition-colors py-2 hover:text-emerald-400 [&.router-link-active]:text-emerald-400 [&.router-link-active]:border-b-2 [&.router-link-active]:border-emerald-400"
-                    >
-                        Contact
+                        Tool
                     </router-link>
                 </li>
             </ul>
