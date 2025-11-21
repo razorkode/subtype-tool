@@ -8,7 +8,7 @@
                     to="/"
                     class="text-2xl font-bold text-white no-underline hover:text-emerald-400 transition-colors"
                 >
-                    Dry Eye Project
+                    Subtype Tool
                 </router-link>
             </div>
             <ul class="flex list-none m-0 p-0 gap-8">
