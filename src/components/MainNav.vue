@@ -1,34 +1,42 @@
-<script setup></script>
+<script setup>
+import GradientButton from '@/components/GradientButton.vue'
+</script>
 
 <template>
-    <nav class="bg-slate-800 text-white py-4 shadow-md">
-        <div class="max-w-6xl mx-auto px-8 flex justify-between items-center">
-            <div>
-                <router-link
-                    to="/"
-                    class="text-2xl font-bold text-white no-underline hover:text-emerald-400 transition-colors"
-                >
-                    Subtype Tool
-                </router-link>
-            </div>
-            <ul class="flex list-none m-0 p-0 gap-8">
-                <li>
-                    <router-link
-                        to="/"
-                        class="text-white no-underline font-medium transition-colors py-2 hover:text-emerald-400 [&.router-link-active]:text-emerald-400 [&.router-link-active]:border-b-2 [&.router-link-active]:border-emerald-400"
-                    >
-                        Components
-                    </router-link>
-                </li>
-                <li>
-                    <router-link
-                        to="/tool"
-                        class="text-white no-underline font-medium transition-colors py-2 hover:text-emerald-400 [&.router-link-active]:text-emerald-400 [&.router-link-active]:border-b-2 [&.router-link-active]:border-emerald-400"
-                    >
-                        Tool
-                    </router-link>
-                </li>
-            </ul>
+    <!-- Left Navigation - Menu System -->
+    <div class="space-y-6">
+        <!-- Tear Film Deficiencies Section -->
+        <div class="space-y-3">
+            <GradientButton variant="gray"> TEAR FILM DEFICIENCIES </GradientButton>
+            <GradientButton variant="cyan"> Lipid </GradientButton>
+            <GradientButton variant="cyan"> Aqueous </GradientButton>
+            <GradientButton variant="cyan"> Mucin / glycocalyx </GradientButton>
         </div>
-    </nav>
+
+        <!-- Eyelid Anomalies Section -->
+        <div class="space-y-3">
+            <GradientButton variant="gray"> EYELID ANOMALIES </GradientButton>
+            <GradientButton variant="teal"> Blink / lid closure </GradientButton>
+            <GradientButton variant="teal"> Lid margin </GradientButton>
+        </div>
+
+        <!-- Ocular Surface Abnormalities Section -->
+        <div class="space-y-3">
+            <GradientButton variant="gray"> OCULAR SURFACE ABNORMALITIES </GradientButton>
+            <GradientButton variant="purple"> Anatomical misalignment </GradientButton>
+            <GradientButton variant="purple"> Neural dysfunction </GradientButton>
+            <GradientButton variant="purple">
+                <div class="text-center leading-3">
+                    <div>Ocular surface cellular</div>
+                    <div>damage / disruption</div>
+                </div>
+            </GradientButton>
+            <GradientButton variant="purple">
+                <div class="text-center leading-3">
+                    <div>Primary inflammation /</div>
+                    <div>oxidative stress</div>
+                </div>
+            </GradientButton>
+        </div>
+    </div>
 </template>

@@ -5,13 +5,18 @@ defineProps({
         default: 'cyan',
         validator: (value) => ['cyan', 'teal', 'purple', 'gray', 'blue'].includes(value),
     },
+    active: {
+        type: Boolean,
+        default: false,
+    },
 })
 </script>
 
 <template>
     <button
+        class="cursor-pointer border-3 transition-all duration-300 hover:opacity-90 hover:shadow-lg w-60 h-9 flex items-center justify-center rounded-full font-normal text-xs"
         :class="[
-            'rounded-full font-normal text-base transition-all duration-300 hover:opacity-90 hover:shadow-lg w-73.5 h-11 flex items-center justify-center',
+            active ? 'border-blue-800' : 'border-transparent hover:border-blue-300',
             {
                 'bg-[linear-gradient(to_right,#05ADEE,#68CCF4,#05ADEE)] text-white':
                     variant === 'cyan',
