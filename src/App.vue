@@ -17,7 +17,7 @@ import ContentBox from '@/components/ContentBox.vue'
             <div class="relative bg-white p-8">
                 <div class="flex">
                     <!-- How to Use Panel -->
-                    <ContentBox>
+                    <ContentBox color="grey">
                         <h3 class="text-lg font-bold text-[#05319B] mb-2">
                             HOW TO USE THE DRY EYE RELIEF & MANAGEMENT TOOL
                         </h3>
