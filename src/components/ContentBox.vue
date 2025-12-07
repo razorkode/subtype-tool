@@ -1,12 +1,12 @@
 <script setup>
 import { computed } from 'vue'
-import blueTopBar from '@/assets/blue-top-bar.png'
-import blueBottomBar from '@/assets/blue-bottom-bar.png'
-import greyTopBar from '@/assets/grey-top-bar.png'
-import purpleTopBar from '@/assets/purple-top-bar.png'
-import purpleBottomBar from '@/assets/purple-bottom-bar.png'
-import tealTopBar from '@/assets/teal-top-bar.png'
-import tealBottomBar from '@/assets/teal-bottom-bar.png'
+import blueTopBar from '@/assets/images/blue-top-bar.png'
+import blueBottomBar from '@/assets/images/blue-bottom-bar.png'
+import greyTopBar from '@/assets/images/grey-top-bar.png'
+import purpleTopBar from '@/assets/images/purple-top-bar.png'
+import purpleBottomBar from '@/assets/images/purple-bottom-bar.png'
+import tealTopBar from '@/assets/images/teal-top-bar.png'
+import tealBottomBar from '@/assets/images/teal-bottom-bar.png'
 
 const props = defineProps({
     color: {
