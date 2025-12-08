@@ -1,10 +1,15 @@
 <script setup>
+import DiamondButton from '@/components/DiamondButton.vue'
 import { useNavigationStore } from '@/stores/navigation'
 import tearDiamond from '@/assets/images/tear-diamond.png'
 import eyelidDiamond from '@/assets/images/eyelid-diamond.png'
 import ocularDiamond from '@/assets/images/ocular-diamond.png'
 
 const navigationStore = useNavigationStore()
+
+const handleDiamondClick = (menuId) => {
+    navigationStore.setActiveMenuItem(menuId)
+}
 </script>
 
 <template>
@@ -16,56 +21,43 @@ const navigationStore = useNavigationStore()
             </div>
 
             <!-- Tear Film Deficiencies -->
-            <div
-                class="absolute top-[-174px] text-center h-[170px] w-[164px] bg-no-repeat bg-cover"
-                :class="{
-                    'text-blue-800': navigationStore.activeMenuItem === 'tear-film-deficiencies',
-                }"
-                :style="{
-                    backgroundImage: `url(${tearDiamond})`,
-                }"
-            >
-                <div
-                    class="absolute top-[80px] font-semibold text-xs text-center w-full leading-tight"
-                >
-                    TEAR FILM<br />DEFICIENCIES
-                </div>
-            </div>
+            <DiamondButton
+                :image="tearDiamond"
+                label="TEAR FILM<br />DEFICIENCIES"
+                position="top"
+                menu-id="tear-film-deficiencies"
+                :active="
+                    !navigationStore.activeMenuItem ||
+                    navigationStore.activeMenuItem === 'tear-film-deficiencies'
+                "
+                @click="handleDiamondClick"
+            />
 
             <!-- Eyelid Anomalies -->
-            <div
-                class="absolute right-[10px] text-center h-[170px] w-[164px] bg-no-repeat bg-cover"
-                :class="{
-                    'text-blue-800': navigationStore.activeMenuItem === 'eyelid-anomalies',
-                }"
-                :style="{
-                    backgroundImage: `url(${eyelidDiamond})`,
-                }"
-            >
-                <div
-                    class="absolute top-[80px] font-semibold text-xs text-center w-full leading-tight"
-                >
-                    EYELID<br />ANOMALIES
-                </div>
-            </div>
+            <DiamondButton
+                :image="eyelidDiamond"
+                label="EYELID<br />ANOMALIES"
+                position="right"
+                menu-id="eyelid-anomalies"
+                :active="
+                    !navigationStore.activeMenuItem ||
+                    navigationStore.activeMenuItem === 'eyelid-anomalies'
+                "
+                @click="handleDiamondClick"
+            />
 
             <!-- Ocular Surface Abnormalities -->
-            <div
-                class="absolute bottom-[-174px] text-center h-[170px] w-[164px] bg-no-repeat bg-cover"
-                :class="{
-                    'text-blue-800':
-                        navigationStore.activeMenuItem === 'ocular-surface-abnormalities',
-                }"
-                :style="{
-                    backgroundImage: `url(${ocularDiamond})`,
-                }"
-            >
-                <div
-                    class="absolute top-[78px] font-semibold text-xs text-center w-full leading-tight"
-                >
-                    OCULAR SURFACE<br />ABNORMALITIES
-                </div>
-            </div>
+            <DiamondButton
+                :image="ocularDiamond"
+                label="OCULAR SURFACE<br />ABNORMALITIES"
+                position="bottom"
+                menu-id="ocular-surface-abnormalities"
+                :active="
+                    !navigationStore.activeMenuItem ||
+                    navigationStore.activeMenuItem === 'ocular-surface-abnormalities'
+                "
+                @click="handleDiamondClick"
+            />
         </div>
     </div>
 </template>
