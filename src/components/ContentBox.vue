@@ -14,6 +14,10 @@ const props = defineProps({
         default: 'grey',
         validator: (value) => ['blue', 'grey', 'purple', 'teal'].includes(value),
     },
+    showTopTab: {
+        type: Boolean,
+        default: false,
+    },
     showBottomTab: {
         type: Boolean,
         default: false,
@@ -38,14 +42,14 @@ const bottomBarImage = computed(() => bottomBarImages[props.color])
 </script>
 
 <template>
-    <div class="grow min-w-[460px]">
+    <div class="grow min-w-[300px]">
         <div class="relative">
             <!-- Tab at top -->
             <div
-                class="absolute -top-[14px] bg-contain bg-center w-[233px] h-[115px] left-1/2 transform -translate-x-1/2"
+                v-if="showTopTab"
+                class="absolute -top-[14px] bg-contain bg-center bg-no-repeat w-[233px] h-[115px] left-1/2 transform -translate-x-1/2"
                 :style="{
                     backgroundImage: `url(${topBarImage})`,
-                    backgroundRepeat: 'no-repeat',
                 }"
             >
                 <div
@@ -57,8 +61,8 @@ const bottomBarImage = computed(() => bottomBarImages[props.color])
 
             <!-- Main content box -->
             <div
-                class="border-4 border-gray-300 rounded-3xl p-8 bg-white min-h-[420px] pt-[110px]"
-                :class="{ 'pb-[110px]': showBottomTab }"
+                class="border-4 border-gray-300 rounded-3xl p-8 bg-white min-h-[420px]"
+                :class="{ 'pt-[110px]': showTopTab, 'pb-[110px]': showBottomTab }"
             >
                 <slot></slot>
             </div>
@@ -66,10 +70,9 @@ const bottomBarImage = computed(() => bottomBarImages[props.color])
             <!-- Tab at bottom -->
             <div
                 v-if="showBottomTab"
-                class="absolute -bottom-[28px] bg-contain bg-center w-[233px] h-[115px] left-1/2 transform -translate-x-1/2"
+                class="absolute -bottom-[28px] bg-no-repeat bg-contain bg-center w-[233px] h-[115px] left-1/2 transform -translate-x-1/2"
                 :style="{
                     backgroundImage: `url(${bottomBarImage})`,
-                    backgroundRepeat: 'no-repeat',
                 }"
             >
                 <div
