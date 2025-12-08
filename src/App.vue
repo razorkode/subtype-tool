@@ -16,7 +16,7 @@ import HowToUse from '@/components/HowToUse.vue'
                 <DiamondButtons />
 
                 <!-- Main Content -->
-                <div class="relative bg-white py-8 px-2 max-w-xl">
+                <div class="relative bg-white py-8 px-2 max-w-[480px]">
                     <HowToUse />
                 </div>
             </div>

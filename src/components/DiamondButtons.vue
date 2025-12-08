@@ -41,7 +41,7 @@ const handleDiamondClick = (menuId) => {
 </script>
 
 <template>
-    <div class="w-[400px] h-[400px]">
+    <div class="w-[400px] h-[400px] min-w-[400px]">
         <div class="top-1/2 relative flex min-w-[380px] items-center justify-center">
             <!-- Text Block -->
             <div class="absolute left-[20px] text-gray-500 leading-tight">
