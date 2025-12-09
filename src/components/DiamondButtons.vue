@@ -54,6 +54,7 @@ const handleDiamondClick = (menuId) => {
                 label="TEAR FILM<br />DEFICIENCIES"
                 position="top"
                 menu-id="tear-film-deficiencies"
+                data-diamond="tear"
                 :active="isTearFilmActive"
                 @click="handleDiamondClick"
             />
@@ -64,6 +65,7 @@ const handleDiamondClick = (menuId) => {
                 label="EYELID<br />ANOMALIES"
                 position="right"
                 menu-id="eyelid-anomalies"
+                data-diamond="eyelid"
                 :active="isEyelidActive"
                 @click="handleDiamondClick"
             />
@@ -74,6 +76,7 @@ const handleDiamondClick = (menuId) => {
                 label="OCULAR SURFACE<br />ABNORMALITIES"
                 position="bottom"
                 menu-id="ocular-surface-abnormalities"
+                data-diamond="ocular"
                 :active="isOcularSurfaceActive"
                 @click="handleDiamondClick"
             />

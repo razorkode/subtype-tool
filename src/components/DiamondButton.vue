@@ -21,6 +21,10 @@ defineProps({
         type: String,
         required: true,
     },
+    dataDiamond: {
+        type: String,
+        default: '',
+    },
 })
 
 const emit = defineEmits(['click'])
@@ -51,6 +55,7 @@ const textTopPosition = {
         :style="{
             backgroundImage: `url(${image})`,
         }"
+        :data-diamond="dataDiamond"
         @click="emit('click', menuId)"
     >
         <div
