@@ -166,7 +166,7 @@ const shouldShowBracket = (diamondId) => {
             <MainNav />
 
             <!-- Diamonds + Connectors + Boxes Container -->
-            <div ref="containerRef" class="relative flex items-start gap-8 min-w-0">
+            <div ref="containerRef" class="relative flex items-center gap-8 min-w-0">
                 <!-- Diamond Buttons Section -->
                 <div class="shrink-0" :style="{ marginTop: diamondsMarginTop + 'px' }">
                     <DiamondButtons />
