@@ -259,7 +259,7 @@ const shouldShowBracket = (diamondId) => {
 
                             <!-- LIPID Sub-option (no bracket) -->
                             <div
-                                class="absolute top-0 left-0"
+                                class="absolute top-0 left-0 w-full"
                                 :class="{ invisible: !showTear || activeMenuItem !== 'lipid' }"
                             >
                                 <SubOptionBox
@@ -301,7 +301,7 @@ const shouldShowBracket = (diamondId) => {
 
                             <!-- AQUEOUS Sub-option -->
                             <div
-                                class="absolute top-0 left-0"
+                                class="absolute top-0 left-0 w-full"
                                 :class="{ invisible: !showTear || activeMenuItem !== 'aqueous' }"
                             >
                                 <SubOptionBox
@@ -341,7 +341,7 @@ const shouldShowBracket = (diamondId) => {
 
                             <!-- MUCIN/GLYCOCALYX Sub-option -->
                             <div
-                                class="absolute top-0 left-0"
+                                class="absolute top-0 left-0 w-full"
                                 :class="{
                                     invisible: !showTear || activeMenuItem !== 'mucin-glycocalyx',
                                 }"
@@ -404,7 +404,7 @@ const shouldShowBracket = (diamondId) => {
 
                             <!-- BLINK / LID CLOSURE Sub-option -->
                             <div
-                                class="absolute top-0 left-0"
+                                class="absolute top-0 left-0 w-full"
                                 :class="{
                                     invisible:
                                         !showEyelid || activeMenuItem !== 'blink-lid-closure',
@@ -447,7 +447,7 @@ const shouldShowBracket = (diamondId) => {
 
                             <!-- LID MARGIN Sub-option -->
                             <div
-                                class="absolute top-0 left-0"
+                                class="absolute top-0 left-0 w-full"
                                 :class="{
                                     invisible: !showEyelid || activeMenuItem !== 'lid-margin',
                                 }"
@@ -514,7 +514,7 @@ const shouldShowBracket = (diamondId) => {
 
                             <!-- ANATOMICAL MISALIGNMENT Sub-option -->
                             <div
-                                class="absolute top-0 left-0"
+                                class="absolute top-0 left-0 w-full"
                                 :class="{
                                     invisible:
                                         !showOcular || activeMenuItem !== 'anatomical-misalignment',
@@ -557,7 +557,7 @@ const shouldShowBracket = (diamondId) => {
 
                             <!-- NEURAL DYSFUNCTION Sub-option -->
                             <div
-                                class="absolute top-0 left-0"
+                                class="absolute top-0 left-0 w-full"
                                 :class="{
                                     invisible:
                                         !showOcular || activeMenuItem !== 'neural-dysfunction',
@@ -600,7 +600,7 @@ const shouldShowBracket = (diamondId) => {
 
                             <!-- OCULAR SURFACE CELLULAR Sub-option -->
                             <div
-                                class="absolute top-0 left-0"
+                                class="absolute top-0 left-0 w-full"
                                 :class="{
                                     invisible:
                                         !showOcular || activeMenuItem !== 'ocular-surface-cellular',
@@ -643,7 +643,7 @@ const shouldShowBracket = (diamondId) => {
 
                             <!-- PRIMARY INFLAMMATION Sub-option -->
                             <div
-                                class="absolute top-0 left-0"
+                                class="absolute top-0 left-0 w-full"
                                 :class="{
                                     invisible:
                                         !showOcular || activeMenuItem !== 'primary-inflammation',

@@ -39,10 +39,13 @@ const bottomBarImages = {
 
 const topBarImage = computed(() => topBarImages[props.color])
 const bottomBarImage = computed(() => bottomBarImages[props.color])
+
+// Text color: white for colored tabs, dark blue for grey
+const tabTextColor = computed(() => (props.color === 'grey' ? 'text-[#05319B]' : 'text-white'))
 </script>
 
 <template>
-    <div class="grow min-w-[300px]">
+    <div class="grow min-w-[300px] max-w-[520px] w-full">
         <div class="relative">
             <!-- Tab at top -->
             <div
@@ -53,7 +56,8 @@ const bottomBarImage = computed(() => bottomBarImages[props.color])
                 }"
             >
                 <div
-                    class="text-[#05319B] font-bold text-lg mx-10 leading-tight h-[105px] flex items-center justify-center text-center"
+                    class="font-bold text-lg mx-10 leading-tight h-[105px] flex items-center justify-center text-center"
+                    :class="tabTextColor"
                 >
                     <slot name="tab">HOW<br />TO USE</slot>
                 </div>
@@ -76,7 +80,8 @@ const bottomBarImage = computed(() => bottomBarImages[props.color])
                 }"
             >
                 <div
-                    class="text-[#05319B] font-bold text-lg mx-10 leading-tight h-[105px] flex items-center justify-center text-center"
+                    class="font-bold text-lg mx-10 leading-tight h-[105px] flex items-center justify-center text-center"
+                    :class="tabTextColor"
                 >
                     <slot name="bottomTab"></slot>
                 </div>
