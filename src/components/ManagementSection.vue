@@ -20,12 +20,15 @@ const colorClasses = computed(() => {
     const colors = {
         blue: {
             bg: 'bg-gradient-to-r from-[#3AADE1] to-[#05319B]',
+            border: 'border-[#3AADE1]',
         },
         teal: {
             bg: 'bg-gradient-to-r from-[#52A5A4] to-[#2D5A59]',
+            border: 'border-[#52A5A4]',
         },
         purple: {
             bg: 'bg-gradient-to-r from-[#9B6FB5] to-[#5A3D6E]',
+            border: 'border-[#9B6FB5]',
         },
     }
     return colors[props.color]
@@ -42,8 +45,15 @@ const toggleItem = (index) => {
     <div>
         <!-- Eye icon -->
         <div class="flex justify-center my-4">
-            <div class="w-16 h-16 rounded-full border-2 border-gray-300 flex items-center justify-center">
-                <svg class="w-10 h-10 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <div
+                class="w-16 h-16 rounded-full border-2 border-gray-300 flex items-center justify-center"
+            >
+                <svg
+                    class="w-10 h-10 text-gray-400"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                >
                     <path
                         stroke-linecap="round"
                         stroke-linejoin="round"
@@ -65,23 +75,28 @@ const toggleItem = (index) => {
             </div>
         </div>
 
-        <!-- Management header banner -->
-        <div class="rounded-lg py-2 px-4 mb-4" :class="colorClasses.bg">
-            <div class="text-white text-center font-bold text-sm tracking-wide">
-                DRY EYE DISEASE MANAGEMENT
+        <div class="border-2 rounded-b-3xl relative mt-8" :class="colorClasses.border">
+            <!-- Management header banner -->
+            <div
+                class="absolute -top-[19px] left-1/2 transform -translate-x-1/2 w-[70%] py-2 px-4"
+                :class="colorClasses.bg"
+            >
+                <div class="text-white text-center font-bold text-sm tracking-wide">
+                    DRY EYE DISEASE MANAGEMENT
+                </div>
             </div>
-        </div>
 
-        <!-- Checkbox items -->
-        <div class="space-y-2">
-            <CheckboxItem
-                v-for="(item, index) in items"
-                :key="index"
-                :checked="item.checked"
-                :label="item.label"
-                :description="item.description"
-                @update:checked="toggleItem(index)"
-            />
+            <!-- Checkbox items -->
+            <div class="space-y-2 p-6 pt-10">
+                <CheckboxItem
+                    v-for="(item, index) in items"
+                    :key="index"
+                    :checked="item.checked"
+                    :label="item.label"
+                    :description="item.description"
+                    @update:checked="toggleItem(index)"
+                />
+            </div>
         </div>
     </div>
 </template>
