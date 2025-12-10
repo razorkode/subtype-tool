@@ -231,7 +231,7 @@ const shouldShowBracket = (diamondId) => {
                     <!-- Content Boxes - ALL ALWAYS RENDERED for layout, visibility controlled -->
                     <div
                         data-boxes-container
-                        class="flex flex-col gap-12 absolute top-0 left-0"
+                        class="flex flex-col gap-12 absolute top-0 left-0 w-full"
                         :style="{ marginTop: boxesMarginTop + 'px' }"
                         :class="{ invisible: showHowToUse }"
                     >
