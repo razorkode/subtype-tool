@@ -19,24 +19,37 @@ const ocularSurfaceItems = [
     'primary-inflammation',
 ]
 
-// Check if diamond buttons should be active
+// Check if diamond buttons should be active based on selected diamond
 const isTearFilmActive = computed(() => {
-    return !navigationStore.activeMenuItem || tearFilmItems.includes(navigationStore.activeMenuItem)
+    return navigationStore.selectedDiamond === null || navigationStore.selectedDiamond === 'tear'
 })
 
 const isEyelidActive = computed(() => {
-    return !navigationStore.activeMenuItem || eyelidItems.includes(navigationStore.activeMenuItem)
+    return navigationStore.selectedDiamond === null || navigationStore.selectedDiamond === 'eyelid'
 })
 
 const isOcularSurfaceActive = computed(() => {
-    return (
-        !navigationStore.activeMenuItem ||
-        ocularSurfaceItems.includes(navigationStore.activeMenuItem)
-    )
+    return navigationStore.selectedDiamond === null || navigationStore.selectedDiamond === 'ocular'
 })
 
 const handleDiamondClick = (menuId) => {
-    navigationStore.setActiveMenuItem(menuId)
+    // Map menuId to diamond type
+    let diamondType = null
+    if (tearFilmItems.includes(menuId)) {
+        diamondType = 'tear'
+    } else if (eyelidItems.includes(menuId)) {
+        diamondType = 'eyelid'
+    } else if (ocularSurfaceItems.includes(menuId)) {
+        diamondType = 'ocular'
+    }
+    
+    // Toggle selection: if clicking the same diamond, deselect it (show How to Use)
+    if (navigationStore.selectedDiamond === diamondType) {
+        navigationStore.clearSelection()
+    } else {
+        navigationStore.setSelectedDiamond(diamondType)
+        navigationStore.setActiveMenuItem(menuId)
+    }
 }
 </script>
 

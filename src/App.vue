@@ -1,8 +1,12 @@
 <script setup>
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, onMounted, nextTick, watch, computed } from 'vue'
 import MainNav from '@/components/MainNav.vue'
 import DiamondButtons from '@/components/DiamondButtons.vue'
 import ContentBoxWithBracket from '@/components/ContentBoxWithBracket.vue'
+import HowToUse from '@/components/HowToUse.vue'
+import { useNavigationStore } from '@/stores/navigation'
+
+const navigationStore = useNavigationStore()
 
 const containerRef = ref(null)
 const svgPaths = ref([])
@@ -15,6 +19,23 @@ const colors = {
     teal: '#52A5A4',
     purple: '#7B5295',
 }
+
+// Computed property to check if we should show How to Use
+const showHowToUse = computed(() => navigationStore.selectedDiamond === null)
+
+// Computed properties for visibility of each box/connector
+const showTear = computed(() => navigationStore.selectedDiamond === 'tear')
+const showEyelid = computed(() => navigationStore.selectedDiamond === 'eyelid')
+const showOcular = computed(() => navigationStore.selectedDiamond === 'ocular')
+
+// Watch for diamond selection changes and recalculate paths
+watch(
+    () => navigationStore.selectedDiamond,
+    async () => {
+        await nextTick()
+        setTimeout(calculatePaths, 50)
+    },
+)
 
 const updateLayout = async () => {
     // First reset margins to measure true positions
@@ -73,7 +94,6 @@ const calculatePaths = () => {
     const ocularBox = document.querySelector('[data-box="ocular"]')
 
     if (!tearDiamond || !eyelidDiamond || !ocularDiamond || !tearBox || !eyelidBox || !ocularBox) {
-        console.log('Missing elements')
         return
     }
 
@@ -85,19 +105,19 @@ const calculatePaths = () => {
     const eyelidBoxRect = eyelidBox.getBoundingClientRect()
     const ocularBoxRect = ocularBox.getBoundingClientRect()
 
-    // Calculate relative positions within container
+    // Calculate relative positions within container - always calculate all paths
     const paths = [
         {
+            id: 'tear',
             color: colors.blue,
-            // Center of top-right edge
             startX: tearDiamondRect.left + tearDiamondRect.width * 0.75 - container.left,
             startY: tearDiamondRect.top + tearDiamondRect.height * 0.24 - container.top,
             endX: tearBoxRect.left - container.left,
             endY: tearBoxRect.top + tearBoxRect.height / 2 - container.top,
         },
         {
+            id: 'eyelid',
             color: colors.teal,
-            // Straight horizontal line - box is aligned so both Y values match
             startX: eyelidDiamondRect.right - 10 - container.left,
             startY: eyelidDiamondRect.top + eyelidDiamondRect.height * 0.47 - container.top,
             endX: eyelidBoxRect.left - container.left,
@@ -105,8 +125,8 @@ const calculatePaths = () => {
             isStraight: true,
         },
         {
+            id: 'ocular',
             color: colors.purple,
-            // Center of bottom-right edge
             startX: ocularDiamondRect.left + ocularDiamondRect.width * 0.74 - container.left,
             startY: ocularDiamondRect.top + ocularDiamondRect.height * 0.72 - container.top,
             endX: ocularBoxRect.left - container.left,
@@ -132,9 +152,19 @@ const calculatePaths = () => {
                     <DiamondButtons />
                 </div>
 
-                <!-- SVG Connector Lines Overlay -->
+                <!-- SVG Connector Lines Overlay - use visibility to hide/show -->
                 <svg class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 5">
-                    <g v-for="(path, index) in svgPaths" :key="index">
+                    <g
+                        v-for="path in svgPaths"
+                        :key="path.id"
+                        :class="{
+                            invisible:
+                                showHowToUse ||
+                                (path.id === 'tear' && !showTear) ||
+                                (path.id === 'eyelid' && !showEyelid) ||
+                                (path.id === 'ocular' && !showOcular),
+                        }"
+                    >
                         <!-- Connector line - straight or curved -->
                         <path
                             :d="
@@ -161,52 +191,61 @@ const calculatePaths = () => {
                     </g>
                 </svg>
 
-                <!-- Content Boxes with Brackets - flex column layout for responsiveness -->
-                <div
-                    data-boxes-container
-                    class="flex flex-col gap-12 shrink min-w-0"
-                    :style="{ marginTop: boxesMarginTop + 'px' }"
-                >
-                    <div data-box="tear">
-                        <ContentBoxWithBracket
-                            color="blue"
-                            title="TEAR FILM DEFICIENCIES"
-                            bracketConnect="top"
-                        >
-                            <ul class="list-disc list-inside space-y-1 text-sm">
-                                <li>Lipid</li>
-                                <li>Aqueous</li>
-                                <li>Mucin/glycocalyx</li>
-                            </ul>
-                        </ContentBoxWithBracket>
+                <!-- Right side content area - contains both HowToUse and boxes -->
+                <div class="relative shrink min-w-0">
+                    <!-- How to Use Box (shown by default when no diamond is selected) -->
+                    <div :class="{ invisible: !showHowToUse }">
+                        <HowToUse />
                     </div>
 
-                    <div data-box="eyelid">
-                        <ContentBoxWithBracket
-                            color="teal"
-                            title="EYELID ANOMALIES"
-                            bracketConnect="top"
-                        >
-                            <ul class="list-disc list-inside space-y-1 text-sm">
-                                <li>Blink / lid closure</li>
-                                <li>Lid margin</li>
-                            </ul>
-                        </ContentBoxWithBracket>
-                    </div>
+                    <!-- Content Boxes with Brackets - always rendered, visibility controlled -->
+                    <div
+                        data-boxes-container
+                        class="flex flex-col gap-12 absolute top-0 left-0"
+                        :style="{ marginTop: boxesMarginTop + 'px' }"
+                        :class="{ invisible: showHowToUse }"
+                    >
+                        <div data-box="tear" :class="{ invisible: !showTear }">
+                            <ContentBoxWithBracket
+                                color="blue"
+                                title="TEAR FILM DEFICIENCIES"
+                                bracketConnect="top"
+                            >
+                                <ul class="list-disc list-inside space-y-1 text-sm">
+                                    <li>Lipid</li>
+                                    <li>Aqueous</li>
+                                    <li>Mucin/glycocalyx</li>
+                                </ul>
+                            </ContentBoxWithBracket>
+                        </div>
 
-                    <div data-box="ocular">
-                        <ContentBoxWithBracket
-                            color="purple"
-                            title="OCULAR SURFACE ABNORMALITIES"
-                            bracketConnect="bottom"
-                        >
-                            <ul class="list-disc list-inside space-y-1 text-sm">
-                                <li>Anatomical misalignment</li>
-                                <li>Neural dysfunction</li>
-                                <li>Ocular surface cellular damage/disruption</li>
-                                <li>Primary inflammation/oxidative stress</li>
-                            </ul>
-                        </ContentBoxWithBracket>
+                        <div data-box="eyelid" :class="{ invisible: !showEyelid }">
+                            <ContentBoxWithBracket
+                                color="teal"
+                                title="EYELID ANOMALIES"
+                                bracketConnect="top"
+                            >
+                                <ul class="list-disc list-inside space-y-1 text-sm">
+                                    <li>Blink / lid closure</li>
+                                    <li>Lid margin</li>
+                                </ul>
+                            </ContentBoxWithBracket>
+                        </div>
+
+                        <div data-box="ocular" :class="{ invisible: !showOcular }">
+                            <ContentBoxWithBracket
+                                color="purple"
+                                title="OCULAR SURFACE ABNORMALITIES"
+                                bracketConnect="bottom"
+                            >
+                                <ul class="list-disc list-inside space-y-1 text-sm">
+                                    <li>Anatomical misalignment</li>
+                                    <li>Neural dysfunction</li>
+                                    <li>Ocular surface cellular damage/disruption</li>
+                                    <li>Primary inflammation/oxidative stress</li>
+                                </ul>
+                            </ContentBoxWithBracket>
+                        </div>
                     </div>
                 </div>
             </div>

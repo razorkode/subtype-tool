@@ -3,6 +3,32 @@ import GradientButton from '@/components/GradientButton.vue'
 import { useNavigationStore } from '@/stores/navigation'
 
 const navigationStore = useNavigationStore()
+
+// Define parent-child relationships
+const tearFilmItems = ['tear-film-deficiencies', 'lipid', 'aqueous', 'mucin-glycocalyx']
+const eyelidItems = ['eyelid-anomalies', 'blink-lid-closure', 'lid-margin']
+const ocularSurfaceItems = [
+    'ocular-surface-abnormalities',
+    'anatomical-misalignment',
+    'neural-dysfunction',
+    'ocular-surface-cellular',
+    'primary-inflammation',
+]
+
+const handleNavClick = (menuId) => {
+    // Determine which diamond category this belongs to
+    let diamondType = null
+    if (tearFilmItems.includes(menuId)) {
+        diamondType = 'tear'
+    } else if (eyelidItems.includes(menuId)) {
+        diamondType = 'eyelid'
+    } else if (ocularSurfaceItems.includes(menuId)) {
+        diamondType = 'ocular'
+    }
+    
+    navigationStore.setSelectedDiamond(diamondType)
+    navigationStore.setActiveMenuItem(menuId)
+}
 </script>
 
 <template>
@@ -13,28 +39,28 @@ const navigationStore = useNavigationStore()
             <GradientButton
                 variant="gray"
                 :active="navigationStore.activeMenuItem === 'tear-film-deficiencies'"
-                @click="navigationStore.setActiveMenuItem('tear-film-deficiencies')"
+                @click="handleNavClick('tear-film-deficiencies')"
             >
                 TEAR FILM DEFICIENCIES
             </GradientButton>
             <GradientButton
                 variant="cyan"
                 :active="navigationStore.activeMenuItem === 'lipid'"
-                @click="navigationStore.setActiveMenuItem('lipid')"
+                @click="handleNavClick('lipid')"
             >
                 Lipid
             </GradientButton>
             <GradientButton
                 variant="cyan"
                 :active="navigationStore.activeMenuItem === 'aqueous'"
-                @click="navigationStore.setActiveMenuItem('aqueous')"
+                @click="handleNavClick('aqueous')"
             >
                 Aqueous
             </GradientButton>
             <GradientButton
                 variant="cyan"
                 :active="navigationStore.activeMenuItem === 'mucin-glycocalyx'"
-                @click="navigationStore.setActiveMenuItem('mucin-glycocalyx')"
+                @click="handleNavClick('mucin-glycocalyx')"
             >
                 Mucin / glycocalyx
             </GradientButton>
@@ -45,21 +71,21 @@ const navigationStore = useNavigationStore()
             <GradientButton
                 variant="gray"
                 :active="navigationStore.activeMenuItem === 'eyelid-anomalies'"
-                @click="navigationStore.setActiveMenuItem('eyelid-anomalies')"
+                @click="handleNavClick('eyelid-anomalies')"
             >
                 EYELID ANOMALIES
             </GradientButton>
             <GradientButton
                 variant="teal"
                 :active="navigationStore.activeMenuItem === 'blink-lid-closure'"
-                @click="navigationStore.setActiveMenuItem('blink-lid-closure')"
+                @click="handleNavClick('blink-lid-closure')"
             >
                 Blink / lid closure
             </GradientButton>
             <GradientButton
                 variant="teal"
                 :active="navigationStore.activeMenuItem === 'lid-margin'"
-                @click="navigationStore.setActiveMenuItem('lid-margin')"
+                @click="handleNavClick('lid-margin')"
             >
                 Lid margin
             </GradientButton>
@@ -70,28 +96,28 @@ const navigationStore = useNavigationStore()
             <GradientButton
                 variant="gray"
                 :active="navigationStore.activeMenuItem === 'ocular-surface-abnormalities'"
-                @click="navigationStore.setActiveMenuItem('ocular-surface-abnormalities')"
+                @click="handleNavClick('ocular-surface-abnormalities')"
             >
                 OCULAR SURFACE ABNORMALITIES
             </GradientButton>
             <GradientButton
                 variant="purple"
                 :active="navigationStore.activeMenuItem === 'anatomical-misalignment'"
-                @click="navigationStore.setActiveMenuItem('anatomical-misalignment')"
+                @click="handleNavClick('anatomical-misalignment')"
             >
                 Anatomical misalignment
             </GradientButton>
             <GradientButton
                 variant="purple"
                 :active="navigationStore.activeMenuItem === 'neural-dysfunction'"
-                @click="navigationStore.setActiveMenuItem('neural-dysfunction')"
+                @click="handleNavClick('neural-dysfunction')"
             >
                 Neural dysfunction
             </GradientButton>
             <GradientButton
                 variant="purple"
                 :active="navigationStore.activeMenuItem === 'ocular-surface-cellular'"
-                @click="navigationStore.setActiveMenuItem('ocular-surface-cellular')"
+                @click="handleNavClick('ocular-surface-cellular')"
             >
                 <div class="text-center leading-3">
                     <div>Ocular surface cellular</div>
@@ -101,7 +127,7 @@ const navigationStore = useNavigationStore()
             <GradientButton
                 variant="purple"
                 :active="navigationStore.activeMenuItem === 'primary-inflammation'"
-                @click="navigationStore.setActiveMenuItem('primary-inflammation')"
+                @click="handleNavClick('primary-inflammation')"
             >
                 <div class="text-center leading-3">
                     <div>Primary inflammation /</div>
