@@ -6,9 +6,7 @@ import ContentBoxWithBracket from '@/components/ContentBoxWithBracket.vue'
 
 const containerRef = ref(null)
 const svgPaths = ref([])
-const tearBoxTop = ref('0px')
-const eyelidBoxTop = ref('180px')
-const ocularBoxTop = ref('360px')
+const boxesTopPadding = ref('0px')
 
 // Colors for each connector
 const colors = {
@@ -20,56 +18,38 @@ const colors = {
 onMounted(() => {
     // Wait for everything to render
     setTimeout(async () => {
-        positionBoxes()
+        alignBoxes()
         await nextTick()
-        // Recalculate after positions applied
-        setTimeout(() => {
-            calculatePaths()
-        }, 50)
+        calculatePaths()
     }, 200)
     window.addEventListener('resize', async () => {
-        positionBoxes()
+        alignBoxes()
         await nextTick()
-        setTimeout(() => {
-            calculatePaths()
-        }, 50)
+        calculatePaths()
     })
 })
 
-const positionBoxes = () => {
-    if (!containerRef.value) return
-
-    const container = containerRef.value.getBoundingClientRect()
+const alignBoxes = () => {
     const eyelidDiamond = document.querySelector('[data-diamond="eyelid"]')
-    const tearBox = document.querySelector('[data-box="tear"]')
     const eyelidBox = document.querySelector('[data-box="eyelid"]')
-    const ocularBox = document.querySelector('[data-box="ocular"]')
+    const boxesContainer = document.querySelector('[data-boxes-container]')
 
-    if (!eyelidDiamond || !tearBox || !eyelidBox || !ocularBox) return
+    if (!eyelidDiamond || !eyelidBox || !boxesContainer) return
 
     const eyelidDiamondRect = eyelidDiamond.getBoundingClientRect()
-    const tearBoxRect = tearBox.getBoundingClientRect()
     const eyelidBoxRect = eyelidBox.getBoundingClientRect()
+    const containerRect = boxesContainer.getBoundingClientRect()
 
-    // The diamond's connector point Y position
-    const diamondConnectorY = eyelidDiamondRect.top + eyelidDiamondRect.height * 0.47
+    // Diamond connector Y position
+    const diamondY = eyelidDiamondRect.top + eyelidDiamondRect.height * 0.47
 
-    // Position the eyelid box so its center aligns with diamond connector
-    const eyelidBoxCenter = eyelidBoxRect.height / 2
-    const eyelidTop = diamondConnectorY - container.top - eyelidBoxCenter
+    // Current box center Y position
+    const boxCenterY = eyelidBoxRect.top + eyelidBoxRect.height / 2
 
-    // Even spacing between boxes (enough room for brackets)
-    const boxSpacing = 50
+    // Calculate offset needed
+    const offset = diamondY - boxCenterY
 
-    // Position tear box above eyelid box with even spacing
-    const tearTop = eyelidTop - tearBoxRect.height - boxSpacing
-
-    // Position ocular box below eyelid box with even spacing
-    const ocularTop = eyelidTop + eyelidBoxRect.height + boxSpacing
-
-    tearBoxTop.value = `${Math.max(0, tearTop)}px`
-    eyelidBoxTop.value = `${eyelidTop}px`
-    ocularBoxTop.value = `${ocularTop}px`
+    boxesTopPadding.value = `${Math.max(0, offset)}px`
 }
 
 const calculatePaths = () => {
@@ -101,11 +81,6 @@ const calculatePaths = () => {
     const ocularBoxRect = ocularBox.getBoundingClientRect()
 
     // Calculate relative positions within container
-    // Blue: center of top-right diagonal edge
-    // Teal: right corner (rightmost point) - straight horizontal line
-    // Purple: center of bottom-right diagonal edge
-    const tealStartY = eyelidDiamondRect.top + eyelidDiamondRect.height * 0.47 - container.top
-
     const paths = [
         {
             color: colors.blue,
@@ -117,12 +92,12 @@ const calculatePaths = () => {
         },
         {
             color: colors.teal,
-            // Right corner - straight horizontal line
+            // Right corner - straight horizontal line (boxes are aligned so Y matches)
             startX: eyelidDiamondRect.right - 10 - container.left,
-            startY: tealStartY,
+            startY: eyelidDiamondRect.top + eyelidDiamondRect.height * 0.47 - container.top,
             endX: eyelidBoxRect.left - container.left,
-            // Use same Y to make line straight (box is now aligned)
-            endY: tealStartY,
+            endY: eyelidBoxRect.top + eyelidBoxRect.height / 2 - container.top,
+            isStraight: true,
         },
         {
             color: colors.purple,
@@ -155,12 +130,16 @@ const calculatePaths = () => {
                 <!-- SVG Connector Lines Overlay -->
                 <svg class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 5">
                     <g v-for="(path, index) in svgPaths" :key="index">
-                        <!-- Curved connector line -->
+                        <!-- Connector line - straight or curved -->
                         <path
-                            :d="`M ${path.startX} ${path.startY}
-                                 C ${path.startX + 50} ${path.startY},
-                                   ${path.endX - 50} ${path.endY},
-                                   ${path.endX} ${path.endY}`"
+                            :d="
+                                path.isStraight
+                                    ? `M ${path.startX} ${path.startY} L ${path.endX} ${path.endY}`
+                                    : `M ${path.startX} ${path.startY}
+                                   C ${path.startX + 50} ${path.startY},
+                                     ${path.endX - 50} ${path.endY},
+                                     ${path.endX} ${path.endY}`
+                            "
                             :stroke="path.color"
                             stroke-width="2"
                             fill="none"
@@ -177,12 +156,13 @@ const calculatePaths = () => {
                     </g>
                 </svg>
 
-                <!-- Content Boxes with Brackets - evenly spaced, middle aligned with diamond -->
+                <!-- Content Boxes with Brackets - flex column layout for responsiveness -->
                 <div
-                    class="relative w-full max-w-[420px] min-w-[310px] shrink"
-                    style="height: 580px"
+                    data-boxes-container
+                    class="flex flex-col gap-12"
+                    :style="{ paddingTop: boxesTopPadding }"
                 >
-                    <div data-box="tear" class="absolute left-0" :style="{ top: tearBoxTop }">
+                    <div data-box="tear">
                         <ContentBoxWithBracket
                             color="blue"
                             title="TEAR FILM DEFICIENCIES"
@@ -196,7 +176,7 @@ const calculatePaths = () => {
                         </ContentBoxWithBracket>
                     </div>
 
-                    <div data-box="eyelid" class="absolute left-0" :style="{ top: eyelidBoxTop }">
+                    <div data-box="eyelid">
                         <ContentBoxWithBracket
                             color="teal"
                             title="EYELID ANOMALIES"
@@ -209,7 +189,7 @@ const calculatePaths = () => {
                         </ContentBoxWithBracket>
                     </div>
 
-                    <div data-box="ocular" class="absolute left-0" :style="{ top: ocularBoxTop }">
+                    <div data-box="ocular">
                         <ContentBoxWithBracket
                             color="purple"
                             title="OCULAR SURFACE ABNORMALITIES"
