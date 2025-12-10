@@ -235,9 +235,374 @@ const shouldShowBracket = (diamondId) => {
                         :style="{ marginTop: boxesMarginTop + 'px' }"
                         :class="{ invisible: showHowToUse }"
                     >
+                        <!-- ALL SUB-OPTIONS - Positioned at top of container -->
+                        <!-- TEAR FILM Sub-options -->
+                        <div
+                            class="absolute top-0 left-0 w-full"
+                            :class="{ invisible: !showTear || activeMenuItem !== 'lipid' }"
+                        >
+                            <SubOptionBox
+                                color="blue"
+                                category="TEAR FILM DEFICIENCIES"
+                                title="LIPID"
+                            >
+                                <div class="space-y-4">
+                                    <div>
+                                        <div
+                                            class="text-blue-600 font-semibold text-xs mb-2 border-b border-blue-200 pb-1"
+                                        >
+                                            STANDARD TESTING
+                                        </div>
+                                        <div class="space-y-2">
+                                            <div>
+                                                <div class="font-bold text-sm">INTERFEROMETRY</div>
+                                                <div class="text-xs text-gray-600">
+                                                    grade ≤ 3 (non-amorphous or colored pattern) or
+                                                    &lt;72nm on LipiView 197, 320, 343
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="font-bold text-sm">
+                                                    MEIBUM EXPRESSIBILITY/QUALITY
+                                                </div>
+                                                <div class="text-xs text-gray-600">
+                                                    meibum not clear or limited expressibility 332,
+                                                    371, 715
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </SubOptionBox>
+                        </div>
+
+                        <div
+                            class="absolute top-0 left-0 w-full"
+                            :class="{ invisible: !showTear || activeMenuItem !== 'aqueous' }"
+                        >
+                            <SubOptionBox
+                                color="blue"
+                                category="TEAR FILM DEFICIENCIES"
+                                title="AQUEOUS"
+                            >
+                                <div class="space-y-4">
+                                    <div>
+                                        <div
+                                            class="text-blue-600 font-semibold text-xs mb-2 border-b border-blue-200 pb-1"
+                                        >
+                                            STANDARD TESTING
+                                        </div>
+                                        <div class="space-y-2">
+                                            <div>
+                                                <div class="font-bold text-sm">SCHIRMER TEST</div>
+                                                <div class="text-xs text-gray-600">
+                                                    ≤10mm in 5 minutes without anesthesia
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="font-bold text-sm">
+                                                    TEAR MENISCUS HEIGHT
+                                                </div>
+                                                <div class="text-xs text-gray-600">
+                                                    &lt;0.2mm measured by OCT or slit lamp
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </SubOptionBox>
+                        </div>
+
+                        <div
+                            class="absolute top-0 left-0 w-full"
+                            :class="{
+                                invisible: !showTear || activeMenuItem !== 'mucin-glycocalyx',
+                            }"
+                        >
+                            <SubOptionBox
+                                color="blue"
+                                category="TEAR FILM DEFICIENCIES"
+                                title="MUCIN/GLYCOCALYX"
+                            >
+                                <div class="space-y-4">
+                                    <div>
+                                        <div
+                                            class="text-blue-600 font-semibold text-xs mb-2 border-b border-blue-200 pb-1"
+                                        >
+                                            STANDARD TESTING
+                                        </div>
+                                        <div class="space-y-2">
+                                            <div>
+                                                <div class="font-bold text-sm">
+                                                    TEAR BREAK-UP TIME
+                                                </div>
+                                                <div class="text-xs text-gray-600">
+                                                    &lt;10 seconds
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="font-bold text-sm">
+                                                    IMPRESSION CYTOLOGY
+                                                </div>
+                                                <div class="text-xs text-gray-600">
+                                                    Goblet cell density assessment
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </SubOptionBox>
+                        </div>
+
+                        <!-- EYELID Sub-options -->
+                        <div
+                            class="absolute top-0 left-0 w-full"
+                            :class="{
+                                invisible: !showEyelid || activeMenuItem !== 'blink-lid-closure',
+                            }"
+                        >
+                            <SubOptionBox
+                                color="teal"
+                                category="EYELID ANOMALIES"
+                                title="BLINK / LID CLOSURE"
+                            >
+                                <div class="space-y-4">
+                                    <div>
+                                        <div
+                                            class="text-teal-600 font-semibold text-xs mb-2 border-b border-teal-200 pb-1"
+                                        >
+                                            STANDARD TESTING
+                                        </div>
+                                        <div class="space-y-2">
+                                            <div>
+                                                <div class="font-bold text-sm">
+                                                    BLINK RATE ASSESSMENT
+                                                </div>
+                                                <div class="text-xs text-gray-600">
+                                                    Incomplete blink frequency evaluation
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="font-bold text-sm">
+                                                    LID CLOSURE EVALUATION
+                                                </div>
+                                                <div class="text-xs text-gray-600">
+                                                    Lagophthalmos assessment during sleep
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </SubOptionBox>
+                        </div>
+
+                        <div
+                            class="absolute top-0 left-0 w-full"
+                            :class="{
+                                invisible: !showEyelid || activeMenuItem !== 'lid-margin',
+                            }"
+                        >
+                            <SubOptionBox
+                                color="teal"
+                                category="EYELID ANOMALIES"
+                                title="LID MARGIN"
+                            >
+                                <div class="space-y-4">
+                                    <div>
+                                        <div
+                                            class="text-teal-600 font-semibold text-xs mb-2 border-b border-teal-200 pb-1"
+                                        >
+                                            STANDARD TESTING
+                                        </div>
+                                        <div class="space-y-2">
+                                            <div>
+                                                <div class="font-bold text-sm">
+                                                    MEIBOMIAN GLAND EVALUATION
+                                                </div>
+                                                <div class="text-xs text-gray-600">
+                                                    Gland dropout and morphology assessment
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="font-bold text-sm">
+                                                    LID WIPER EPITHELIOPATHY
+                                                </div>
+                                                <div class="text-xs text-gray-600">
+                                                    Staining of the lid wiper region
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </SubOptionBox>
+                        </div>
+
+                        <!-- OCULAR SURFACE Sub-options -->
+                        <div
+                            class="absolute top-0 left-0 w-full"
+                            :class="{
+                                invisible:
+                                    !showOcular || activeMenuItem !== 'anatomical-misalignment',
+                            }"
+                        >
+                            <SubOptionBox
+                                color="purple"
+                                category="OCULAR SURFACE ABNORMALITIES"
+                                title="ANATOMICAL MISALIGNMENT"
+                            >
+                                <div class="space-y-4">
+                                    <div>
+                                        <div
+                                            class="text-purple-600 font-semibold text-xs mb-2 border-b border-purple-200 pb-1"
+                                        >
+                                            STANDARD TESTING
+                                        </div>
+                                        <div class="space-y-2">
+                                            <div>
+                                                <div class="font-bold text-sm">
+                                                    CONJUNCTIVOCHALASIS
+                                                </div>
+                                                <div class="text-xs text-gray-600">
+                                                    Redundant conjunctival folds assessment
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="font-bold text-sm">
+                                                    PINGUECULA/PTERYGIUM
+                                                </div>
+                                                <div class="text-xs text-gray-600">
+                                                    Growth evaluation and grading
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </SubOptionBox>
+                        </div>
+
+                        <div
+                            class="absolute top-0 left-0 w-full"
+                            :class="{
+                                invisible: !showOcular || activeMenuItem !== 'neural-dysfunction',
+                            }"
+                        >
+                            <SubOptionBox
+                                color="purple"
+                                category="OCULAR SURFACE ABNORMALITIES"
+                                title="NEURAL DYSFUNCTION"
+                            >
+                                <div class="space-y-4">
+                                    <div>
+                                        <div
+                                            class="text-purple-600 font-semibold text-xs mb-2 border-b border-purple-200 pb-1"
+                                        >
+                                            STANDARD TESTING
+                                        </div>
+                                        <div class="space-y-2">
+                                            <div>
+                                                <div class="font-bold text-sm">
+                                                    CORNEAL SENSITIVITY
+                                                </div>
+                                                <div class="text-xs text-gray-600">
+                                                    Cochet-Bonnet esthesiometry
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="font-bold text-sm">
+                                                    NEUROPATHIC PAIN ASSESSMENT
+                                                </div>
+                                                <div class="text-xs text-gray-600">
+                                                    Symptom-sign discordance evaluation
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </SubOptionBox>
+                        </div>
+
+                        <div
+                            class="absolute top-0 left-0 w-full"
+                            :class="{
+                                invisible:
+                                    !showOcular || activeMenuItem !== 'ocular-surface-cellular',
+                            }"
+                        >
+                            <SubOptionBox
+                                color="purple"
+                                category="OCULAR SURFACE ABNORMALITIES"
+                                title="CELLULAR DAMAGE"
+                            >
+                                <div class="space-y-4">
+                                    <div>
+                                        <div
+                                            class="text-purple-600 font-semibold text-xs mb-2 border-b border-purple-200 pb-1"
+                                        >
+                                            STANDARD TESTING
+                                        </div>
+                                        <div class="space-y-2">
+                                            <div>
+                                                <div class="font-bold text-sm">CORNEAL STAINING</div>
+                                                <div class="text-xs text-gray-600">
+                                                    Fluorescein and lissamine green assessment
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="font-bold text-sm">
+                                                    CONJUNCTIVAL STAINING
+                                                </div>
+                                                <div class="text-xs text-gray-600">
+                                                    Oxford or NEI grading scale
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </SubOptionBox>
+                        </div>
+
+                        <div
+                            class="absolute top-0 left-0 w-full"
+                            :class="{
+                                invisible:
+                                    !showOcular || activeMenuItem !== 'primary-inflammation',
+                            }"
+                        >
+                            <SubOptionBox
+                                color="purple"
+                                category="OCULAR SURFACE ABNORMALITIES"
+                                title="INFLAMMATION"
+                            >
+                                <div class="space-y-4">
+                                    <div>
+                                        <div
+                                            class="text-purple-600 font-semibold text-xs mb-2 border-b border-purple-200 pb-1"
+                                        >
+                                            STANDARD TESTING
+                                        </div>
+                                        <div class="space-y-2">
+                                            <div>
+                                                <div class="font-bold text-sm">MMP-9 TESTING</div>
+                                                <div class="text-xs text-gray-600">
+                                                    InflammaDry point-of-care test
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="font-bold text-sm">TEAR OSMOLARITY</div>
+                                                <div class="text-xs text-gray-600">
+                                                    &gt;308 mOsm/L or &gt;8 mOsm/L difference between
+                                                    eyes
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </SubOptionBox>
+                        </div>
+
+                        <!-- MAIN CATEGORY BOXES - For layout positioning only -->
                         <!-- TEAR BOX POSITION -->
                         <div data-box="tear" class="relative">
-                            <!-- Main Category Box (with bracket) -->
                             <div
                                 :class="{
                                     invisible:
@@ -256,138 +621,14 @@ const shouldShowBracket = (diamondId) => {
                                     </ul>
                                 </ContentBoxWithBracket>
                             </div>
-
-                            <!-- LIPID Sub-option (no bracket) -->
-                            <div
-                                class="absolute top-0 left-0 w-full"
-                                :class="{ invisible: !showTear || activeMenuItem !== 'lipid' }"
-                            >
-                                <SubOptionBox
-                                    color="blue"
-                                    category="TEAR FILM DEFICIENCIES"
-                                    title="LIPID"
-                                >
-                                    <div class="space-y-4">
-                                        <div>
-                                            <div
-                                                class="text-blue-600 font-semibold text-xs mb-2 border-b border-blue-200 pb-1"
-                                            >
-                                                STANDARD TESTING
-                                            </div>
-                                            <div class="space-y-2">
-                                                <div>
-                                                    <div class="font-bold text-sm">
-                                                        INTERFEROMETRY
-                                                    </div>
-                                                    <div class="text-xs text-gray-600">
-                                                        grade ≤ 3 (non-amorphous or colored pattern)
-                                                        or &lt;72nm on LipiView 197, 320, 343
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="font-bold text-sm">
-                                                        MEIBUM EXPRESSIBILITY/QUALITY
-                                                    </div>
-                                                    <div class="text-xs text-gray-600">
-                                                        meibum not clear or limited expressibility
-                                                        332, 371, 715
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </SubOptionBox>
-                            </div>
-
-                            <!-- AQUEOUS Sub-option -->
-                            <div
-                                class="absolute top-0 left-0 w-full"
-                                :class="{ invisible: !showTear || activeMenuItem !== 'aqueous' }"
-                            >
-                                <SubOptionBox
-                                    color="blue"
-                                    category="TEAR FILM DEFICIENCIES"
-                                    title="AQUEOUS"
-                                >
-                                    <div class="space-y-4">
-                                        <div>
-                                            <div
-                                                class="text-blue-600 font-semibold text-xs mb-2 border-b border-blue-200 pb-1"
-                                            >
-                                                STANDARD TESTING
-                                            </div>
-                                            <div class="space-y-2">
-                                                <div>
-                                                    <div class="font-bold text-sm">
-                                                        SCHIRMER TEST
-                                                    </div>
-                                                    <div class="text-xs text-gray-600">
-                                                        ≤10mm in 5 minutes without anesthesia
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="font-bold text-sm">
-                                                        TEAR MENISCUS HEIGHT
-                                                    </div>
-                                                    <div class="text-xs text-gray-600">
-                                                        &lt;0.2mm measured by OCT or slit lamp
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </SubOptionBox>
-                            </div>
-
-                            <!-- MUCIN/GLYCOCALYX Sub-option -->
-                            <div
-                                class="absolute top-0 left-0 w-full"
-                                :class="{
-                                    invisible: !showTear || activeMenuItem !== 'mucin-glycocalyx',
-                                }"
-                            >
-                                <SubOptionBox
-                                    color="blue"
-                                    category="TEAR FILM DEFICIENCIES"
-                                    title="MUCIN/GLYCOCALYX"
-                                >
-                                    <div class="space-y-4">
-                                        <div>
-                                            <div
-                                                class="text-blue-600 font-semibold text-xs mb-2 border-b border-blue-200 pb-1"
-                                            >
-                                                STANDARD TESTING
-                                            </div>
-                                            <div class="space-y-2">
-                                                <div>
-                                                    <div class="font-bold text-sm">
-                                                        TEAR BREAK-UP TIME
-                                                    </div>
-                                                    <div class="text-xs text-gray-600">
-                                                        &lt;10 seconds
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="font-bold text-sm">
-                                                        IMPRESSION CYTOLOGY
-                                                    </div>
-                                                    <div class="text-xs text-gray-600">
-                                                        Goblet cell density assessment
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </SubOptionBox>
-                            </div>
                         </div>
 
                         <!-- EYELID BOX POSITION -->
                         <div data-box="eyelid" class="relative">
-                            <!-- Main Category Box (with bracket) -->
                             <div
                                 :class="{
-                                    invisible: !showEyelid || activeMenuItem !== 'eyelid-anomalies',
+                                    invisible:
+                                        !showEyelid || activeMenuItem !== 'eyelid-anomalies',
                                 }"
                             >
                                 <ContentBoxWithBracket
@@ -401,96 +642,10 @@ const shouldShowBracket = (diamondId) => {
                                     </ul>
                                 </ContentBoxWithBracket>
                             </div>
-
-                            <!-- BLINK / LID CLOSURE Sub-option -->
-                            <div
-                                class="absolute top-0 left-0 w-full"
-                                :class="{
-                                    invisible:
-                                        !showEyelid || activeMenuItem !== 'blink-lid-closure',
-                                }"
-                            >
-                                <SubOptionBox
-                                    color="teal"
-                                    category="EYELID ANOMALIES"
-                                    title="BLINK / LID CLOSURE"
-                                >
-                                    <div class="space-y-4">
-                                        <div>
-                                            <div
-                                                class="text-teal-600 font-semibold text-xs mb-2 border-b border-teal-200 pb-1"
-                                            >
-                                                STANDARD TESTING
-                                            </div>
-                                            <div class="space-y-2">
-                                                <div>
-                                                    <div class="font-bold text-sm">
-                                                        BLINK RATE ASSESSMENT
-                                                    </div>
-                                                    <div class="text-xs text-gray-600">
-                                                        Incomplete blink frequency evaluation
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="font-bold text-sm">
-                                                        LID CLOSURE EVALUATION
-                                                    </div>
-                                                    <div class="text-xs text-gray-600">
-                                                        Lagophthalmos assessment during sleep
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </SubOptionBox>
-                            </div>
-
-                            <!-- LID MARGIN Sub-option -->
-                            <div
-                                class="absolute top-0 left-0 w-full"
-                                :class="{
-                                    invisible: !showEyelid || activeMenuItem !== 'lid-margin',
-                                }"
-                            >
-                                <SubOptionBox
-                                    color="teal"
-                                    category="EYELID ANOMALIES"
-                                    title="LID MARGIN"
-                                >
-                                    <div class="space-y-4">
-                                        <div>
-                                            <div
-                                                class="text-teal-600 font-semibold text-xs mb-2 border-b border-teal-200 pb-1"
-                                            >
-                                                STANDARD TESTING
-                                            </div>
-                                            <div class="space-y-2">
-                                                <div>
-                                                    <div class="font-bold text-sm">
-                                                        MEIBOMIAN GLAND EVALUATION
-                                                    </div>
-                                                    <div class="text-xs text-gray-600">
-                                                        Gland dropout and morphology assessment
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="font-bold text-sm">
-                                                        LID WIPER EPITHELIOPATHY
-                                                    </div>
-                                                    <div class="text-xs text-gray-600">
-                                                        Staining of the lid wiper region
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </SubOptionBox>
-                            </div>
                         </div>
 
                         <!-- OCULAR BOX POSITION -->
                         <div data-box="ocular" class="relative">
-                            <!-- Main Category Box (with bracket) -->
                             <div
                                 :class="{
                                     invisible:
@@ -510,179 +665,6 @@ const shouldShowBracket = (diamondId) => {
                                         <li>Primary inflammation/oxidative stress</li>
                                     </ul>
                                 </ContentBoxWithBracket>
-                            </div>
-
-                            <!-- ANATOMICAL MISALIGNMENT Sub-option -->
-                            <div
-                                class="absolute top-0 left-0 w-full"
-                                :class="{
-                                    invisible:
-                                        !showOcular || activeMenuItem !== 'anatomical-misalignment',
-                                }"
-                            >
-                                <SubOptionBox
-                                    color="purple"
-                                    category="OCULAR SURFACE ABNORMALITIES"
-                                    title="ANATOMICAL MISALIGNMENT"
-                                >
-                                    <div class="space-y-4">
-                                        <div>
-                                            <div
-                                                class="text-purple-600 font-semibold text-xs mb-2 border-b border-purple-200 pb-1"
-                                            >
-                                                STANDARD TESTING
-                                            </div>
-                                            <div class="space-y-2">
-                                                <div>
-                                                    <div class="font-bold text-sm">
-                                                        CONJUNCTIVOCHALASIS
-                                                    </div>
-                                                    <div class="text-xs text-gray-600">
-                                                        Redundant conjunctival folds assessment
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="font-bold text-sm">
-                                                        PINGUECULA/PTERYGIUM
-                                                    </div>
-                                                    <div class="text-xs text-gray-600">
-                                                        Growth evaluation and grading
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </SubOptionBox>
-                            </div>
-
-                            <!-- NEURAL DYSFUNCTION Sub-option -->
-                            <div
-                                class="absolute top-0 left-0 w-full"
-                                :class="{
-                                    invisible:
-                                        !showOcular || activeMenuItem !== 'neural-dysfunction',
-                                }"
-                            >
-                                <SubOptionBox
-                                    color="purple"
-                                    category="OCULAR SURFACE ABNORMALITIES"
-                                    title="NEURAL DYSFUNCTION"
-                                >
-                                    <div class="space-y-4">
-                                        <div>
-                                            <div
-                                                class="text-purple-600 font-semibold text-xs mb-2 border-b border-purple-200 pb-1"
-                                            >
-                                                STANDARD TESTING
-                                            </div>
-                                            <div class="space-y-2">
-                                                <div>
-                                                    <div class="font-bold text-sm">
-                                                        CORNEAL SENSITIVITY
-                                                    </div>
-                                                    <div class="text-xs text-gray-600">
-                                                        Cochet-Bonnet esthesiometry
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="font-bold text-sm">
-                                                        NEUROPATHIC PAIN ASSESSMENT
-                                                    </div>
-                                                    <div class="text-xs text-gray-600">
-                                                        Symptom-sign discordance evaluation
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </SubOptionBox>
-                            </div>
-
-                            <!-- OCULAR SURFACE CELLULAR Sub-option -->
-                            <div
-                                class="absolute top-0 left-0 w-full"
-                                :class="{
-                                    invisible:
-                                        !showOcular || activeMenuItem !== 'ocular-surface-cellular',
-                                }"
-                            >
-                                <SubOptionBox
-                                    color="purple"
-                                    category="OCULAR SURFACE ABNORMALITIES"
-                                    title="CELLULAR DAMAGE"
-                                >
-                                    <div class="space-y-4">
-                                        <div>
-                                            <div
-                                                class="text-purple-600 font-semibold text-xs mb-2 border-b border-purple-200 pb-1"
-                                            >
-                                                STANDARD TESTING
-                                            </div>
-                                            <div class="space-y-2">
-                                                <div>
-                                                    <div class="font-bold text-sm">
-                                                        CORNEAL STAINING
-                                                    </div>
-                                                    <div class="text-xs text-gray-600">
-                                                        Fluorescein and lissamine green assessment
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="font-bold text-sm">
-                                                        CONJUNCTIVAL STAINING
-                                                    </div>
-                                                    <div class="text-xs text-gray-600">
-                                                        Oxford or NEI grading scale
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </SubOptionBox>
-                            </div>
-
-                            <!-- PRIMARY INFLAMMATION Sub-option -->
-                            <div
-                                class="absolute top-0 left-0 w-full"
-                                :class="{
-                                    invisible:
-                                        !showOcular || activeMenuItem !== 'primary-inflammation',
-                                }"
-                            >
-                                <SubOptionBox
-                                    color="purple"
-                                    category="OCULAR SURFACE ABNORMALITIES"
-                                    title="INFLAMMATION"
-                                >
-                                    <div class="space-y-4">
-                                        <div>
-                                            <div
-                                                class="text-purple-600 font-semibold text-xs mb-2 border-b border-purple-200 pb-1"
-                                            >
-                                                STANDARD TESTING
-                                            </div>
-                                            <div class="space-y-2">
-                                                <div>
-                                                    <div class="font-bold text-sm">
-                                                        MMP-9 TESTING
-                                                    </div>
-                                                    <div class="text-xs text-gray-600">
-                                                        InflammaDry point-of-care test
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div class="font-bold text-sm">
-                                                        TEAR OSMOLARITY
-                                                    </div>
-                                                    <div class="text-xs text-gray-600">
-                                                        &gt;308 mOsm/L or &gt;8 mOsm/L difference
-                                                        between eyes
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </SubOptionBox>
                             </div>
                         </div>
                     </div>
