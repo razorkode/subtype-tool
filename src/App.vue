@@ -161,7 +161,7 @@ const shouldShowBracket = (diamondId) => {
 <template>
     <main class="flex min-h-screen flex-col mx-auto p-8">
         <!-- Main Content (Above Footer) -->
-        <div class="flex items-start justify-center gap-8 min-w-0">
+        <div class="flex flex-1 items-center justify-center gap-8 min-w-0">
             <!-- Left Navigation -->
             <MainNav />
 
