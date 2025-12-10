@@ -49,7 +49,7 @@ const toggleItem = (index) => {
             <img :src="eyeIcon" alt="Eye icon" class="w-16 h-16 object-contain" />
         </div>
 
-        <div class="border-2 rounded-b-3xl relative mt-8" :class="colorClasses.border">
+        <div class="border-2 rounded-b-3xl relative mt-8 z-10" :class="colorClasses.border">
             <!-- Management header banner -->
             <div
                 class="absolute -top-[19px] left-1/2 transform -translate-x-1/2 w-[70%] py-2 px-4"
