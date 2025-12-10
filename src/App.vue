@@ -1,10 +1,12 @@
 <script setup>
-import { ref, onMounted, nextTick, watch, computed } from 'vue'
+import { ref, onMounted, nextTick, watch, computed, reactive } from 'vue'
 import MainNav from '@/components/MainNav.vue'
 import DiamondButtons from '@/components/DiamondButtons.vue'
 import ContentBoxWithBracket from '@/components/ContentBoxWithBracket.vue'
 import SubOptionBox from '@/components/SubOptionBox.vue'
 import HowToUse from '@/components/HowToUse.vue'
+import TestingSection from '@/components/TestingSection.vue'
+import ManagementSection from '@/components/ManagementSection.vue'
 import { useNavigationStore } from '@/stores/navigation'
 
 const navigationStore = useNavigationStore()
@@ -156,6 +158,72 @@ const shouldShowBracket = (diamondId) => {
     if (diamondId === 'ocular') return activeMenuItem.value === 'ocular-surface-abnormalities'
     return false
 }
+
+// Management items for each sub-option
+const managementItems = reactive({
+    lipid: [
+        { label: 'LIFESTYLE ADVICE', description: 'Lorem ipsum dolor sit amet', checked: true },
+        {
+            label: 'TEAR SUPPLEMENTATION',
+            description: 'Lipomimetics and lubricants',
+            checked: true,
+        },
+        { label: 'LID HYGIENE', description: 'Warm compress and lid scrubs', checked: false },
+        { label: 'OMEGA-3 SUPPLEMENTS', description: 'Essential fatty acids', checked: true },
+    ],
+    aqueous: [
+        { label: 'LIFESTYLE ADVICE', description: 'Environmental modifications', checked: true },
+        { label: 'TEAR SUPPLEMENTATION', description: 'Aqueous-based lubricants', checked: true },
+        { label: 'PUNCTAL OCCLUSION', description: 'Temporary or permanent plugs', checked: false },
+        { label: 'SECRETAGOGUES', description: 'Topical diquafosol', checked: false },
+    ],
+    mucinGlycocalyx: [
+        { label: 'LIFESTYLE ADVICE', description: 'Screen time management', checked: true },
+        { label: 'TEAR SUPPLEMENTATION', description: 'Mucin-enhancing drops', checked: false },
+        { label: 'VITAMIN A', description: 'Topical retinoid therapy', checked: true },
+        { label: 'AUTOLOGOUS SERUM', description: 'Growth factor supplementation', checked: false },
+    ],
+    blinkLidClosure: [
+        { label: 'LIFESTYLE ADVICE', description: 'To be considered', checked: true },
+        {
+            label: 'TEAR CONSERVATION DEVICES',
+            description: 'Moisture chamber spectacles',
+            checked: true,
+        },
+        { label: 'BLINK THERAPIES', description: 'To be considered', checked: false },
+        { label: 'SURGICAL OPTIONS', description: 'To be considered', checked: true },
+    ],
+    lidMargin: [
+        { label: 'LIFESTYLE ADVICE', description: 'Dietary modifications', checked: true },
+        { label: 'LID HYGIENE', description: 'Daily cleansing routine', checked: true },
+        { label: 'THERMAL THERAPY', description: 'IPL and warm compress', checked: false },
+        { label: 'TOPICAL ANTIBIOTICS', description: 'Azithromycin ointment', checked: true },
+    ],
+    anatomicalMisalignment: [
+        { label: 'LIFESTYLE ADVICE', description: 'UV protection', checked: true },
+        { label: 'TEAR SUPPLEMENTATION', description: 'Viscous lubricants', checked: false },
+        { label: 'SURGICAL REFERRAL', description: 'Conjunctival procedures', checked: true },
+        { label: 'ANTI-INFLAMMATORY', description: 'Topical steroids PRN', checked: false },
+    ],
+    neuralDysfunction: [
+        { label: 'LIFESTYLE ADVICE', description: 'Stress management', checked: true },
+        { label: 'NEUROSTIMULATION', description: 'Intranasal devices', checked: false },
+        { label: 'NEUROPATHIC AGENTS', description: 'Low-dose naltrexone', checked: true },
+        { label: 'AUTOLOGOUS SERUM', description: 'Nerve growth factors', checked: true },
+    ],
+    ocularSurfaceCellular: [
+        { label: 'LIFESTYLE ADVICE', description: 'Allergen avoidance', checked: true },
+        { label: 'TEAR SUPPLEMENTATION', description: 'Preservative-free drops', checked: true },
+        { label: 'ANTI-INFLAMMATORY', description: 'Cyclosporine or lifitegrast', checked: false },
+        { label: 'AMNIOTIC MEMBRANE', description: 'Cryopreserved grafts', checked: false },
+    ],
+    primaryInflammation: [
+        { label: 'LIFESTYLE ADVICE', description: 'Anti-inflammatory diet', checked: true },
+        { label: 'TOPICAL STEROIDS', description: 'Short-term pulse therapy', checked: true },
+        { label: 'IMMUNOMODULATORS', description: 'Cyclosporine A', checked: false },
+        { label: 'OMEGA-3 SUPPLEMENTS', description: 'High-dose EPA/DHA', checked: true },
+    ],
+})
 </script>
 
 <template>
@@ -246,33 +314,39 @@ const shouldShowBracket = (diamondId) => {
                                 category="TEAR FILM DEFICIENCIES"
                                 title="LIPID"
                             >
-                                <div class="space-y-4">
-                                    <div>
-                                        <div
-                                            class="text-blue-600 font-semibold text-xs mb-2 border-b border-blue-200 pb-1"
-                                        >
-                                            STANDARD TESTING
-                                        </div>
-                                        <div class="space-y-2">
-                                            <div>
-                                                <div class="font-bold text-sm">INTERFEROMETRY</div>
-                                                <div class="text-xs text-gray-600">
-                                                    grade ≤ 3 (non-amorphous or colored pattern) or
-                                                    &lt;72nm on LipiView 197, 320, 343
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="font-bold text-sm">
-                                                    MEIBUM EXPRESSIBILITY/QUALITY
-                                                </div>
-                                                <div class="text-xs text-gray-600">
-                                                    meibum not clear or limited expressibility 332,
-                                                    371, 715
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <TestingSection
+                                    title="STANDARD TESTING"
+                                    color="blue"
+                                    :items="[
+                                        {
+                                            name: 'INTERFEROMETRY',
+                                            description: 'Grade ≤3 or <72nm on LipiView',
+                                        },
+                                        {
+                                            name: 'MEIBUM EXPRESSIBILITY',
+                                            description: 'Meibum quality assessment',
+                                        },
+                                    ]"
+                                />
+                                <TestingSection
+                                    title="ADVANCED TESTING"
+                                    color="blue"
+                                    :items="[
+                                        {
+                                            name: 'MEIBOGRAPHY',
+                                            description: 'Gland dropout visualization',
+                                        },
+                                        {
+                                            name: 'LIPID LAYER ANALYSIS',
+                                            description: 'Quantitative measurement',
+                                        },
+                                    ]"
+                                />
+                                <ManagementSection
+                                    color="blue"
+                                    :items="managementItems.lipid"
+                                    @update:items="managementItems.lipid = $event"
+                                />
                             </SubOptionBox>
                         </div>
 
@@ -285,31 +359,39 @@ const shouldShowBracket = (diamondId) => {
                                 category="TEAR FILM DEFICIENCIES"
                                 title="AQUEOUS"
                             >
-                                <div class="space-y-4">
-                                    <div>
-                                        <div
-                                            class="text-blue-600 font-semibold text-xs mb-2 border-b border-blue-200 pb-1"
-                                        >
-                                            STANDARD TESTING
-                                        </div>
-                                        <div class="space-y-2">
-                                            <div>
-                                                <div class="font-bold text-sm">SCHIRMER TEST</div>
-                                                <div class="text-xs text-gray-600">
-                                                    ≤10mm in 5 minutes without anesthesia
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="font-bold text-sm">
-                                                    TEAR MENISCUS HEIGHT
-                                                </div>
-                                                <div class="text-xs text-gray-600">
-                                                    &lt;0.2mm measured by OCT or slit lamp
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <TestingSection
+                                    title="STANDARD TESTING"
+                                    color="blue"
+                                    :items="[
+                                        {
+                                            name: 'SCHIRMER TEST',
+                                            description: '≤10mm in 5 minutes without anesthesia',
+                                        },
+                                        {
+                                            name: 'TEAR MENISCUS HEIGHT',
+                                            description: '<0.2mm measured by OCT',
+                                        },
+                                    ]"
+                                />
+                                <TestingSection
+                                    title="ADVANCED TESTING"
+                                    color="blue"
+                                    :items="[
+                                        {
+                                            name: 'PHENOL RED THREAD',
+                                            description: 'Alternative tear volume test',
+                                        },
+                                        {
+                                            name: 'TEAR OSMOLARITY',
+                                            description: '>308 mOsm/L indicates deficiency',
+                                        },
+                                    ]"
+                                />
+                                <ManagementSection
+                                    color="blue"
+                                    :items="managementItems.aqueous"
+                                    @update:items="managementItems.aqueous = $event"
+                                />
                             </SubOptionBox>
                         </div>
 
@@ -324,33 +406,39 @@ const shouldShowBracket = (diamondId) => {
                                 category="TEAR FILM DEFICIENCIES"
                                 title="MUCIN GLYCOCALYX"
                             >
-                                <div class="space-y-4">
-                                    <div>
-                                        <div
-                                            class="text-blue-600 font-semibold text-xs mb-2 border-b border-blue-200 pb-1"
-                                        >
-                                            STANDARD TESTING
-                                        </div>
-                                        <div class="space-y-2">
-                                            <div>
-                                                <div class="font-bold text-sm">
-                                                    TEAR BREAK-UP TIME
-                                                </div>
-                                                <div class="text-xs text-gray-600">
-                                                    &lt;10 seconds
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="font-bold text-sm">
-                                                    IMPRESSION CYTOLOGY
-                                                </div>
-                                                <div class="text-xs text-gray-600">
-                                                    Goblet cell density assessment
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <TestingSection
+                                    title="STANDARD TESTING"
+                                    color="blue"
+                                    :items="[
+                                        {
+                                            name: 'TEAR BREAK-UP TIME',
+                                            description: '<10 seconds indicates instability',
+                                        },
+                                        {
+                                            name: 'IMPRESSION CYTOLOGY',
+                                            description: 'Goblet cell density assessment',
+                                        },
+                                    ]"
+                                />
+                                <TestingSection
+                                    title="ADVANCED TESTING"
+                                    color="blue"
+                                    :items="[
+                                        {
+                                            name: 'NIBUT MEASUREMENT',
+                                            description: 'Non-invasive break-up time',
+                                        },
+                                        {
+                                            name: 'CONFOCAL MICROSCOPY',
+                                            description: 'Cellular level analysis',
+                                        },
+                                    ]"
+                                />
+                                <ManagementSection
+                                    color="blue"
+                                    :items="managementItems.mucinGlycocalyx"
+                                    @update:items="managementItems.mucinGlycocalyx = $event"
+                                />
                             </SubOptionBox>
                         </div>
 
@@ -366,33 +454,39 @@ const shouldShowBracket = (diamondId) => {
                                 category="EYELID ANOMALIES"
                                 title="BLINK / LID CLOSURE"
                             >
-                                <div class="space-y-4">
-                                    <div>
-                                        <div
-                                            class="text-teal-600 font-semibold text-xs mb-2 border-b border-teal-200 pb-1"
-                                        >
-                                            STANDARD TESTING
-                                        </div>
-                                        <div class="space-y-2">
-                                            <div>
-                                                <div class="font-bold text-sm">
-                                                    BLINK RATE ASSESSMENT
-                                                </div>
-                                                <div class="text-xs text-gray-600">
-                                                    Incomplete blink frequency evaluation
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="font-bold text-sm">
-                                                    LID CLOSURE EVALUATION
-                                                </div>
-                                                <div class="text-xs text-gray-600">
-                                                    Lagophthalmos assessment during sleep
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <TestingSection
+                                    title="STANDARD TESTING"
+                                    color="teal"
+                                    :items="[
+                                        {
+                                            name: 'PARTIAL BLINKING OBSERVATION',
+                                            description: '>40% occurrence 463',
+                                        },
+                                        {
+                                            name: 'LAGOPHTHALMOS/INADEQUATE LID SEAL',
+                                            description: 'Observed',
+                                        },
+                                    ]"
+                                />
+                                <TestingSection
+                                    title="ADVANCED TESTING"
+                                    color="teal"
+                                    :items="[
+                                        {
+                                            name: 'BLINK DYNAMICS ANALYSIS',
+                                            description: 'High-speed video recording',
+                                        },
+                                        {
+                                            name: 'LID POSITION ASSESSMENT',
+                                            description: 'Margin-reflex distance',
+                                        },
+                                    ]"
+                                />
+                                <ManagementSection
+                                    color="teal"
+                                    :items="managementItems.blinkLidClosure"
+                                    @update:items="managementItems.blinkLidClosure = $event"
+                                />
                             </SubOptionBox>
                         </div>
 
@@ -407,33 +501,39 @@ const shouldShowBracket = (diamondId) => {
                                 category="EYELID ANOMALIES"
                                 title="LID MARGIN"
                             >
-                                <div class="space-y-4">
-                                    <div>
-                                        <div
-                                            class="text-teal-600 font-semibold text-xs mb-2 border-b border-teal-200 pb-1"
-                                        >
-                                            STANDARD TESTING
-                                        </div>
-                                        <div class="space-y-2">
-                                            <div>
-                                                <div class="font-bold text-sm">
-                                                    MEIBOMIAN GLAND EVALUATION
-                                                </div>
-                                                <div class="text-xs text-gray-600">
-                                                    Gland dropout and morphology assessment
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="font-bold text-sm">
-                                                    LID WIPER EPITHELIOPATHY
-                                                </div>
-                                                <div class="text-xs text-gray-600">
-                                                    Staining of the lid wiper region
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <TestingSection
+                                    title="STANDARD TESTING"
+                                    color="teal"
+                                    :items="[
+                                        {
+                                            name: 'MEIBOMIAN GLAND EVALUATION',
+                                            description: 'Gland dropout and morphology',
+                                        },
+                                        {
+                                            name: 'LID WIPER EPITHELIOPATHY',
+                                            description: 'Staining of lid wiper region',
+                                        },
+                                    ]"
+                                />
+                                <TestingSection
+                                    title="ADVANCED TESTING"
+                                    color="teal"
+                                    :items="[
+                                        {
+                                            name: 'MEIBOGRAPHY',
+                                            description: 'Infrared gland imaging',
+                                        },
+                                        {
+                                            name: 'LID MARGIN SCORING',
+                                            description: 'Telangiectasia assessment',
+                                        },
+                                    ]"
+                                />
+                                <ManagementSection
+                                    color="teal"
+                                    :items="managementItems.lidMargin"
+                                    @update:items="managementItems.lidMargin = $event"
+                                />
                             </SubOptionBox>
                         </div>
 
@@ -450,33 +550,39 @@ const shouldShowBracket = (diamondId) => {
                                 category="OCULAR SURFACE ABNORMALITIES"
                                 title="ANATOMICAL MISALIGNMENT"
                             >
-                                <div class="space-y-4">
-                                    <div>
-                                        <div
-                                            class="text-purple-600 font-semibold text-xs mb-2 border-b border-purple-200 pb-1"
-                                        >
-                                            STANDARD TESTING
-                                        </div>
-                                        <div class="space-y-2">
-                                            <div>
-                                                <div class="font-bold text-sm">
-                                                    CONJUNCTIVOCHALASIS
-                                                </div>
-                                                <div class="text-xs text-gray-600">
-                                                    Redundant conjunctival folds assessment
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="font-bold text-sm">
-                                                    PINGUECULA/PTERYGIUM
-                                                </div>
-                                                <div class="text-xs text-gray-600">
-                                                    Growth evaluation and grading
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <TestingSection
+                                    title="STANDARD TESTING"
+                                    color="purple"
+                                    :items="[
+                                        {
+                                            name: 'CONJUNCTIVOCHALASIS',
+                                            description: 'Redundant conjunctival folds',
+                                        },
+                                        {
+                                            name: 'PINGUECULA/PTERYGIUM',
+                                            description: 'Growth evaluation and grading',
+                                        },
+                                    ]"
+                                />
+                                <TestingSection
+                                    title="ADVANCED TESTING"
+                                    color="purple"
+                                    :items="[
+                                        {
+                                            name: 'AS-OCT IMAGING',
+                                            description: 'Anterior segment visualization',
+                                        },
+                                        {
+                                            name: 'TEAR FILM DYNAMICS',
+                                            description: 'Flow pattern analysis',
+                                        },
+                                    ]"
+                                />
+                                <ManagementSection
+                                    color="purple"
+                                    :items="managementItems.anatomicalMisalignment"
+                                    @update:items="managementItems.anatomicalMisalignment = $event"
+                                />
                             </SubOptionBox>
                         </div>
 
@@ -491,33 +597,39 @@ const shouldShowBracket = (diamondId) => {
                                 category="OCULAR SURFACE ABNORMALITIES"
                                 title="NEURAL DYSFUNCTION"
                             >
-                                <div class="space-y-4">
-                                    <div>
-                                        <div
-                                            class="text-purple-600 font-semibold text-xs mb-2 border-b border-purple-200 pb-1"
-                                        >
-                                            STANDARD TESTING
-                                        </div>
-                                        <div class="space-y-2">
-                                            <div>
-                                                <div class="font-bold text-sm">
-                                                    CORNEAL SENSITIVITY
-                                                </div>
-                                                <div class="text-xs text-gray-600">
-                                                    Cochet-Bonnet esthesiometry
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="font-bold text-sm">
-                                                    NEUROPATHIC PAIN ASSESSMENT
-                                                </div>
-                                                <div class="text-xs text-gray-600">
-                                                    Symptom-sign discordance evaluation
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <TestingSection
+                                    title="STANDARD TESTING"
+                                    color="purple"
+                                    :items="[
+                                        {
+                                            name: 'CORNEAL SENSITIVITY',
+                                            description: 'Cochet-Bonnet esthesiometry',
+                                        },
+                                        {
+                                            name: 'NEUROPATHIC PAIN ASSESSMENT',
+                                            description: 'Symptom-sign discordance',
+                                        },
+                                    ]"
+                                />
+                                <TestingSection
+                                    title="ADVANCED TESTING"
+                                    color="purple"
+                                    :items="[
+                                        {
+                                            name: 'CONFOCAL MICROSCOPY',
+                                            description: 'Corneal nerve evaluation',
+                                        },
+                                        {
+                                            name: 'PROPARACAINE CHALLENGE',
+                                            description: 'Pain response testing',
+                                        },
+                                    ]"
+                                />
+                                <ManagementSection
+                                    color="purple"
+                                    :items="managementItems.neuralDysfunction"
+                                    @update:items="managementItems.neuralDysfunction = $event"
+                                />
                             </SubOptionBox>
                         </div>
 
@@ -533,33 +645,39 @@ const shouldShowBracket = (diamondId) => {
                                 category="OCULAR SURFACE ABNORMALITIES"
                                 title="CELLULAR DAMAGE"
                             >
-                                <div class="space-y-4">
-                                    <div>
-                                        <div
-                                            class="text-purple-600 font-semibold text-xs mb-2 border-b border-purple-200 pb-1"
-                                        >
-                                            STANDARD TESTING
-                                        </div>
-                                        <div class="space-y-2">
-                                            <div>
-                                                <div class="font-bold text-sm">
-                                                    CORNEAL STAINING
-                                                </div>
-                                                <div class="text-xs text-gray-600">
-                                                    Fluorescein and lissamine green assessment
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="font-bold text-sm">
-                                                    CONJUNCTIVAL STAINING
-                                                </div>
-                                                <div class="text-xs text-gray-600">
-                                                    Oxford or NEI grading scale
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <TestingSection
+                                    title="STANDARD TESTING"
+                                    color="purple"
+                                    :items="[
+                                        {
+                                            name: 'CORNEAL STAINING',
+                                            description: 'Fluorescein and lissamine green',
+                                        },
+                                        {
+                                            name: 'CONJUNCTIVAL STAINING',
+                                            description: 'Oxford or NEI grading scale',
+                                        },
+                                    ]"
+                                />
+                                <TestingSection
+                                    title="ADVANCED TESTING"
+                                    color="purple"
+                                    :items="[
+                                        {
+                                            name: 'IMPRESSION CYTOLOGY',
+                                            description: 'Cellular morphology analysis',
+                                        },
+                                        {
+                                            name: 'CONFOCAL MICROSCOPY',
+                                            description: 'In vivo cell imaging',
+                                        },
+                                    ]"
+                                />
+                                <ManagementSection
+                                    color="purple"
+                                    :items="managementItems.ocularSurfaceCellular"
+                                    @update:items="managementItems.ocularSurfaceCellular = $event"
+                                />
                             </SubOptionBox>
                         </div>
 
@@ -574,30 +692,39 @@ const shouldShowBracket = (diamondId) => {
                                 category="OCULAR SURFACE ABNORMALITIES"
                                 title="INFLAMMATION"
                             >
-                                <div class="space-y-4">
-                                    <div>
-                                        <div
-                                            class="text-purple-600 font-semibold text-xs mb-2 border-b border-purple-200 pb-1"
-                                        >
-                                            STANDARD TESTING
-                                        </div>
-                                        <div class="space-y-2">
-                                            <div>
-                                                <div class="font-bold text-sm">MMP-9 TESTING</div>
-                                                <div class="text-xs text-gray-600">
-                                                    InflammaDry point-of-care test
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="font-bold text-sm">TEAR OSMOLARITY</div>
-                                                <div class="text-xs text-gray-600">
-                                                    &gt;308 mOsm/L or &gt;8 mOsm/L difference
-                                                    between eyes
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <TestingSection
+                                    title="STANDARD TESTING"
+                                    color="purple"
+                                    :items="[
+                                        {
+                                            name: 'MMP-9 TESTING',
+                                            description: 'InflammaDry point-of-care test',
+                                        },
+                                        {
+                                            name: 'TEAR OSMOLARITY',
+                                            description: '>308 mOsm/L or >8 difference',
+                                        },
+                                    ]"
+                                />
+                                <TestingSection
+                                    title="ADVANCED TESTING"
+                                    color="purple"
+                                    :items="[
+                                        {
+                                            name: 'CYTOKINE ANALYSIS',
+                                            description: 'Inflammatory marker panel',
+                                        },
+                                        {
+                                            name: 'CONJUNCTIVAL REDNESS',
+                                            description: 'Objective grading systems',
+                                        },
+                                    ]"
+                                />
+                                <ManagementSection
+                                    color="purple"
+                                    :items="managementItems.primaryInflammation"
+                                    @update:items="managementItems.primaryInflammation = $event"
+                                />
                             </SubOptionBox>
                         </div>
 
