@@ -65,7 +65,7 @@ const tabTextColor = computed(() => (props.color === 'grey' ? 'text-[#05319B]' :
 
             <!-- Main content box -->
             <div
-                class="border-2 border-gray-300 rounded-3xl p-8 bg-white min-h-[420px]"
+                class="border-2 border-gray-300 rounded-3xl p-8 bg-white min-h-[540px]"
                 :class="{ 'pt-[110px]': showTopTab, 'pb-[110px]': showBottomTab }"
             >
                 <slot></slot>

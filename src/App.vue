@@ -322,7 +322,7 @@ const shouldShowBracket = (diamondId) => {
                             <SubOptionBox
                                 color="blue"
                                 category="TEAR FILM DEFICIENCIES"
-                                title="MUCIN/GLYCOCALYX"
+                                title="MUCIN GLYCOCALYX"
                             >
                                 <div class="space-y-4">
                                     <div>
@@ -542,7 +542,9 @@ const shouldShowBracket = (diamondId) => {
                                         </div>
                                         <div class="space-y-2">
                                             <div>
-                                                <div class="font-bold text-sm">CORNEAL STAINING</div>
+                                                <div class="font-bold text-sm">
+                                                    CORNEAL STAINING
+                                                </div>
                                                 <div class="text-xs text-gray-600">
                                                     Fluorescein and lissamine green assessment
                                                 </div>
@@ -564,8 +566,7 @@ const shouldShowBracket = (diamondId) => {
                         <div
                             class="absolute top-0 left-0 w-full"
                             :class="{
-                                invisible:
-                                    !showOcular || activeMenuItem !== 'primary-inflammation',
+                                invisible: !showOcular || activeMenuItem !== 'primary-inflammation',
                             }"
                         >
                             <SubOptionBox
@@ -590,8 +591,8 @@ const shouldShowBracket = (diamondId) => {
                                             <div>
                                                 <div class="font-bold text-sm">TEAR OSMOLARITY</div>
                                                 <div class="text-xs text-gray-600">
-                                                    &gt;308 mOsm/L or &gt;8 mOsm/L difference between
-                                                    eyes
+                                                    &gt;308 mOsm/L or &gt;8 mOsm/L difference
+                                                    between eyes
                                                 </div>
                                             </div>
                                         </div>
@@ -627,8 +628,7 @@ const shouldShowBracket = (diamondId) => {
                         <div data-box="eyelid" class="relative">
                             <div
                                 :class="{
-                                    invisible:
-                                        !showEyelid || activeMenuItem !== 'eyelid-anomalies',
+                                    invisible: !showEyelid || activeMenuItem !== 'eyelid-anomalies',
                                 }"
                             >
                                 <ContentBoxWithBracket
