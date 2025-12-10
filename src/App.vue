@@ -6,7 +6,7 @@ import ContentBoxWithBracket from '@/components/ContentBoxWithBracket.vue'
 
 const containerRef = ref(null)
 const svgPaths = ref([])
-const boxesTopPadding = ref('0px')
+const boxesMarginTop = ref(0)
 
 // Colors for each connector
 const colors = {
@@ -15,42 +15,35 @@ const colors = {
     purple: '#7B5295',
 }
 
-onMounted(() => {
-    // Wait for everything to render
-    setTimeout(async () => {
-        alignBoxes()
-        await nextTick()
-        calculatePaths()
-    }, 200)
-    window.addEventListener('resize', async () => {
-        alignBoxes()
-        await nextTick()
-        calculatePaths()
-    })
-})
+const updateLayout = async () => {
+    // First reset margin to measure true positions
+    boxesMarginTop.value = 0
+    await nextTick()
 
-const alignBoxes = () => {
     const eyelidDiamond = document.querySelector('[data-diamond="eyelid"]')
     const eyelidBox = document.querySelector('[data-box="eyelid"]')
-    const boxesContainer = document.querySelector('[data-boxes-container]')
 
-    if (!eyelidDiamond || !eyelidBox || !boxesContainer) return
+    if (!eyelidDiamond || !eyelidBox) return
 
-    const eyelidDiamondRect = eyelidDiamond.getBoundingClientRect()
-    const eyelidBoxRect = eyelidBox.getBoundingClientRect()
-    const containerRect = boxesContainer.getBoundingClientRect()
+    const diamondRect = eyelidDiamond.getBoundingClientRect()
+    const boxRect = eyelidBox.getBoundingClientRect()
 
-    // Diamond connector Y position
-    const diamondY = eyelidDiamondRect.top + eyelidDiamondRect.height * 0.47
+    // Get center Y positions
+    const diamondCenterY = diamondRect.top + diamondRect.height * 0.47
+    const boxCenterY = boxRect.top + boxRect.height / 2
 
-    // Current box center Y position
-    const boxCenterY = eyelidBoxRect.top + eyelidBoxRect.height / 2
+    // Calculate offset to align box center with diamond center
+    const offset = diamondCenterY - boxCenterY
+    boxesMarginTop.value = offset
 
-    // Calculate offset needed
-    const offset = diamondY - boxCenterY
-
-    boxesTopPadding.value = `${Math.max(0, offset)}px`
+    await nextTick()
+    calculatePaths()
 }
+
+onMounted(() => {
+    setTimeout(updateLayout, 200)
+    window.addEventListener('resize', updateLayout)
+})
 
 const calculatePaths = () => {
     if (!containerRef.value) return
@@ -92,7 +85,7 @@ const calculatePaths = () => {
         },
         {
             color: colors.teal,
-            // Right corner - straight horizontal line (boxes are aligned so Y matches)
+            // Straight horizontal line - box is aligned so both Y values match
             startX: eyelidDiamondRect.right - 10 - container.left,
             startY: eyelidDiamondRect.top + eyelidDiamondRect.height * 0.47 - container.top,
             endX: eyelidBoxRect.left - container.left,
@@ -121,7 +114,7 @@ const calculatePaths = () => {
             <MainNav />
 
             <!-- Diamonds + Connectors + Boxes Container -->
-            <div ref="containerRef" class="relative flex items-center gap-8 min-w-0">
+            <div ref="containerRef" class="relative flex items-start gap-8 min-w-0">
                 <!-- Diamond Buttons Section -->
                 <div class="shrink-0">
                     <DiamondButtons />
@@ -160,7 +153,7 @@ const calculatePaths = () => {
                 <div
                     data-boxes-container
                     class="flex flex-col gap-12 shrink min-w-0"
-                    :style="{ paddingTop: boxesTopPadding }"
+                    :style="{ marginTop: boxesMarginTop + 'px' }"
                 >
                     <div data-box="tear">
                         <ContentBoxWithBracket
