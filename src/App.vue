@@ -290,7 +290,7 @@ const managementItems = reactive({
                 </svg>
 
                 <!-- Right side content area -->
-                <div class="relative shrink min-w-0">
+                <div class="relative shrink min-w-0 flex items-center">
                     <!-- How to Use Box (shown by default) -->
                     <div :class="{ invisible: !showHowToUse }">
                         <HowToUse />
@@ -306,7 +306,7 @@ const managementItems = reactive({
                         <!-- ALL SUB-OPTIONS - Positioned at top of container -->
                         <!-- TEAR FILM Sub-options -->
                         <div
-                            class="absolute top-0 left-0 w-full"
+                            class="absolute top-1/2 -translate-y-1/2 left-0 w-full"
                             :class="{ invisible: !showTear || activeMenuItem !== 'lipid' }"
                         >
                             <SubOptionBox
@@ -351,7 +351,7 @@ const managementItems = reactive({
                         </div>
 
                         <div
-                            class="absolute top-0 left-0 w-full"
+                            class="absolute top-1/2 -translate-y-1/2 left-0 w-full"
                             :class="{ invisible: !showTear || activeMenuItem !== 'aqueous' }"
                         >
                             <SubOptionBox
@@ -396,7 +396,7 @@ const managementItems = reactive({
                         </div>
 
                         <div
-                            class="absolute top-0 left-0 w-full"
+                            class="absolute top-1/2 -translate-y-1/2 left-0 w-full"
                             :class="{
                                 invisible: !showTear || activeMenuItem !== 'mucin-glycocalyx',
                             }"
@@ -444,7 +444,7 @@ const managementItems = reactive({
 
                         <!-- EYELID Sub-options -->
                         <div
-                            class="absolute top-0 left-0 w-full"
+                            class="absolute top-1/2 -translate-y-1/2 left-0 w-full"
                             :class="{
                                 invisible: !showEyelid || activeMenuItem !== 'blink-lid-closure',
                             }"
@@ -491,7 +491,7 @@ const managementItems = reactive({
                         </div>
 
                         <div
-                            class="absolute top-0 left-0 w-full"
+                            class="absolute top-1/2 -translate-y-1/2 left-0 w-full"
                             :class="{
                                 invisible: !showEyelid || activeMenuItem !== 'lid-margin',
                             }"
@@ -539,7 +539,7 @@ const managementItems = reactive({
 
                         <!-- OCULAR SURFACE Sub-options -->
                         <div
-                            class="absolute top-0 left-0 w-full"
+                            class="absolute top-1/2 -translate-y-1/2 left-0 w-full"
                             :class="{
                                 invisible:
                                     !showOcular || activeMenuItem !== 'anatomical-misalignment',
@@ -587,7 +587,7 @@ const managementItems = reactive({
                         </div>
 
                         <div
-                            class="absolute top-0 left-0 w-full"
+                            class="absolute top-1/2 -translate-y-1/2 left-0 w-full"
                             :class="{
                                 invisible: !showOcular || activeMenuItem !== 'neural-dysfunction',
                             }"
@@ -634,7 +634,7 @@ const managementItems = reactive({
                         </div>
 
                         <div
-                            class="absolute top-0 left-0 w-full"
+                            class="absolute top-1/2 -translate-y-1/2 left-0 w-full"
                             :class="{
                                 invisible:
                                     !showOcular || activeMenuItem !== 'ocular-surface-cellular',
@@ -682,7 +682,7 @@ const managementItems = reactive({
                         </div>
 
                         <div
-                            class="absolute top-0 left-0 w-full"
+                            class="absolute top-1/2 -translate-y-1/2 left-0 w-full"
                             :class="{
                                 invisible: !showOcular || activeMenuItem !== 'primary-inflammation',
                             }"
