@@ -19,32 +19,41 @@ const props = defineProps({
 })
 
 const colorConfig = {
-    blue: '#3AADE1',
-    teal: '#52A5A4',
-    purple: '#7B5295',
+    blue: {
+        line: '#3AADE1',
+        gradientFrom: '#3AADE1',
+        gradientTo: '#05319B',
+    },
+    teal: {
+        line: '#52A5A4',
+        gradientFrom: '#52A5A4',
+        gradientTo: '#2D5A59',
+    },
+    purple: {
+        line: '#7B5295',
+        gradientFrom: '#9B6FB5',
+        gradientTo: '#5A3D6E',
+    },
 }
 
-const lineColor = computed(() => colorConfig[props.color])
+const lineColor = computed(() => colorConfig[props.color].line)
+const gradientFrom = computed(() => colorConfig[props.color].gradientFrom)
+const gradientTo = computed(() => colorConfig[props.color].gradientTo)
 </script>
 
 <template>
     <div class="flex items-stretch">
         <!-- Bracket container - stretches to match box height -->
-        <div class="relative shrink-0 w-[30px]" style="margin-right: -8px;">
+        <div class="relative shrink-0 w-[30px]" style="margin-right: -8px">
             <!-- Top curve -->
             <svg
                 class="absolute top-0 left-0"
                 width="30"
                 height="15"
                 viewBox="0 0 30 15"
-                style="transform: translateY(-100%);"
+                style="transform: translateY(-100%)"
             >
-                <path
-                    d="M 30 0 Q 10 0, 8 15"
-                    :stroke="lineColor"
-                    stroke-width="2"
-                    fill="none"
-                />
+                <path d="M 30 0 Q 10 0, 8 15" :stroke="lineColor" stroke-width="2" fill="none" />
             </svg>
 
             <!-- Straight line - stretches with content -->
@@ -59,16 +68,9 @@ const lineColor = computed(() => colorConfig[props.color])
                 width="16"
                 height="16"
                 viewBox="0 0 16 16"
-                style="transform: translateY(-50%);"
+                style="transform: translateY(-50%)"
             >
-                <circle
-                    cx="8"
-                    cy="8"
-                    r="5"
-                    :fill="lineColor"
-                    stroke="white"
-                    stroke-width="2"
-                />
+                <circle cx="8" cy="8" r="5" :fill="lineColor" stroke="white" stroke-width="2" />
             </svg>
 
             <!-- Bottom curve -->
@@ -77,29 +79,35 @@ const lineColor = computed(() => colorConfig[props.color])
                 width="30"
                 height="15"
                 viewBox="0 0 30 15"
-                style="transform: translateY(100%);"
+                style="transform: translateY(100%)"
             >
-                <path
-                    d="M 8 0 Q 10 15, 30 15"
-                    :stroke="lineColor"
-                    stroke-width="2"
-                    fill="none"
-                />
+                <path d="M 8 0 Q 10 15, 30 15" :stroke="lineColor" stroke-width="2" fill="none" />
             </svg>
         </div>
 
-        <!-- Content Box - plain white with border radius on all sides, responsive width -->
+        <!-- Content Box - white with gradient bar on left -->
         <div
-            class="relative w-full max-w-[380px] min-w-[280px] bg-white border-2 border-gray-300 rounded-2xl py-4 px-5"
+            class="relative w-full max-w-[380px] min-w-[280px] flex rounded-2xl overflow-hidden border border-gray-300"
         >
-            <!-- Title -->
-            <h3 class="font-bold text-[#05319B] text-sm mb-3">
-                <span class="border-b-2 border-[#05319B] pb-0.5">{{ title }}</span>
-            </h3>
+            <!-- Gradient bar on left -->
+            <div
+                class="w-6 shrink-0"
+                :style="{
+                    background: `linear-gradient(to bottom, ${gradientFrom}, ${gradientTo})`,
+                }"
+            ></div>
 
-            <!-- Content -->
-            <div class="text-gray-700 text-sm">
-                <slot></slot>
+            <!-- Content area -->
+            <div class="flex-1 bg-white py-4 px-5">
+                <!-- Title -->
+                <h3 class="font-bold text-[#05319B] text-sm mb-3">
+                    <span class="border-b-2 border-[#05319B] pb-0.5">{{ title }}</span>
+                </h3>
+
+                <!-- Content -->
+                <div class="text-gray-700 text-sm">
+                    <slot></slot>
+                </div>
             </div>
         </div>
     </div>
