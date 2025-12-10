@@ -86,7 +86,9 @@ const gradientTo = computed(() => colorConfig[props.color].gradientTo)
         </div>
 
         <!-- Content Box - white with gradient bar on left -->
-        <div class="relative w-[380px] flex rounded-2xl overflow-hidden border border-gray-300">
+        <div
+            class="relative w-full max-w-[380px] min-w-[234px] flex rounded-2xl overflow-hidden border border-gray-300"
+        >
             <!-- Gradient bar on left -->
             <div
                 class="w-6 shrink-0"

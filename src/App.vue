@@ -114,14 +114,14 @@ const calculatePaths = () => {
 </script>
 
 <template>
-    <main class="flex min-h-screen flex-col min-w-5xl mx-auto p-8">
+    <main class="flex min-h-screen flex-col mx-auto p-8">
         <!-- Main Content (Above Footer) -->
-        <div class="flex items-start justify-center gap-8">
+        <div class="flex items-start justify-center gap-8 min-w-0">
             <!-- Left Navigation -->
             <MainNav />
 
             <!-- Diamonds + Connectors + Boxes Container -->
-            <div ref="containerRef" class="relative flex items-center gap-8">
+            <div ref="containerRef" class="relative flex items-center gap-8 min-w-0">
                 <!-- Diamond Buttons Section -->
                 <div class="shrink-0">
                     <DiamondButtons />
@@ -159,7 +159,7 @@ const calculatePaths = () => {
                 <!-- Content Boxes with Brackets - flex column layout for responsiveness -->
                 <div
                     data-boxes-container
-                    class="flex flex-col gap-12"
+                    class="flex flex-col gap-12 shrink min-w-0"
                     :style="{ paddingTop: boxesTopPadding }"
                 >
                     <div data-box="tear">
