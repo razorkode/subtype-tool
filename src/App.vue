@@ -7,6 +7,7 @@ import ContentBoxWithBracket from '@/components/ContentBoxWithBracket.vue'
 const containerRef = ref(null)
 const svgPaths = ref([])
 const boxesMarginTop = ref(0)
+const diamondsMarginTop = ref(0)
 
 // Colors for each connector
 const colors = {
@@ -16,8 +17,9 @@ const colors = {
 }
 
 const updateLayout = async () => {
-    // First reset margin to measure true positions
+    // First reset margins to measure true positions
     boxesMarginTop.value = 0
+    diamondsMarginTop.value = 0
     await nextTick()
 
     const eyelidDiamond = document.querySelector('[data-diamond="eyelid"]')
@@ -32,9 +34,19 @@ const updateLayout = async () => {
     const diamondCenterY = diamondRect.top + diamondRect.height * 0.47
     const boxCenterY = boxRect.top + boxRect.height / 2
 
-    // Calculate offset to align box center with diamond center
+    // Calculate offset to align centers
     const offset = diamondCenterY - boxCenterY
-    boxesMarginTop.value = offset
+
+    // Apply positive margin to whichever needs to move DOWN
+    if (offset > 0) {
+        // Box center is above diamond - push boxes down
+        boxesMarginTop.value = offset
+        diamondsMarginTop.value = 0
+    } else {
+        // Diamond center is above box - push diamonds down
+        diamondsMarginTop.value = -offset
+        boxesMarginTop.value = 0
+    }
 
     await nextTick()
     calculatePaths()
@@ -116,7 +128,7 @@ const calculatePaths = () => {
             <!-- Diamonds + Connectors + Boxes Container -->
             <div ref="containerRef" class="relative flex items-start gap-8 min-w-0">
                 <!-- Diamond Buttons Section -->
-                <div class="shrink-0">
+                <div class="shrink-0" :style="{ marginTop: diamondsMarginTop + 'px' }">
                     <DiamondButtons />
                 </div>
 
