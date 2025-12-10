@@ -24,18 +24,8 @@ const colors = {
     purple: '#7B5295',
 }
 
-// Main category menu IDs (grey buttons)
-const mainCategories = [
-    'tear-film-deficiencies',
-    'eyelid-anomalies',
-    'ocular-surface-abnormalities',
-]
-
 // Computed property to check if we should show How to Use
 const showHowToUse = computed(() => navigationStore.selectedDiamond === null)
-
-// Check if showing a main category (with bracket) or sub-option (without bracket)
-const isMainCategory = computed(() => mainCategories.includes(navigationStore.activeMenuItem))
 
 // Computed properties for visibility of each diamond's content
 const showTear = computed(() => navigationStore.selectedDiamond === 'tear')
@@ -185,14 +175,28 @@ const shouldShowBracket = (diamondId) => {
 // Management items for each sub-option
 const managementItems = reactive({
     lipid: [
-        { label: 'LIFESTYLE ADVICE', description: 'Lorem ipsum dolor sit amet', checked: false },
+        { label: 'LIFESTYLE ADVICE', description: 'To be considered', checked: false },
         {
-            label: 'TEAR SUPPLEMENTATION',
-            description: 'Lipomimetics and lubricants',
+            label: 'TEAR SUPPLEMENTATION/STABILIZATION',
+            description: 'Lipomimetics',
             checked: false,
         },
-        { label: 'LID HYGIENE', description: 'Warm compress and lid scrubs', checked: false },
-        { label: 'OMEGA-3 SUPPLEMENTS', description: 'Essential fatty acids', checked: false },
+        {
+            label: 'TEAR CONSERVATION DEVICES',
+            description: 'Moisture chamber spectacles',
+            checked: false,
+        },
+        {
+            label: 'PHARMACOLOGICAL TEAR STIMULATION/RESTORATION',
+            description: 'Topical secretagogues',
+            checked: false,
+        },
+        {
+            label: 'DEVICE TEAR STIMULATION/RESTORATION',
+            description: 'Internal and external device lid heating; IPL; LLLT\nIPL\nWarm compress',
+            checked: false,
+        },
+        { label: 'TOPICAL ANTI-INFLAMMATORIES', description: 'Cyclosporine A', checked: false },
     ],
     aqueous: [
         { label: 'LIFESTYLE ADVICE', description: 'Environmental modifications', checked: false },
@@ -348,25 +352,13 @@ const managementItems = reactive({
                                         :items="[
                                             {
                                                 name: 'INTERFEROMETRY',
-                                                description: 'Grade ≤3 or <72nm on LipiView',
+                                                description:
+                                                    'grade ≤ 3 (non-amorphous or colored pattern) or <72nm on LipiView 197, 320, 343',
                                             },
                                             {
-                                                name: 'MEIBUM EXPRESSIBILITY',
-                                                description: 'Meibum quality assessment',
-                                            },
-                                        ]"
-                                    />
-                                    <TestingSection
-                                        title="ADVANCED TESTING"
-                                        color="blue"
-                                        :items="[
-                                            {
-                                                name: 'MEIBOGRAPHY',
-                                                description: 'Gland dropout visualization',
-                                            },
-                                            {
-                                                name: 'LIPID LAYER ANALYSIS',
-                                                description: 'Quantitative measurement',
+                                                name: 'MEIBUM EXPRESSIBILITY/QUALITY',
+                                                description:
+                                                    'meibum not clear or limited expressibility 332, 371, 715',
                                             },
                                         ]"
                                     />
