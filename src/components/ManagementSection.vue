@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from 'vue'
 import CheckboxItem from './CheckboxItem.vue'
+import eyeIcon from '@/assets/images/eye-icon.png'
 
 const props = defineProps({
     color: {
@@ -45,34 +46,7 @@ const toggleItem = (index) => {
     <div>
         <!-- Eye icon -->
         <div class="flex justify-center my-4">
-            <div
-                class="w-16 h-16 rounded-full border-2 border-gray-300 flex items-center justify-center"
-            >
-                <svg
-                    class="w-10 h-10 text-gray-400"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="1.5"
-                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="1.5"
-                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                    />
-                    <!-- Heart in center -->
-                    <path
-                        fill="currentColor"
-                        d="M12 13.5l-1.5-1.5c-.5-.5-.5-1.3 0-1.8s1.3-.5 1.8 0l-.3.3-.3-.3c.5-.5 1.3-.5 1.8 0s.5 1.3 0 1.8L12 13.5z"
-                    />
-                </svg>
-            </div>
+            <img :src="eyeIcon" alt="Eye icon" class="w-16 h-16 object-contain" />
         </div>
 
         <div class="border-2 rounded-b-3xl relative mt-8" :class="colorClasses.border">
