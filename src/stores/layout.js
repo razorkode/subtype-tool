@@ -9,7 +9,7 @@ export const useLayoutStore = defineStore('layout', () => {
     const svgPaths = ref([])
     const boxesMarginTop = ref(0)
     const diamondsMarginTop = ref(0)
-    const contentScale = ref(1)
+    const contentTopOffset = ref(0)
     const containerRef = ref(null)
 
     // Colors for each connector
@@ -113,12 +113,12 @@ export const useLayoutStore = defineStore('layout', () => {
         svgPaths.value = paths
     }
 
-    // Update layout measurements and scaling
+    // Update layout measurements (alignment only, no scaling)
     async function updateLayout(nextTick) {
         // First reset margins to measure true positions
         boxesMarginTop.value = 0
         diamondsMarginTop.value = 0
-        contentScale.value = 1
+        contentTopOffset.value = 0
         await nextTick()
 
         const eyelidDiamond = document.querySelector('[data-diamond="eyelid"]')
@@ -147,22 +147,33 @@ export const useLayoutStore = defineStore('layout', () => {
 
         await nextTick()
 
-        // Calculate scale to fit content within viewport
-        if (containerRef.value) {
-            const container = containerRef.value.parentElement
-            const containerHeight = container.scrollHeight
-            const containerWidth = container.scrollWidth
-            const viewportHeight = window.innerHeight - 160
-            const viewportWidth = window.innerWidth - 64
-
-            const scaleY = containerHeight > viewportHeight ? viewportHeight / containerHeight : 1
-            const scaleX = containerWidth > viewportWidth ? viewportWidth / containerWidth : 1
-
-            contentScale.value = Math.min(scaleY, scaleX, 1)
-        }
+        // Calculate how much the visible content extends above the container
+        calculateContentTopOffset()
 
         await nextTick()
         calculatePaths()
+    }
+
+    // Calculate how much top offset is needed to prevent content from being cut off
+    function calculateContentTopOffset() {
+        // Find the currently visible SubOptionPanel or content box
+        const visiblePanel = document.querySelector(
+            '[data-boxes-container] > div:not(.invisible) .absolute:not(.invisible)',
+        )
+
+        if (!visiblePanel) {
+            contentTopOffset.value = 0
+            return
+        }
+
+        const panelRect = visiblePanel.getBoundingClientRect()
+
+        // Calculate how much the panel extends above the main padding area (32px from p-8)
+        const mainPadding = 32
+        const overflow = mainPadding - panelRect.top
+
+        // Only apply if there's actual overflow
+        contentTopOffset.value = overflow > 0 ? overflow : 0
     }
 
     function setContainerRef(ref) {
@@ -174,7 +185,7 @@ export const useLayoutStore = defineStore('layout', () => {
         svgPaths,
         boxesMarginTop,
         diamondsMarginTop,
-        contentScale,
+        contentTopOffset,
         colors,
 
         // Computed

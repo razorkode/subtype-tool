@@ -15,10 +15,10 @@ const clinicalDataStore = useClinicalDataStore()
 
 const containerRef = ref(null)
 
-// Watch for changes and recalculate paths
+// Watch for changes and recalculate layout (including top offset for visible content)
 watch([() => navigationStore.selectedDiamond, () => navigationStore.activeMenuItem], async () => {
     await nextTick()
-    setTimeout(() => layoutStore.calculatePaths(), 50)
+    setTimeout(updateLayout, 50)
 })
 
 const updateLayout = async () => {
@@ -36,9 +36,9 @@ const allSubcategoryIds = clinicalDataStore.getAllSubcategoryIds()
 </script>
 
 <template>
-    <main class="flex h-screen flex-col mx-auto p-8">
+    <main class="h-screen flex flex-col mx-auto p-8 overflow-auto">
         <!-- Main Content (Above Footer) -->
-        <div class="flex flex-1 items-center justify-center gap-8 min-w-0 relative">
+        <div class="flex-1 flex items-start justify-center gap-8 min-w-0 relative min-h-0">
             <!-- SVG Connector Lines Overlay -->
             <svg class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 20">
                 <g
@@ -105,13 +105,10 @@ const allSubcategoryIds = clinicalDataStore.getAllSubcategoryIds()
                 </g>
             </svg>
 
-            <!-- Scaled wrapper for entire content -->
+            <!-- Content wrapper - with dynamic top offset to prevent clipping -->
             <div
                 class="flex items-center justify-center gap-8 min-w-0"
-                :style="{
-                    transform: `scale(${layoutStore.contentScale})`,
-                    transformOrigin: 'center',
-                }"
+                :style="{ marginTop: layoutStore.contentTopOffset + 'px' }"
             >
                 <!-- Left Navigation -->
                 <MainNav />
