@@ -292,8 +292,5 @@ const allSubcategoryIds = clinicalDataStore.getAllSubcategoryIds()
                 </div>
             </div>
         </div>
-
-        <!-- Footer -->
-        <div class="text-xs text-gray-500 mt-6">© 2025 Alcon Inc. GLB/IMG-SYC-2500004</div>
     </main>
 </template>

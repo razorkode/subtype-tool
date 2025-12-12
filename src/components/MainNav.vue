@@ -25,7 +25,7 @@ const handleNavClick = (menuId) => {
     } else if (ocularSurfaceItems.includes(menuId)) {
         diamondType = 'ocular'
     }
-    
+
     navigationStore.setSelectedDiamond(diamondType)
     navigationStore.setActiveMenuItem(menuId)
 }
@@ -137,6 +137,6 @@ const handleNavClick = (menuId) => {
         </div>
 
         <!-- Copyright -->
-        <div class="text-xs text-gray-500 mt-6">© 2025 Alcon Inc. GLB/IMG-SYC-2500004</div>
+        <div class="text-xs text-gray-500 mt-16">© 2025 Alcon Inc. GLB/IMG-SYC-2500004</div>
     </div>
 </template>
