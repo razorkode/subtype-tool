@@ -10,7 +10,12 @@ export const useNavigationStore = defineStore('navigation', () => {
     const subcategories = {
         tear: ['lipid', 'aqueous', 'mucin-glycocalyx'],
         eyelid: ['blink-lid-closure', 'lid-margin'],
-        ocular: ['anatomical-misalignment', 'neural-dysfunction', 'ocular-surface-cellular', 'primary-inflammation'],
+        ocular: [
+            'anatomical-misalignment',
+            'neural-dysfunction',
+            'ocular-surface-cellular',
+            'primary-inflammation',
+        ],
     }
 
     // Computed properties to check if previous/next should be disabled
