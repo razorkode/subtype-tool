@@ -827,9 +827,30 @@ const managementItems = reactive({
                                         bracketConnect="top"
                                     >
                                         <ul class="list-disc list-inside space-y-1 text-sm">
-                                            <li>Lipid</li>
-                                            <li>Aqueous</li>
-                                            <li>Mucin/glycocalyx</li>
+                                            <li
+                                                class="cursor-pointer hover:text-[#3AADE1] transition-colors"
+                                                @click="navigationStore.setActiveMenuItem('lipid')"
+                                            >
+                                                Lipid
+                                            </li>
+                                            <li
+                                                class="cursor-pointer hover:text-[#3AADE1] transition-colors"
+                                                @click="
+                                                    navigationStore.setActiveMenuItem('aqueous')
+                                                "
+                                            >
+                                                Aqueous
+                                            </li>
+                                            <li
+                                                class="cursor-pointer hover:text-[#3AADE1] transition-colors"
+                                                @click="
+                                                    navigationStore.setActiveMenuItem(
+                                                        'mucin-glycocalyx',
+                                                    )
+                                                "
+                                            >
+                                                Mucin/glycocalyx
+                                            </li>
                                         </ul>
                                     </ContentBoxWithBracket>
                                 </div>
@@ -849,8 +870,24 @@ const managementItems = reactive({
                                         bracketConnect="top"
                                     >
                                         <ul class="list-disc list-inside space-y-1 text-sm">
-                                            <li>Blink / lid closure</li>
-                                            <li>Lid margin</li>
+                                            <li
+                                                class="cursor-pointer hover:text-[#52A5A4] transition-colors"
+                                                @click="
+                                                    navigationStore.setActiveMenuItem(
+                                                        'blink-lid-closure',
+                                                    )
+                                                "
+                                            >
+                                                Blink / lid closure
+                                            </li>
+                                            <li
+                                                class="cursor-pointer hover:text-[#52A5A4] transition-colors"
+                                                @click="
+                                                    navigationStore.setActiveMenuItem('lid-margin')
+                                                "
+                                            >
+                                                Lid margin
+                                            </li>
                                         </ul>
                                     </ContentBoxWithBracket>
                                 </div>
@@ -871,10 +908,46 @@ const managementItems = reactive({
                                         bracketConnect="bottom"
                                     >
                                         <ul class="list-disc list-inside space-y-1 text-sm">
-                                            <li>Anatomical misalignment</li>
-                                            <li>Neural dysfunction</li>
-                                            <li>Ocular surface cellular damage/disruption</li>
-                                            <li>Primary inflammation/oxidative stress</li>
+                                            <li
+                                                class="cursor-pointer hover:text-[#7B5295] transition-colors"
+                                                @click="
+                                                    navigationStore.setActiveMenuItem(
+                                                        'anatomical-misalignment',
+                                                    )
+                                                "
+                                            >
+                                                Anatomical misalignment
+                                            </li>
+                                            <li
+                                                class="cursor-pointer hover:text-[#7B5295] transition-colors"
+                                                @click="
+                                                    navigationStore.setActiveMenuItem(
+                                                        'neural-dysfunction',
+                                                    )
+                                                "
+                                            >
+                                                Neural dysfunction
+                                            </li>
+                                            <li
+                                                class="cursor-pointer hover:text-[#7B5295] transition-colors"
+                                                @click="
+                                                    navigationStore.setActiveMenuItem(
+                                                        'ocular-surface-cellular',
+                                                    )
+                                                "
+                                            >
+                                                Ocular surface cellular damage/disruption
+                                            </li>
+                                            <li
+                                                class="cursor-pointer hover:text-[#7B5295] transition-colors"
+                                                @click="
+                                                    navigationStore.setActiveMenuItem(
+                                                        'primary-inflammation',
+                                                    )
+                                                "
+                                            >
+                                                Primary inflammation/oxidative stress
+                                            </li>
                                         </ul>
                                     </ContentBoxWithBracket>
                                 </div>
