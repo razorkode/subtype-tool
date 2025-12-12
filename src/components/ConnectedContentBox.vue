@@ -47,7 +47,7 @@ onMounted(() => {
             :height="boxHeight"
             class="shrink-0"
             :viewBox="`0 0 120 ${boxHeight}`"
-            style="margin-right: -2px;"
+            style="margin-right: -2px"
         >
             <!-- Curved connector line -->
             <path
@@ -99,22 +99,8 @@ onMounted(() => {
             />
 
             <!-- Top bracket circle -->
-            <circle
-                cx="80"
-                cy="20"
-                r="5"
-                :fill="lineColor"
-                stroke="white"
-                stroke-width="2"
-            />
-            <circle
-                cx="80"
-                cy="20"
-                r="6.5"
-                fill="none"
-                stroke="#D1D5DB"
-                stroke-width="1"
-            />
+            <circle cx="80" cy="20" r="5" :fill="lineColor" stroke="white" stroke-width="2" />
+            <circle cx="80" cy="20" r="6.5" fill="none" stroke="#D1D5DB" stroke-width="1" />
 
             <!-- Bottom bracket circle -->
             <circle

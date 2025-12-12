@@ -59,7 +59,7 @@ const gradientTo = computed(() => colorConfig[props.color].gradientTo)
             <!-- Straight line - stretches with content -->
             <div
                 class="absolute left-[7px] top-0 bottom-0 w-[2px]"
-                style="background-color: #D1D5DB"
+                style="background-color: #d1d5db"
             ></div>
 
             <!-- Circle in middle -->

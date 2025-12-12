@@ -47,7 +47,7 @@ const handleNext = () => {
                 <!-- Email button only - centered in the blue tab -->
                 <button
                     @click="handleEmail"
-                    class="flex flex-col items-center text-white hover:opacity-80 transition-opacity"
+                    class="flex cursor-pointer flex-col items-center text-white hover:opacity-80 transition-opacity"
                 >
                     <img :src="emailIcon" alt="Email" class="w-14 h-14 object-contain ml-2" />
                     <span class="text-[10px] font-bold tracking-wider">EMAIL</span>
@@ -62,7 +62,7 @@ const handleNext = () => {
             <!-- Previous button - left side, outside blue tab -->
             <button
                 @click="handlePrevious"
-                class="min-w-[52px] flex flex-col items-center justify-center text-gray-500 hover:text-gray-700 transition-colors pointer-events-auto"
+                class="min-w-[52px] flex flex-col items-center justify-center text-gray-500 hover:text-gray-700 transition-colors pointer-events-auto cursor-pointer"
             >
                 <span class="text-2xl mb-1 leading-5">←</span>
                 <span class="text-[10px] font-medium tracking-wide">PREVIOUS</span>
@@ -74,7 +74,7 @@ const handleNext = () => {
             <!-- Next button - right side, outside blue tab -->
             <button
                 @click="handleNext"
-                class="min-w-[52px] flex flex-col items-center justify-center text-gray-500 hover:text-gray-700 transition-colors pointer-events-auto"
+                class="min-w-[52px] flex flex-col items-center justify-center text-gray-500 hover:text-gray-700 transition-colors pointer-events-auto cursor-pointer"
             >
                 <span class="text-2xl mb-1 leading-5">→</span>
                 <span class="text-[10px] font-medium tracking-wide">NEXT</span>
