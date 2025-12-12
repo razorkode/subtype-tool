@@ -53,24 +53,25 @@ const gradientTo = computed(() => colorConfig[props.color].gradientTo)
                 viewBox="0 0 30 15"
                 style="transform: translateY(-100%)"
             >
-                <path d="M 30 0 Q 10 0, 8 15" :stroke="lineColor" stroke-width="2" fill="none" />
+                <path d="M 30 0 Q 10 0, 8 15" stroke="#6B7280" stroke-width="2" fill="none" />
             </svg>
 
             <!-- Straight line - stretches with content -->
             <div
                 class="absolute left-[7px] top-0 bottom-0 w-[2px]"
-                :style="{ backgroundColor: lineColor }"
+                style="background-color: #6b7280"
             ></div>
 
             <!-- Circle in middle -->
             <svg
                 class="absolute left-0 top-1/2"
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
                 style="transform: translateY(-50%)"
             >
-                <circle cx="8" cy="8" r="5" :fill="lineColor" stroke="white" stroke-width="2" />
+                <circle cx="10" cy="10" r="5" :fill="lineColor" stroke="white" stroke-width="2" />
+                <circle cx="10" cy="10" r="6.5" fill="none" stroke="#6B7280" stroke-width="1" />
             </svg>
 
             <!-- Bottom curve -->
@@ -81,7 +82,7 @@ const gradientTo = computed(() => colorConfig[props.color].gradientTo)
                 viewBox="0 0 30 15"
                 style="transform: translateY(100%)"
             >
-                <path d="M 8 0 Q 10 15, 30 15" :stroke="lineColor" stroke-width="2" fill="none" />
+                <path d="M 8 0 Q 10 15, 30 15" stroke="#6B7280" stroke-width="2" fill="none" />
             </svg>
         </div>
 

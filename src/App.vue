@@ -141,6 +141,7 @@ const calculatePaths = () => {
             startY: tearDiamondRect.top + tearDiamondRect.height * 0.24 - svgContainer.top,
             endX: tearBoxRect.left - svgContainer.left,
             endY: tearBoxRect.top + tearBoxRect.height / 2 - svgContainer.top,
+            isStraight: true,
         },
         {
             id: 'eyelid',
@@ -158,6 +159,7 @@ const calculatePaths = () => {
             startY: ocularDiamondRect.top + ocularDiamondRect.height * 0.72 - svgContainer.top,
             endX: ocularBoxRect.left - svgContainer.left,
             endY: ocularBoxRect.top + ocularBoxRect.height / 2 - svgContainer.top,
+            isStraight: true,
         },
     ]
 
@@ -280,7 +282,7 @@ const managementItems = reactive({
                                      ${path.endX - 50} ${path.endY},
                                      ${path.endX} ${path.endY}`
                         "
-                        :stroke="path.color"
+                        stroke="#6B7280"
                         stroke-width="2"
                         fill="none"
                     />
@@ -293,16 +295,33 @@ const managementItems = reactive({
                         stroke="white"
                         stroke-width="2"
                     />
-                    <!-- End dot (on box) - only for sub-options (no bracket) -->
                     <circle
-                        v-if="!shouldShowBracket(path.id)"
-                        :cx="path.endX"
-                        :cy="path.endY"
-                        r="5"
-                        :fill="path.color"
-                        stroke="white"
-                        stroke-width="2"
+                        :cx="path.startX"
+                        :cy="path.startY"
+                        r="6.5"
+                        fill="none"
+                        stroke="#6B7280"
+                        stroke-width="1"
                     />
+                    <!-- End dot (on box) - only for sub-options (no bracket) -->
+                    <template v-if="!shouldShowBracket(path.id)">
+                        <circle
+                            :cx="path.endX"
+                            :cy="path.endY"
+                            r="5"
+                            :fill="path.color"
+                            stroke="white"
+                            stroke-width="2"
+                        />
+                        <circle
+                            :cx="path.endX"
+                            :cy="path.endY"
+                            r="6.5"
+                            fill="none"
+                            stroke="#6B7280"
+                            stroke-width="1"
+                        />
+                    </template>
                 </g>
             </svg>
 
