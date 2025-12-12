@@ -64,11 +64,11 @@ const gradientTo = computed(() => colorConfig[props.color].gradientTo)
 
             <!-- Circle in middle -->
             <svg
-                class="absolute left-0 top-1/2"
+                class="absolute top-1/2"
                 width="20"
                 height="20"
                 viewBox="0 0 20 20"
-                style="transform: translateY(-50%)"
+                style="transform: translateY(-50%); left: -2px"
             >
                 <circle cx="10" cy="10" r="5" :fill="lineColor" stroke="white" stroke-width="2" />
                 <circle cx="10" cy="10" r="6.5" fill="none" stroke="#6B7280" stroke-width="1" />

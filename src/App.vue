@@ -276,11 +276,11 @@ const managementItems = reactive({
                     <path
                         :d="
                             path.isStraight
-                                ? `M ${path.startX} ${path.startY} L ${path.endX} ${path.endY}`
+                                ? `M ${path.startX} ${path.startY} L ${path.endX + 2} ${path.endY}`
                                 : `M ${path.startX} ${path.startY}
                                    C ${path.startX + 50} ${path.startY},
                                      ${path.endX - 50} ${path.endY},
-                                     ${path.endX} ${path.endY}`
+                                     ${path.endX + 6} ${path.endY}`
                         "
                         stroke="#6B7280"
                         stroke-width="2"
