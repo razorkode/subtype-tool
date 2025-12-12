@@ -7,9 +7,13 @@ export const useLayoutStore = defineStore('layout', () => {
 
     // Layout state
     const svgPaths = ref([])
+    // Static margins - calculated once on initial mount
     const boxesMarginTop = ref(0)
     const diamondsMarginTop = ref(0)
-    const contentTopOffset = ref(0)
+    const marginsCalculated = ref(false)
+    // Static offset to accommodate the tallest content panel (Lipid)
+    // This prevents the layout from jumping when switching between options
+    const contentTopOffset = ref(120)
     const containerRef = ref(null)
 
     // Colors for each connector
@@ -115,65 +119,44 @@ export const useLayoutStore = defineStore('layout', () => {
 
     // Update layout measurements (alignment only, no scaling)
     async function updateLayout(nextTick) {
-        // First reset margins to measure true positions
-        boxesMarginTop.value = 0
-        diamondsMarginTop.value = 0
-        contentTopOffset.value = 0
-        await nextTick()
-
-        const eyelidDiamond = document.querySelector('[data-diamond="eyelid"]')
-        const eyelidBox = document.querySelector('[data-box="eyelid"]')
-
-        if (!eyelidDiamond || !eyelidBox) return
-
-        const diamondRect = eyelidDiamond.getBoundingClientRect()
-        const boxRect = eyelidBox.getBoundingClientRect()
-
-        // Get center Y positions
-        const diamondCenterY = diamondRect.top + diamondRect.height * 0.47
-        const boxCenterY = boxRect.top + boxRect.height / 2
-
-        // Calculate offset to align centers
-        const offset = diamondCenterY - boxCenterY
-
-        // Apply positive margin to whichever needs to move DOWN
-        if (offset > 0) {
-            boxesMarginTop.value = offset
-            diamondsMarginTop.value = 0
-        } else {
-            diamondsMarginTop.value = -offset
+        // Only calculate alignment margins once on initial mount
+        if (!marginsCalculated.value) {
+            // First reset margins to measure true positions
             boxesMarginTop.value = 0
+            diamondsMarginTop.value = 0
+            await nextTick()
+
+            const eyelidDiamond = document.querySelector('[data-diamond="eyelid"]')
+            const eyelidBox = document.querySelector('[data-box="eyelid"]')
+
+            if (eyelidDiamond && eyelidBox) {
+                const diamondRect = eyelidDiamond.getBoundingClientRect()
+                const boxRect = eyelidBox.getBoundingClientRect()
+
+                // Get center Y positions
+                const diamondCenterY = diamondRect.top + diamondRect.height * 0.47
+                const boxCenterY = boxRect.top + boxRect.height / 2
+
+                // Calculate offset to align centers
+                const offset = diamondCenterY - boxCenterY
+
+                // Apply positive margin to whichever needs to move DOWN
+                if (offset > 0) {
+                    boxesMarginTop.value = offset
+                    diamondsMarginTop.value = 0
+                } else {
+                    diamondsMarginTop.value = -offset
+                    boxesMarginTop.value = 0
+                }
+
+                marginsCalculated.value = true
+            }
+
+            await nextTick()
         }
 
-        await nextTick()
-
-        // Calculate how much the visible content extends above the container
-        calculateContentTopOffset()
-
-        await nextTick()
+        // Always recalculate SVG paths on resize
         calculatePaths()
-    }
-
-    // Calculate how much top offset is needed to prevent content from being cut off
-    function calculateContentTopOffset() {
-        // Find the currently visible SubOptionPanel or content box
-        const visiblePanel = document.querySelector(
-            '[data-boxes-container] > div:not(.invisible) .absolute:not(.invisible)',
-        )
-
-        if (!visiblePanel) {
-            contentTopOffset.value = 0
-            return
-        }
-
-        const panelRect = visiblePanel.getBoundingClientRect()
-
-        // Calculate how much the panel extends above the main padding area (32px from p-8)
-        const mainPadding = 32
-        const overflow = mainPadding - panelRect.top
-
-        // Only apply if there's actual overflow
-        contentTopOffset.value = overflow > 0 ? overflow : 0
     }
 
     function setContainerRef(ref) {
