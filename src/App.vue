@@ -364,6 +364,10 @@ const managementItems = reactive({
                                     color="blue"
                                     category="TEAR FILM DEFICIENCIES"
                                     title="LIPID"
+                                    :disable-previous="navigationStore.isFirstSubcategory"
+                                    :disable-next="navigationStore.isLastSubcategory"
+                                    @previous="navigationStore.navigatePrevious"
+                                    @next="navigationStore.navigateNext"
                                 >
                                     <TestingSection
                                         title="STANDARD TESTING"
@@ -397,6 +401,10 @@ const managementItems = reactive({
                                     color="blue"
                                     category="TEAR FILM DEFICIENCIES"
                                     title="AQUEOUS"
+                                    :disable-previous="navigationStore.isFirstSubcategory"
+                                    :disable-next="navigationStore.isLastSubcategory"
+                                    @previous="navigationStore.navigatePrevious"
+                                    @next="navigationStore.navigateNext"
                                 >
                                     <TestingSection
                                         title="STANDARD TESTING"
@@ -445,6 +453,10 @@ const managementItems = reactive({
                                     color="blue"
                                     category="TEAR FILM DEFICIENCIES"
                                     title="MUCIN GLYCOCALYX"
+                                    :disable-previous="navigationStore.isFirstSubcategory"
+                                    :disable-next="navigationStore.isLastSubcategory"
+                                    @previous="navigationStore.navigatePrevious"
+                                    @next="navigationStore.navigateNext"
                                 >
                                     <TestingSection
                                         title="STANDARD TESTING"
@@ -494,6 +506,10 @@ const managementItems = reactive({
                                     color="teal"
                                     category="EYELID ANOMALIES"
                                     title="BLINK / LID CLOSURE"
+                                    :disable-previous="navigationStore.isFirstSubcategory"
+                                    :disable-next="navigationStore.isLastSubcategory"
+                                    @previous="navigationStore.navigatePrevious"
+                                    @next="navigationStore.navigateNext"
                                 >
                                     <TestingSection
                                         title="STANDARD TESTING"
@@ -541,6 +557,10 @@ const managementItems = reactive({
                                     color="teal"
                                     category="EYELID ANOMALIES"
                                     title="LID MARGIN"
+                                    :disable-previous="navigationStore.isFirstSubcategory"
+                                    :disable-next="navigationStore.isLastSubcategory"
+                                    @previous="navigationStore.navigatePrevious"
+                                    @next="navigationStore.navigateNext"
                                 >
                                     <TestingSection
                                         title="STANDARD TESTING"
@@ -590,6 +610,10 @@ const managementItems = reactive({
                                     color="purple"
                                     category="OCULAR SURFACE ABNORMALITIES"
                                     title="ANATOMICAL MISALIGNMENT"
+                                    :disable-previous="navigationStore.isFirstSubcategory"
+                                    :disable-next="navigationStore.isLastSubcategory"
+                                    @previous="navigationStore.navigatePrevious"
+                                    @next="navigationStore.navigateNext"
                                 >
                                     <TestingSection
                                         title="STANDARD TESTING"
@@ -640,6 +664,10 @@ const managementItems = reactive({
                                     color="purple"
                                     category="OCULAR SURFACE ABNORMALITIES"
                                     title="NEURAL DYSFUNCTION"
+                                    :disable-previous="navigationStore.isFirstSubcategory"
+                                    :disable-next="navigationStore.isLastSubcategory"
+                                    @previous="navigationStore.navigatePrevious"
+                                    @next="navigationStore.navigateNext"
                                 >
                                     <TestingSection
                                         title="STANDARD TESTING"
@@ -688,6 +716,10 @@ const managementItems = reactive({
                                     color="purple"
                                     category="OCULAR SURFACE ABNORMALITIES"
                                     title="CELLULAR DAMAGE"
+                                    :disable-previous="navigationStore.isFirstSubcategory"
+                                    :disable-next="navigationStore.isLastSubcategory"
+                                    @previous="navigationStore.navigatePrevious"
+                                    @next="navigationStore.navigateNext"
                                 >
                                     <TestingSection
                                         title="STANDARD TESTING"
@@ -738,6 +770,10 @@ const managementItems = reactive({
                                     color="purple"
                                     category="OCULAR SURFACE ABNORMALITIES"
                                     title="INFLAMMATION"
+                                    :disable-previous="navigationStore.isFirstSubcategory"
+                                    :disable-next="navigationStore.isLastSubcategory"
+                                    @previous="navigationStore.navigatePrevious"
+                                    @next="navigationStore.navigateNext"
                                 >
                                     <TestingSection
                                         title="STANDARD TESTING"

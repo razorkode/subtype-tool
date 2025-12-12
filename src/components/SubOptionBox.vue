@@ -16,6 +16,14 @@ defineProps({
         type: String,
         required: true,
     },
+    disablePrevious: {
+        type: Boolean,
+        default: false,
+    },
+    disableNext: {
+        type: Boolean,
+        default: false,
+    },
 })
 
 const emit = defineEmits(['email', 'previous', 'next'])
@@ -62,7 +70,9 @@ const handleNext = () => {
             <!-- Previous button - left side, outside blue tab -->
             <button
                 @click="handlePrevious"
-                class="min-w-[52px] flex flex-col items-center justify-center text-gray-500 hover:text-gray-700 transition-colors pointer-events-auto cursor-pointer"
+                :disabled="disablePrevious"
+                class="min-w-[52px] flex flex-col items-center justify-center transition-colors pointer-events-auto"
+                :class="disablePrevious ? 'text-gray-300 cursor-not-allowed' : 'text-gray-500 hover:text-gray-700 cursor-pointer'"
             >
                 <span class="text-2xl mb-1 leading-5">←</span>
                 <span class="text-[10px] font-medium tracking-wide">PREVIOUS</span>
@@ -74,7 +84,9 @@ const handleNext = () => {
             <!-- Next button - right side, outside blue tab -->
             <button
                 @click="handleNext"
-                class="min-w-[52px] flex flex-col items-center justify-center text-gray-500 hover:text-gray-700 transition-colors pointer-events-auto cursor-pointer"
+                :disabled="disableNext"
+                class="min-w-[52px] flex flex-col items-center justify-center transition-colors pointer-events-auto"
+                :class="disableNext ? 'text-gray-300 cursor-not-allowed' : 'text-gray-500 hover:text-gray-700 cursor-pointer'"
             >
                 <span class="text-2xl mb-1 leading-5">→</span>
                 <span class="text-[10px] font-medium tracking-wide">NEXT</span>
