@@ -411,13 +411,9 @@ const managementItems = reactive({
                                         color="blue"
                                         :items="[
                                             {
-                                                name: 'SCHIRMER TEST',
-                                                description:
-                                                    '≤10mm in 5 minutes without anesthesia',
-                                            },
-                                            {
-                                                name: 'TEAR MENISCUS HEIGHT',
-                                                description: '<0.2mm measured by OCT',
+                                                name: 'MENISCOMETRY',
+                                                description: 'Tear meniscus height ≤0.20mm',
+                                                refs: [39, 320, 380],
                                             },
                                         ]"
                                     />
@@ -426,12 +422,12 @@ const managementItems = reactive({
                                         color="blue"
                                         :items="[
                                             {
-                                                name: 'PHENOL RED THREAD',
-                                                description: 'Alternative tear volume test',
+                                                name: 'STRIP MENISCOMETRY',
+                                                description: '2.5mm wetting length',
+                                                refs: ['404-406'],
                                             },
                                             {
-                                                name: 'TEAR OSMOLARITY',
-                                                description: '>308 mOsm/L indicates deficiency',
+                                                name: 'TEAR PROTEINS AND OTHER CHEMICAL COMPONENTS TESTING',
                                             },
                                         ]"
                                     />
@@ -463,12 +459,9 @@ const managementItems = reactive({
                                         color="blue"
                                         :items="[
                                             {
-                                                name: 'TEAR BREAK-UP TIME',
-                                                description: '<10 seconds indicates instability',
-                                            },
-                                            {
-                                                name: 'IMPRESSION CYTOLOGY',
-                                                description: 'Goblet cell density assessment',
+                                                name: 'ROSE BENGAL OR LISSAMINE GREEN STAINING',
+                                                description: '>9 punctate spots',
+                                                refs: [581],
                                             },
                                         ]"
                                     />
@@ -477,12 +470,12 @@ const managementItems = reactive({
                                         color="blue"
                                         :items="[
                                             {
-                                                name: 'NIBUT MEASUREMENT',
-                                                description: 'Non-invasive break-up time',
+                                                name: 'IMMUNOHISTOCHEMISTRY AND IMMUNOELECTRON MICROSCOPY OF TEAR FILM',
                                             },
                                             {
-                                                name: 'CONFOCAL MICROSCOPY',
-                                                description: 'Cellular level analysis',
+                                                name: 'IMPRESSION CYTOLOGY',
+                                                description:
+                                                    'Goblet cell density and epithelial cell morphology',
                                             },
                                         ]"
                                     />
@@ -517,25 +510,12 @@ const managementItems = reactive({
                                         :items="[
                                             {
                                                 name: 'PARTIAL BLINKING OBSERVATION',
-                                                description: '>40% occurrence 463',
+                                                description: '>40% occurrence',
+                                                refs: [463],
                                             },
                                             {
-                                                name: 'LAGOPHTHALMOS/INADEQUATE LID SEAL',
+                                                name: 'LAGOPHTHALMOS / INADEQUATE LID SEAL',
                                                 description: 'Observed',
-                                            },
-                                        ]"
-                                    />
-                                    <TestingSection
-                                        title="ADVANCED TESTING"
-                                        color="teal"
-                                        :items="[
-                                            {
-                                                name: 'BLINK DYNAMICS ANALYSIS',
-                                                description: 'High-speed video recording',
-                                            },
-                                            {
-                                                name: 'LID POSITION ASSESSMENT',
-                                                description: 'Margin-reflex distance',
                                             },
                                         ]"
                                     />
@@ -567,12 +547,10 @@ const managementItems = reactive({
                                         color="teal"
                                         :items="[
                                             {
-                                                name: 'MEIBOMIAN GLAND EVALUATION',
-                                                description: 'Gland dropout and morphology',
+                                                name: 'ANTERIOR BLEPHARITIS OBSERVATION',
                                             },
                                             {
-                                                name: 'LID WIPER EPITHELIOPATHY',
-                                                description: 'Staining of lid wiper region',
+                                                name: 'MGD',
                                             },
                                         ]"
                                     />
@@ -582,11 +560,21 @@ const managementItems = reactive({
                                         :items="[
                                             {
                                                 name: 'MEIBOGRAPHY',
-                                                description: 'Infrared gland imaging',
+                                                description: 'Gland length <75%',
+                                                refs: [320, 372, 509],
                                             },
                                             {
-                                                name: 'LID MARGIN SCORING',
-                                                description: 'Telangiectasia assessment',
+                                                name: 'GLAND PLUGGING',
+                                                description: 'Observed',
+                                                refs: [715],
+                                            },
+                                            {
+                                                name: 'TELANGIECTASIA',
+                                                description: 'Observed',
+                                                refs: [715],
+                                            },
+                                            {
+                                                name: 'GLAND EXPRESSIBILITY',
                                             },
                                         ]"
                                     />
@@ -620,12 +608,7 @@ const managementItems = reactive({
                                         color="purple"
                                         :items="[
                                             {
-                                                name: 'CONJUNCTIVOCHALASIS',
-                                                description: 'Redundant conjunctival folds',
-                                            },
-                                            {
-                                                name: 'PINGUECULA/PTERYGIUM',
-                                                description: 'Growth evaluation and grading',
+                                                name: 'SLIT-LAMP BIOMICROSCOPY',
                                             },
                                         ]"
                                     />
@@ -634,12 +617,7 @@ const managementItems = reactive({
                                         color="purple"
                                         :items="[
                                             {
-                                                name: 'AS-OCT IMAGING',
-                                                description: 'Anterior segment visualization',
-                                            },
-                                            {
-                                                name: 'TEAR FILM DYNAMICS',
-                                                description: 'Flow pattern analysis',
+                                                name: 'CORNEAL TOPOGRAPHY',
                                             },
                                         ]"
                                     />
@@ -674,12 +652,10 @@ const managementItems = reactive({
                                         color="purple"
                                         :items="[
                                             {
-                                                name: 'CORNEAL SENSITIVITY',
-                                                description: 'Cochet-Bonnet esthesiometry',
-                                            },
-                                            {
-                                                name: 'NEUROPATHIC PAIN ASSESSMENT',
-                                                description: 'Symptom-sign discordance',
+                                                name: 'PUFF OR PHYSICAL SENSATION',
+                                                description:
+                                                    'Corneal and lid margin sensitivity thresholds ≥0.8 mbar although instruments are not comparable',
+                                                refs: [550, 716],
                                             },
                                         ]"
                                     />
@@ -688,12 +664,10 @@ const managementItems = reactive({
                                         color="purple"
                                         :items="[
                                             {
-                                                name: 'CONFOCAL MICROSCOPY',
-                                                description: 'Corneal nerve evaluation',
-                                            },
-                                            {
-                                                name: 'PROPARACAINE CHALLENGE',
-                                                description: 'Pain response testing',
+                                                name: 'IN VIVO CONFOCAL MICROSCOPY',
+                                                description:
+                                                    'Normative values available for nerve length, branch and density metrics',
+                                                refs: [717],
                                             },
                                         ]"
                                     />
@@ -726,26 +700,19 @@ const managementItems = reactive({
                                         color="purple"
                                         :items="[
                                             {
-                                                name: 'CORNEAL STAINING',
-                                                description: 'Fluorescein and lissamine green',
+                                                name: 'CORNEAL FLUORESCEIN STAINING',
+                                                description: '>5 punctate spots',
+                                                refs: [250, 581],
                                             },
                                             {
-                                                name: 'CONJUNCTIVAL STAINING',
-                                                description: 'Oxford or NEI grading scale',
-                                            },
-                                        ]"
-                                    />
-                                    <TestingSection
-                                        title="ADVANCED TESTING"
-                                        color="purple"
-                                        :items="[
-                                            {
-                                                name: 'IMPRESSION CYTOLOGY',
-                                                description: 'Cellular morphology analysis',
+                                                name: 'CONJUNCTIVAL LISSAMINE GREEN STAINING',
+                                                description: '>9 punctate spots',
+                                                refs: [250, 581],
                                             },
                                             {
-                                                name: 'CONFOCAL MICROSCOPY',
-                                                description: 'In vivo cell imaging',
+                                                name: 'LID WIPER STAINING',
+                                                description: '>2mm length and 25% width',
+                                                refs: [250],
                                             },
                                         ]"
                                     />
@@ -780,12 +747,10 @@ const managementItems = reactive({
                                         color="purple"
                                         :items="[
                                             {
-                                                name: 'MMP-9 TESTING',
-                                                description: 'InflammaDry point-of-care test',
-                                            },
-                                            {
-                                                name: 'TEAR OSMOLARITY',
-                                                description: '>308 mOsm/L or >8 difference',
+                                                name: 'BULBAR CONJUNCTIVAL HYPERAEMIA',
+                                                description:
+                                                    '>1.5 Efron scale or >0.95 objective JENVIS',
+                                                refs: [604],
                                             },
                                         ]"
                                     />
@@ -794,12 +759,10 @@ const managementItems = reactive({
                                         color="purple"
                                         :items="[
                                             {
-                                                name: 'CYTOKINE ANALYSIS',
-                                                description: 'Inflammatory marker panel',
+                                                name: 'IN VIVO CONFOCAL MICROSCOPY',
                                             },
                                             {
-                                                name: 'CONJUNCTIVAL REDNESS',
-                                                description: 'Objective grading systems',
+                                                name: 'TEAR FILM AND OCULAR SURFACE MOLECULAR TESTING',
                                             },
                                         ]"
                                     />

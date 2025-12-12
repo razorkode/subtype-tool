@@ -40,16 +40,28 @@ const colorClasses = computed(() => {
     <div class="mb-4">
         <!-- Section header with lines -->
         <div class="flex items-center gap-2 mb-3">
-            <div class="flex-1 h-[1px]" :class="colorClasses.border" style="background: currentColor"></div>
-            <span class="font-bold text-xs tracking-wide" :class="colorClasses.text">{{ title }}</span>
-            <div class="flex-1 h-[1px]" :class="colorClasses.border" style="background: currentColor"></div>
+            <div
+                class="flex-1 h-[1px]"
+                :class="colorClasses.border"
+                style="background: currentColor"
+            ></div>
+            <span class="font-bold text-xs tracking-wide" :class="colorClasses.text">{{
+                title
+            }}</span>
+            <div
+                class="flex-1 h-[1px]"
+                :class="colorClasses.border"
+                style="background: currentColor"
+            ></div>
         </div>
 
         <!-- Testing items -->
         <div class="space-y-3 text-center">
             <div v-for="(item, index) in items" :key="index">
                 <div class="font-bold text-sm text-gray-800">{{ item.name }}</div>
-                <div class="text-xs text-gray-500">{{ item.description }}</div>
+                <div v-if="item.description || item.refs" class="text-xs text-gray-500">
+                    {{ item.description }}{{ item.refs ? ' ' + item.refs.join(', ') : '' }}
+                </div>
             </div>
         </div>
     </div>
