@@ -1,0 +1,8 @@
+{
+    "name": "subtype-tool/email-api",
+    "description": "Email API for Subtype Tool using Amazon SES",
+    "require": {
+        "php": ">=7.4",
+        "aws/aws-sdk-php": "^3.0"
+    }
+}
