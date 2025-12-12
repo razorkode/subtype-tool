@@ -89,7 +89,7 @@ onUnmounted(() => {
             <!-- Main curved line -->
             <path
                 :d="connector.path"
-                :stroke="connector.color"
+                stroke="#D1D5DB"
                 stroke-width="3"
                 fill="none"
                 stroke-linecap="round"
@@ -105,6 +105,14 @@ onUnmounted(() => {
                 stroke="white"
                 stroke-width="2.5"
             />
+            <circle
+                :cx="connector.startX"
+                :cy="connector.startY"
+                r="8.75"
+                fill="none"
+                stroke="#D1D5DB"
+                stroke-width="1.5"
+            />
             <!-- Connection point circles at end -->
             <circle
                 :cx="connector.endX"
@@ -113,6 +121,14 @@ onUnmounted(() => {
                 :fill="connector.color"
                 stroke="white"
                 stroke-width="2.5"
+            />
+            <circle
+                :cx="connector.endX"
+                :cy="connector.endY"
+                r="8.75"
+                fill="none"
+                stroke="#D1D5DB"
+                stroke-width="1.5"
             />
         </g>
     </svg>

@@ -55,7 +55,7 @@ onMounted(() => {
                 :d="`M 0 ${boxHeight / 2}
                      C 30 ${boxHeight / 2}, 50 ${boxHeight / 2}, 60 20
                      L 80 20`"
-                stroke="#6B7280"
+                stroke="#D1D5DB"
                 stroke-width="2"
                 fill="none"
             />
@@ -64,7 +64,7 @@ onMounted(() => {
                 :d="`M 0 ${boxHeight / 2}
                      C 30 ${boxHeight / 2}, 50 ${boxHeight / 2}, 60 ${boxHeight - 20}
                      L 80 ${boxHeight - 20}`"
-                stroke="#6B7280"
+                stroke="#D1D5DB"
                 stroke-width="2"
                 fill="none"
             />
@@ -75,7 +75,7 @@ onMounted(() => {
                      Q 90 10, 80 20
                      L 80 ${boxHeight - 20}
                      Q 90 ${boxHeight - 10}, 120 ${boxHeight - 10}`"
-                stroke="#6B7280"
+                stroke="#D1D5DB"
                 stroke-width="2"
                 fill="none"
             />
@@ -94,7 +94,7 @@ onMounted(() => {
                 :cy="boxHeight / 2"
                 r="6.5"
                 fill="none"
-                stroke="#6B7280"
+                stroke="#D1D5DB"
                 stroke-width="1"
             />
 
@@ -112,7 +112,7 @@ onMounted(() => {
                 cy="20"
                 r="6.5"
                 fill="none"
-                stroke="#6B7280"
+                stroke="#D1D5DB"
                 stroke-width="1"
             />
 
@@ -130,7 +130,7 @@ onMounted(() => {
                 :cy="boxHeight - 20"
                 r="6.5"
                 fill="none"
-                stroke="#6B7280"
+                stroke="#D1D5DB"
                 stroke-width="1"
             />
         </svg>

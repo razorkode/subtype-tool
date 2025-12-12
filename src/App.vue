@@ -282,7 +282,7 @@ const managementItems = reactive({
                                      ${path.endX - 50} ${path.endY},
                                      ${path.endX + 6} ${path.endY}`
                         "
-                        stroke="#6B7280"
+                        stroke="#D1D5DB"
                         stroke-width="2"
                         fill="none"
                     />
@@ -300,7 +300,7 @@ const managementItems = reactive({
                         :cy="path.startY"
                         r="6.5"
                         fill="none"
-                        stroke="#6B7280"
+                        stroke="#D1D5DB"
                         stroke-width="1"
                     />
                     <!-- End dot (on box) - only for sub-options (no bracket) -->
@@ -318,7 +318,7 @@ const managementItems = reactive({
                             :cy="path.endY"
                             r="6.5"
                             fill="none"
-                            stroke="#6B7280"
+                            stroke="#D1D5DB"
                             stroke-width="1"
                         />
                     </template>
