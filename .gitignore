@@ -14,10 +14,6 @@ dist-ssr
 coverage
 *.local
 
-# PHP dependencies
-public/api/vendor/
-public/api/composer.lock
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
