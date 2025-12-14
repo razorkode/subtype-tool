@@ -285,7 +285,7 @@ export const useClinicalDataStore = defineStore('clinicalData', () => {
         ],
         'anatomical-misalignment': [
             { label: 'LIFESTYLE ADVICE', description: 'To be considered', checked: false },
-            { label: 'GREATER SURFACE REGENERATION', description: 'Biologics', checked: false },
+            { label: 'SURGICAL OPTIONS', description: '', checked: false },
         ],
         'neural-dysfunction': [
             { label: 'LIFESTYLE ADVICE', description: 'To be considered', checked: false },
@@ -294,7 +294,7 @@ export const useClinicalDataStore = defineStore('clinicalData', () => {
                 description: 'Vit A/B12 ascorbic acid',
                 checked: false,
             },
-            { label: 'GREATER SURFACE REGENERATION', description: 'Biologics', checked: false },
+            { label: 'OCULAR SURFACE REGENERATORS', description: 'Biologics', checked: false },
             { label: 'SURGICAL OPTIONS', description: 'Punctal occlusion', checked: false },
         ],
         'ocular-surface-cellular': [
@@ -302,22 +302,19 @@ export const useClinicalDataStore = defineStore('clinicalData', () => {
             { label: 'ORAL NUTRITION', description: 'Vitamin D3', checked: false },
             {
                 label: 'TEAR SUPPLEMENTATION/STABILISATION',
-                description: 'Hyaluronic acid, trehalose, sodium perfluorohexyloctane & DP ester',
-                checked: false,
-            },
-            {
-                label: 'TEAR CONSERVATION DEVICES',
-                description: 'Oral secretagogues',
+                description: 'Hyaluronic acid, trehalose, xanthan, perfluorohexyloctane & HP-guar',
                 checked: false,
             },
             {
                 label: 'PHARMACOLOGICAL TEAR STIMULATION/RESTORATION',
-                description: 'Topical secretagogues\nPharmacological neurostimulation',
+                description:
+                    'Oral secretagogues\nTopical secretagogues\nPharmacological neuromodulation',
                 checked: false,
             },
             {
                 label: 'DEVICE TEAR STIMULATION/RESTORATION',
-                description: 'LLLT; tMGR; neurostimulation\nIPL, pooling',
+                description:
+                    'LLLT; QMR; neurostimulation\nIPL; probing external device lid heating; topical secretagogues',
                 checked: false,
             },
             {
@@ -326,44 +323,76 @@ export const useClinicalDataStore = defineStore('clinicalData', () => {
                 checked: false,
             },
             { label: 'TOPICAL LID HYGIENE', description: '', checked: false },
-            { label: 'TOPICAL ANTI-INFLAMMATORIES', description: 'Lotemax', checked: false },
-            { label: 'GREATER SURFACE REGENERATION', description: 'Biologics', checked: false },
+            { label: 'TOPICAL ANTI-INFLAMMATORIES', description: '', checked: false },
+            {
+                label: 'OCULAR SURFACE REGENERATORS',
+                description: 'Lubricin Biologics',
+                checked: false,
+            },
             { label: 'SURGICAL OPTIONS', description: 'Punctal occlusion', checked: false },
         ],
         'primary-inflammation': [
-            { label: 'LIFESTYLE ADVICE', description: 'To be considered', checked: false },
             {
-                label: 'ORAL NUTRITION',
-                description: 'Omega 3, vitamin D3',
+                label: 'PRIMARY',
+                description: '',
                 checked: false,
+                subOptions: [
+                    { label: 'LIFESTYLE ADVICE', description: 'To be considered', checked: false },
+                    { label: 'TOPICAL ANTI-INFLAMMATORIES', description: '', checked: false },
+                    {
+                        label: 'OCULAR SURFACE REGENERATORS',
+                        description: 'Amniotic membrane',
+                        checked: false,
+                    },
+                ],
             },
             {
-                label: 'TEAR SUPPLEMENTATION/STABILISATION',
-                description: 'Hyaluronic acid, antioxidants, macrolax & DP ester, serum',
+                label: 'SECONDARY',
+                description: '',
                 checked: false,
+                subOptions: [
+                    { label: 'LIFESTYLE ADVICE', description: 'To be considered', checked: false },
+                    {
+                        label: 'ORAL NUTRITION',
+                        description: 'Omega 3, vitamin D3',
+                        checked: false,
+                    },
+                    {
+                        label: 'TEAR SUPPLEMENTATION/STABILISATION',
+                        description: 'Hyaluronic acid, selenoprotein P, xanthan & HP-guar, serum',
+                        checked: false,
+                    },
+                    {
+                        label: 'TEAR CONSERVATION DEVICES',
+                        description: 'Pharmacological modulation',
+                        checked: false,
+                    },
+                    {
+                        label: 'PHARMACOLOGICAL TEAR STIMULATION/RESTORATION',
+                        description: 'Pharmacological neuromodulation',
+                        checked: false,
+                    },
+                    {
+                        label: 'DEVICE TEAR STIMULATION/RESTORATION',
+                        description: 'IPL',
+                        checked: false,
+                    },
+                    { label: 'LID MARGIN DEBRIDEMENT', description: '', checked: false },
+                    { label: 'BLINK THERAPIES', description: '', checked: false },
+                    {
+                        label: 'TOPICAL LID HYGIENE (e.g. reducing bacterial load)',
+                        description: '',
+                        checked: false,
+                    },
+                    { label: 'TOPICAL ANTI-INFLAMMATORIES', description: '', checked: false },
+                    {
+                        label: 'OCULAR SURFACE REGENERATORS',
+                        description: 'Amniotic membrane',
+                        checked: false,
+                    },
+                    { label: 'SURGICAL OPTIONS', description: 'Punctal occlusion', checked: false },
+                ],
             },
-            {
-                label: 'TEAR CONSERVATION DEVICES',
-                description: 'Pharmacological modulation',
-                checked: false,
-            },
-            {
-                label: 'PHARMACOLOGICAL TEAR STIMULATION/RESTORATION',
-                description: 'Pharmacological neurostimulation',
-                checked: false,
-            },
-            {
-                label: 'DEVICE TEAR STIMULATION/RESTORATION',
-                description: 'IPL',
-                checked: false,
-            },
-            { label: 'TOPICAL LID HYGIENE', description: '', checked: false },
-            {
-                label: 'GREATER SURFACE REGENERATION',
-                description: 'Amniotic membrane',
-                checked: false,
-            },
-            { label: 'SURGICAL OPTIONS', description: 'Punctal occlusion', checked: false },
         ],
     })
 
