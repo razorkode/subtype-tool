@@ -2,7 +2,7 @@
 import ContentBox from '@/components/ContentBox.vue'
 import emailIcon from '@/assets/images/email-icon.png'
 
-defineProps({
+const props = defineProps({
     color: {
         type: String,
         default: 'blue',
@@ -24,12 +24,18 @@ defineProps({
         type: Boolean,
         default: false,
     },
+    disableEmail: {
+        type: Boolean,
+        default: true,
+    },
 })
 
 const emit = defineEmits(['email', 'previous', 'next'])
 
 const handleEmail = () => {
-    emit('email')
+    if (!props.disableEmail) {
+        emit('email')
+    }
 }
 
 const handlePrevious = () => {
@@ -55,7 +61,13 @@ const handleNext = () => {
                 <!-- Email button only - centered in the blue tab -->
                 <button
                     @click="handleEmail"
-                    class="flex cursor-pointer flex-col items-center text-white hover:opacity-80 transition-opacity"
+                    :disabled="disableEmail"
+                    class="flex flex-col items-center text-white transition-opacity"
+                    :class="
+                        disableEmail
+                            ? 'opacity-40 cursor-not-allowed'
+                            : 'cursor-pointer hover:opacity-80'
+                    "
                 >
                     <img :src="emailIcon" alt="Email" class="w-14 h-14 object-contain ml-2" />
                     <span class="text-[10px] font-bold tracking-wider">EMAIL</span>

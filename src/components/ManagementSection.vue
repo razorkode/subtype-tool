@@ -76,7 +76,7 @@ const hasSubOptions = (item) => {
             </div>
 
             <!-- Checkbox items -->
-            <div class="space-y-2 p-6 pt-10">
+            <div class="space-y-2 p-6 pt-10 max-h-[280px] overflow-y-auto">
                 <template v-for="(item, index) in items" :key="index">
                     <CheckboxItem
                         :checked="item.checked"

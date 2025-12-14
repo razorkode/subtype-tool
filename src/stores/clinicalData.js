@@ -1,4 +1,4 @@
-import { reactive } from 'vue'
+import { reactive, computed } from 'vue'
 import { defineStore } from 'pinia'
 
 export const useClinicalDataStore = defineStore('clinicalData', () => {
@@ -481,6 +481,23 @@ export const useClinicalDataStore = defineStore('clinicalData', () => {
         return Object.keys(subcategoryConfig)
     }
 
+    // Check if any checkbox is checked across all management items
+    const hasAnyCheckboxChecked = computed(() => {
+        for (const subcategoryId of Object.keys(managementItems)) {
+            const items = managementItems[subcategoryId]
+            for (const item of items) {
+                if (item.checked) return true
+                // Check sub-options if they exist
+                if (item.subOptions) {
+                    for (const subItem of item.subOptions) {
+                        if (subItem.checked) return true
+                    }
+                }
+            }
+        }
+        return false
+    })
+
     return {
         testingData,
         managementItems,
@@ -490,5 +507,6 @@ export const useClinicalDataStore = defineStore('clinicalData', () => {
         getSubcategoryConfig,
         updateManagementItems,
         getAllSubcategoryIds,
+        hasAnyCheckboxChecked,
     }
 })

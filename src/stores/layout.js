@@ -13,7 +13,7 @@ export const useLayoutStore = defineStore('layout', () => {
     const marginsCalculated = ref(false)
     // Static offset to accommodate the tallest content panel (Lipid)
     // This prevents the layout from jumping when switching between options
-    const contentTopOffset = ref(120)
+    const contentTopOffset = ref(60)
     const containerRef = ref(null)
 
     // Colors for each connector

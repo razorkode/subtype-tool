@@ -31,6 +31,9 @@ const testingData = computed(() => clinicalDataStore.getTestingData(props.subcat
 // Get management items
 const managementItems = computed(() => clinicalDataStore.getManagementItems(props.subcategoryId))
 
+// Check if email button should be disabled (no checkboxes checked anywhere)
+const isEmailDisabled = computed(() => !clinicalDataStore.hasAnyCheckboxChecked)
+
 // Check visibility
 const isVisible = computed(() => {
     if (!config.value) return false
@@ -81,6 +84,7 @@ async function handleEmail() {
             :title="config.title"
             :disable-previous="navigationStore.isFirstSubcategory"
             :disable-next="navigationStore.isLastSubcategory"
+            :disable-email="isEmailDisabled"
             @previous="navigationStore.navigatePrevious"
             @next="navigationStore.navigateNext"
             @email="handleEmail"
@@ -105,4 +109,3 @@ async function handleEmail() {
         </SubOptionBox>
     </div>
 </template>
-
