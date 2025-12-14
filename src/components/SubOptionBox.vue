@@ -1,6 +1,10 @@
 <script setup>
+import { computed } from 'vue'
 import ContentBox from '@/components/ContentBox.vue'
 import emailIcon from '@/assets/images/email-icon.png'
+
+// Titles that need smaller font size due to length
+const longTitles = ['ANATOMICAL MISALIGNMENT', 'NEURAL DYSFUNCTION', 'INFLAMMATION']
 
 const props = defineProps({
     color: {
@@ -45,6 +49,10 @@ const handlePrevious = () => {
 const handleNext = () => {
     emit('next')
 }
+
+const titleSizeClass = computed(() => {
+    return longTitles.includes(props.title) ? 'text-base' : 'text-xl'
+})
 </script>
 
 <template>
@@ -53,7 +61,7 @@ const handleNext = () => {
             <template #tab>
                 <div class="flex flex-col items-center justify-center">
                     <span class="text-xs font-medium opacity-90">{{ category }}</span>
-                    <span class="text-xl font-bold leading-5">{{ title }}</span>
+                    <span class="font-bold leading-5" :class="titleSizeClass">{{ title }}</span>
                 </div>
             </template>
             <slot></slot>
