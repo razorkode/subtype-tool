@@ -42,7 +42,7 @@ const handleDiamondClick = (menuId) => {
     } else if (ocularSurfaceItems.includes(menuId)) {
         diamondType = 'ocular'
     }
-    
+
     // Toggle selection: if clicking the same diamond, deselect it (show How to Use)
     if (navigationStore.selectedDiamond === diamondType) {
         navigationStore.clearSelection()
@@ -54,45 +54,52 @@ const handleDiamondClick = (menuId) => {
 </script>
 
 <template>
-    <div class="w-[400px] h-[400px] min-w-[400px]">
-        <div class="top-1/2 relative flex min-w-[380px] items-center justify-center">
-            <!-- Text Block -->
-            <div class="absolute left-[20px] text-gray-500 leading-tight">
-                <span class="font-bold">DRY EYE RELIEF</span><br />& MANAGEMENT
+    <div class="flex flex-col items-center">
+        <!-- Text Block - Above diamonds on small screens, left side on large screens -->
+        <div class="text-gray-500 leading-tight text-center mb-4 max-[1140px]:block hidden">
+            <span class="font-bold">DRY EYE RELIEF</span><br />& MANAGEMENT
+        </div>
+
+        <div class="w-[400px] h-[400px] min-w-[400px] relative max-[1140px]:ml-[-100px]">
+            <div class="top-1/2 relative flex min-w-[380px] items-center justify-center">
+                <!-- Text Block - Left side on large screens only -->
+                <div class="absolute left-[20px] text-gray-500 leading-tight max-[1140px]:hidden">
+                    <span class="font-bold">DRY EYE RELIEF</span><br />& MANAGEMENT
+                </div>
+
+                <!-- Tear Film Deficiencies -->
+                <DiamondButton
+                    :image="tearDiamond"
+                    label="TEAR FILM<br />DEFICIENCIES"
+                    position="top"
+                    menu-id="tear-film-deficiencies"
+                    data-diamond="tear"
+                    :active="isTearFilmActive"
+                    @click="handleDiamondClick"
+                />
+
+                <!-- Eyelid Anomalies -->
+                <DiamondButton
+                    :image="eyelidDiamond"
+                    label="EYELID<br />ANOMALIES"
+                    position="right"
+                    menu-id="eyelid-anomalies"
+                    data-diamond="eyelid"
+                    :active="isEyelidActive"
+                    @click="handleDiamondClick"
+                />
+
+                <!-- Ocular Surface Abnormalities -->
+                <DiamondButton
+                    :image="ocularDiamond"
+                    label="OCULAR SURFACE<br />ABNORMALITIES"
+                    position="bottom"
+                    menu-id="ocular-surface-abnormalities"
+                    data-diamond="ocular"
+                    :active="isOcularSurfaceActive"
+                    @click="handleDiamondClick"
+                />
             </div>
-
-            <!-- Tear Film Deficiencies -->
-            <DiamondButton
-                :image="tearDiamond"
-                label="TEAR FILM<br />DEFICIENCIES"
-                position="top"
-                menu-id="tear-film-deficiencies"
-                data-diamond="tear"
-                :active="isTearFilmActive"
-                @click="handleDiamondClick"
-            />
-
-            <!-- Eyelid Anomalies -->
-            <DiamondButton
-                :image="eyelidDiamond"
-                label="EYELID<br />ANOMALIES"
-                position="right"
-                menu-id="eyelid-anomalies"
-                data-diamond="eyelid"
-                :active="isEyelidActive"
-                @click="handleDiamondClick"
-            />
-
-            <!-- Ocular Surface Abnormalities -->
-            <DiamondButton
-                :image="ocularDiamond"
-                label="OCULAR SURFACE<br />ABNORMALITIES"
-                position="bottom"
-                menu-id="ocular-surface-abnormalities"
-                data-diamond="ocular"
-                :active="isOcularSurfaceActive"
-                @click="handleDiamondClick"
-            />
         </div>
     </div>
 </template>
