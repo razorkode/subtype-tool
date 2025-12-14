@@ -75,30 +75,32 @@ const hasSubOptions = (item) => {
                 </div>
             </div>
 
-            <!-- Checkbox items -->
-            <div class="space-y-2 p-6 pt-10 max-h-[280px] overflow-y-auto">
-                <template v-for="(item, index) in items" :key="index">
-                    <CheckboxItem
-                        :checked="item.checked"
-                        :label="item.label"
-                        :description="item.description"
-                        @update:checked="toggleItem(index)"
-                    />
-                    <!-- Sub-options that expand when parent is checked -->
-                    <div
-                        v-if="hasSubOptions(item) && item.checked"
-                        class="pl-8 space-y-2 border-l-2 border-gray-200 ml-2 mt-1"
-                    >
+            <!-- Checkbox items - wrapper clips scrollbar to border radius -->
+            <div class="rounded-b-[22px] overflow-hidden">
+                <div class="space-y-2 p-6 pt-10 max-h-[280px] overflow-y-auto">
+                    <template v-for="(item, index) in items" :key="index">
                         <CheckboxItem
-                            v-for="(subItem, subIndex) in item.subOptions"
-                            :key="subIndex"
-                            :checked="subItem.checked"
-                            :label="subItem.label"
-                            :description="subItem.description"
-                            @update:checked="toggleSubItem(index, subIndex)"
+                            :checked="item.checked"
+                            :label="item.label"
+                            :description="item.description"
+                            @update:checked="toggleItem(index)"
                         />
-                    </div>
-                </template>
+                        <!-- Sub-options that expand when parent is checked -->
+                        <div
+                            v-if="hasSubOptions(item) && item.checked"
+                            class="pl-8 space-y-2 border-l-2 border-gray-200 ml-2 mt-1"
+                        >
+                            <CheckboxItem
+                                v-for="(subItem, subIndex) in item.subOptions"
+                                :key="subIndex"
+                                :checked="subItem.checked"
+                                :label="subItem.label"
+                                :description="subItem.description"
+                                @update:checked="toggleSubItem(index, subIndex)"
+                            />
+                        </div>
+                    </template>
+                </div>
             </div>
         </div>
     </div>
