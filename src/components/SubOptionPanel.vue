@@ -1,12 +1,11 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, inject } from 'vue'
 import SubOptionBox from './SubOptionBox.vue'
 import TestingSection from './TestingSection.vue'
 import ManagementSection from './ManagementSection.vue'
 import { useNavigationStore } from '@/stores/navigation'
 import { useClinicalDataStore } from '@/stores/clinicalData'
 import { useLayoutStore } from '@/stores/layout'
-import { sendTestEmail } from '@/services/emailService'
 
 const props = defineProps({
     subcategoryId: {
@@ -19,8 +18,8 @@ const navigationStore = useNavigationStore()
 const clinicalDataStore = useClinicalDataStore()
 const layoutStore = useLayoutStore()
 
-// Email state
-const isSendingEmail = ref(false)
+// Get the email modal opener from parent
+const openEmailModal = inject('openEmailModal')
 
 // Get configuration for this subcategory
 const config = computed(() => clinicalDataStore.getSubcategoryConfig(props.subcategoryId))
@@ -45,29 +44,10 @@ function handleManagementUpdate(newItems) {
     clinicalDataStore.updateManagementItems(props.subcategoryId, newItems)
 }
 
-// Handle email button click
-async function handleEmail() {
-    if (isSendingEmail.value) return
-
-    isSendingEmail.value = true
-
-    try {
-        // EmailJS service and template IDs
-        const SERVICE_ID = 'service_wfg6mqc'
-        const TEMPLATE_ID = 'template_s5bih8h'
-
-        const result = await sendTestEmail('fylzero@gmail.com', SERVICE_ID, TEMPLATE_ID)
-
-        if (result.success) {
-            window.alert('Test email sent successfully to fylzero@gmail.com!')
-        } else {
-            window.alert(`Failed to send email: ${result.error}`)
-        }
-    } catch (error) {
-        console.error('Email error:', error)
-        window.alert('An error occurred while sending the email.')
-    } finally {
-        isSendingEmail.value = false
+// Handle email button click - opens the email modal
+function handleEmail() {
+    if (openEmailModal) {
+        openEmailModal()
     }
 }
 </script>

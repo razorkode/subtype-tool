@@ -532,6 +532,64 @@ export const useClinicalDataStore = defineStore('clinicalData', () => {
         )
     })
 
+    // Get all checked items across the entire app, organized by category
+    function getAllCheckedItems() {
+        const result = {
+            tearFilmDeficiencies: [],
+            eyelidAnomalies: [],
+            ocularSurfaceAbnormalities: [],
+        }
+
+        // Helper to extract checked items from a subcategory
+        const extractCheckedItems = (subcategoryId) => {
+            const items = managementItems[subcategoryId]
+            const config = subcategoryConfig[subcategoryId]
+            if (!items || !config) return []
+
+            const checkedItems = []
+            for (const item of items) {
+                if (item.checked) {
+                    checkedItems.push({
+                        subcategory: config.title,
+                        label: item.label,
+                        description: item.description || '',
+                    })
+                }
+                // Check sub-options if they exist
+                if (item.subOptions) {
+                    for (const subItem of item.subOptions) {
+                        if (subItem.checked) {
+                            checkedItems.push({
+                                subcategory: config.title,
+                                parentLabel: item.label,
+                                label: subItem.label,
+                                description: subItem.description || '',
+                            })
+                        }
+                    }
+                }
+            }
+            return checkedItems
+        }
+
+        // Tear Film Deficiencies
+        result.tearFilmDeficiencies.push(...extractCheckedItems('lipid'))
+        result.tearFilmDeficiencies.push(...extractCheckedItems('aqueous'))
+        result.tearFilmDeficiencies.push(...extractCheckedItems('mucin-glycocalyx'))
+
+        // Eyelid Anomalies
+        result.eyelidAnomalies.push(...extractCheckedItems('blink-lid-closure'))
+        result.eyelidAnomalies.push(...extractCheckedItems('lid-margin'))
+
+        // Ocular Surface Abnormalities
+        result.ocularSurfaceAbnormalities.push(...extractCheckedItems('anatomical-misalignment'))
+        result.ocularSurfaceAbnormalities.push(...extractCheckedItems('neural-dysfunction'))
+        result.ocularSurfaceAbnormalities.push(...extractCheckedItems('ocular-surface-cellular'))
+        result.ocularSurfaceAbnormalities.push(...extractCheckedItems('primary-inflammation'))
+
+        return result
+    }
+
     return {
         testingData,
         managementItems,
@@ -545,5 +603,6 @@ export const useClinicalDataStore = defineStore('clinicalData', () => {
         hasTearFilmChecked,
         hasEyelidChecked,
         hasOcularSurfaceChecked,
+        getAllCheckedItems,
     }
 })

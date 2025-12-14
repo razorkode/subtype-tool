@@ -1,10 +1,11 @@
 <script setup>
-import { ref, onMounted, nextTick, watch } from 'vue'
+import { ref, onMounted, nextTick, watch, provide } from 'vue'
 import MainNav from '@/components/MainNav.vue'
 import DiamondButtons from '@/components/DiamondButtons.vue'
 import ContentBoxWithBracket from '@/components/ContentBoxWithBracket.vue'
 import HowToUse from '@/components/HowToUse.vue'
 import SubOptionPanel from '@/components/SubOptionPanel.vue'
+import EmailModal from '@/components/EmailModal.vue'
 import { useNavigationStore } from '@/stores/navigation'
 import { useLayoutStore } from '@/stores/layout'
 import { useClinicalDataStore } from '@/stores/clinicalData'
@@ -14,6 +15,18 @@ const layoutStore = useLayoutStore()
 const clinicalDataStore = useClinicalDataStore()
 
 const containerRef = ref(null)
+
+// Email modal state
+const showEmailModal = ref(false)
+const openEmailModal = () => {
+    showEmailModal.value = true
+}
+const closeEmailModal = () => {
+    showEmailModal.value = false
+}
+
+// Provide the open function to child components
+provide('openEmailModal', openEmailModal)
 
 // Watch for changes and recalculate layout (including top offset for visible content)
 watch([() => navigationStore.selectedDiamond, () => navigationStore.activeMenuItem], async () => {
@@ -292,5 +305,8 @@ const allSubcategoryIds = clinicalDataStore.getAllSubcategoryIds()
                 </div>
             </div>
         </div>
+
+        <!-- Email Modal -->
+        <EmailModal :show="showEmailModal" @close="closeEmailModal" />
     </main>
 </template>
