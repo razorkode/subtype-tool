@@ -1,8 +1,18 @@
 <script setup>
+import { computed } from 'vue'
 import GradientButton from '@/components/GradientButton.vue'
 import { useNavigationStore } from '@/stores/navigation'
+import { useClinicalDataStore } from '@/stores/clinicalData'
 
 const navigationStore = useNavigationStore()
+const clinicalDataStore = useClinicalDataStore()
+
+// Compute variants for main category buttons based on checked state
+const tearFilmVariant = computed(() => (clinicalDataStore.hasTearFilmChecked ? 'blue' : 'gray'))
+const eyelidVariant = computed(() => (clinicalDataStore.hasEyelidChecked ? 'blue' : 'gray'))
+const ocularSurfaceVariant = computed(() =>
+    clinicalDataStore.hasOcularSurfaceChecked ? 'blue' : 'gray',
+)
 
 // Define parent-child relationships
 const tearFilmItems = ['tear-film-deficiencies', 'lipid', 'aqueous', 'mucin-glycocalyx']
@@ -37,7 +47,7 @@ const handleNavClick = (menuId) => {
         <!-- Tear Film Deficiencies Section -->
         <div class="space-y-3">
             <GradientButton
-                variant="gray"
+                :variant="tearFilmVariant"
                 :active="navigationStore.activeMenuItem === 'tear-film-deficiencies'"
                 @click="handleNavClick('tear-film-deficiencies')"
             >
@@ -69,7 +79,7 @@ const handleNavClick = (menuId) => {
         <!-- Eyelid Anomalies Section -->
         <div class="space-y-3">
             <GradientButton
-                variant="gray"
+                :variant="eyelidVariant"
                 :active="navigationStore.activeMenuItem === 'eyelid-anomalies'"
                 @click="handleNavClick('eyelid-anomalies')"
             >
@@ -94,7 +104,7 @@ const handleNavClick = (menuId) => {
         <!-- Ocular Surface Abnormalities Section -->
         <div class="space-y-3">
             <GradientButton
-                variant="gray"
+                :variant="ocularSurfaceVariant"
                 :active="navigationStore.activeMenuItem === 'ocular-surface-abnormalities'"
                 @click="handleNavClick('ocular-surface-abnormalities')"
             >

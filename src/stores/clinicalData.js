@@ -481,21 +481,55 @@ export const useClinicalDataStore = defineStore('clinicalData', () => {
         return Object.keys(subcategoryConfig)
     }
 
-    // Check if any checkbox is checked across all management items
-    const hasAnyCheckboxChecked = computed(() => {
-        for (const subcategoryId of Object.keys(managementItems)) {
-            const items = managementItems[subcategoryId]
-            for (const item of items) {
-                if (item.checked) return true
-                // Check sub-options if they exist
-                if (item.subOptions) {
-                    for (const subItem of item.subOptions) {
-                        if (subItem.checked) return true
-                    }
+    // Helper function to check if a subcategory has any checked items
+    function hasCheckedItemsInSubcategory(subcategoryId) {
+        const items = managementItems[subcategoryId]
+        if (!items) return false
+        for (const item of items) {
+            if (item.checked) return true
+            // Check sub-options if they exist
+            if (item.subOptions) {
+                for (const subItem of item.subOptions) {
+                    if (subItem.checked) return true
                 }
             }
         }
         return false
+    }
+
+    // Check if any checkbox is checked across all management items
+    const hasAnyCheckboxChecked = computed(() => {
+        for (const subcategoryId of Object.keys(managementItems)) {
+            if (hasCheckedItemsInSubcategory(subcategoryId)) return true
+        }
+        return false
+    })
+
+    // Check if TEAR FILM DEFICIENCIES category has any checked items
+    const hasTearFilmChecked = computed(() => {
+        return (
+            hasCheckedItemsInSubcategory('lipid') ||
+            hasCheckedItemsInSubcategory('aqueous') ||
+            hasCheckedItemsInSubcategory('mucin-glycocalyx')
+        )
+    })
+
+    // Check if EYELID ANOMALIES category has any checked items
+    const hasEyelidChecked = computed(() => {
+        return (
+            hasCheckedItemsInSubcategory('blink-lid-closure') ||
+            hasCheckedItemsInSubcategory('lid-margin')
+        )
+    })
+
+    // Check if OCULAR SURFACE ABNORMALITIES category has any checked items
+    const hasOcularSurfaceChecked = computed(() => {
+        return (
+            hasCheckedItemsInSubcategory('anatomical-misalignment') ||
+            hasCheckedItemsInSubcategory('neural-dysfunction') ||
+            hasCheckedItemsInSubcategory('ocular-surface-cellular') ||
+            hasCheckedItemsInSubcategory('primary-inflammation')
+        )
     })
 
     return {
@@ -508,5 +542,8 @@ export const useClinicalDataStore = defineStore('clinicalData', () => {
         updateManagementItems,
         getAllSubcategoryIds,
         hasAnyCheckboxChecked,
+        hasTearFilmChecked,
+        hasEyelidChecked,
+        hasOcularSurfaceChecked,
     }
 })
