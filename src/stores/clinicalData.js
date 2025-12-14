@@ -224,40 +224,63 @@ export const useClinicalDataStore = defineStore('clinicalData', () => {
                 description: 'Moisture chamber spectacles',
                 checked: false,
             },
+            { label: 'BLINK THERAPIES', description: '', checked: false },
+            { label: 'SURGICAL OPTIONS', description: '', checked: false },
         ],
         'lid-margin': [
-            { label: 'LIFESTYLE ADVICE', description: 'To be considered', checked: false },
-            { label: 'ORAL NUTRITION', description: 'Omega 3\nVitamin D3', checked: false },
             {
-                label: 'TEAR SUPPLEMENTATION/STABILISATION',
-                description: 'Lipomimetics',
+                label: 'ANTERIOR BLEPHARITIS',
+                description: '',
                 checked: false,
+                subOptions: [
+                    { label: 'LIFESTYLE ADVICE', description: 'To be considered', checked: false },
+                    {
+                        label: 'TOPICAL LID HYGIENE (e.g. reducing bacterial load)',
+                        description: '',
+                        checked: false,
+                    },
+                    { label: 'ORAL ANTIBIOTICS', description: '', checked: false },
+                ],
             },
             {
-                label: 'PHARMACOLOGICAL TEAR STIMULATION/RESTORATION',
-                description: 'Topical azithromycin, Selenium sulfide',
+                label: 'MEIBOMIAN GLAND DYSFUNCTION',
+                description: '',
                 checked: false,
-            },
-            {
-                label: 'DEVICE TEAR STIMULATION/RESTORATION',
-                description: 'Internal and external device lid heating; IPL, LLLT; tMGR',
-                checked: false,
-            },
-            {
-                label: 'BLINK THERAPIES',
-                description: 'When significant meibomian involvement',
-                checked: false,
-            },
-            {
-                label: 'TOPICAL LID HYGIENE',
-                description: 'Wipes/gel/foam\nAntimicrobials\nHypochlorous acid',
-                checked: false,
-            },
-            { label: 'TOPICAL ANTI-INFLAMMATORIES', description: 'Cyclosporine A', checked: false },
-            {
-                label: 'ORAL ANTIBIOTICS',
-                description: 'Tetracyclines and Macrolides',
-                checked: false,
+                subOptions: [
+                    { label: 'LIFESTYLE ADVICE', description: 'To be considered', checked: false },
+                    { label: 'ORAL NUTRITION', description: 'Omega 3\nVitamin D3', checked: false },
+                    {
+                        label: 'TEAR SUPPLEMENTATION/STABILISATION',
+                        description: 'Lipomimetics',
+                        checked: false,
+                    },
+                    {
+                        label: 'PHARMACOLOGICAL TEAR STIMULATION/RESTORATION',
+                        description: 'Topical azithromycin, Selenium sulfide',
+                        checked: false,
+                    },
+                    {
+                        label: 'DEVICE TEAR STIMULATION/RESTORATION',
+                        description: 'Internal and external device lid heating; IPL, LLLT; QMR',
+                        checked: false,
+                    },
+                    {
+                        label: 'LID MARGIN DEBRIDEMENT',
+                        description: 'When significant keratinization',
+                        checked: false,
+                    },
+                    {
+                        label: 'BLINK THERAPIES',
+                        description: '',
+                        checked: false,
+                    },
+                    {
+                        label: 'TOPICAL ANTI-INFLAMMATORIES',
+                        description: 'Cyclosporine A',
+                        checked: false,
+                    },
+                    { label: 'ORAL ANTIBIOTICS', description: '', checked: false },
+                ],
             },
         ],
         'anatomical-misalignment': [

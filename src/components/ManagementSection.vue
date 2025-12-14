@@ -40,6 +40,21 @@ const toggleItem = (index) => {
     newItems[index] = { ...newItems[index], checked: !newItems[index].checked }
     emit('update:items', newItems)
 }
+
+const toggleSubItem = (parentIndex, subIndex) => {
+    const newItems = [...props.items]
+    const newSubOptions = [...newItems[parentIndex].subOptions]
+    newSubOptions[subIndex] = {
+        ...newSubOptions[subIndex],
+        checked: !newSubOptions[subIndex].checked,
+    }
+    newItems[parentIndex] = { ...newItems[parentIndex], subOptions: newSubOptions }
+    emit('update:items', newItems)
+}
+
+const hasSubOptions = (item) => {
+    return item.subOptions && item.subOptions.length > 0
+}
 </script>
 
 <template>
@@ -62,14 +77,28 @@ const toggleItem = (index) => {
 
             <!-- Checkbox items -->
             <div class="space-y-2 p-6 pt-10">
-                <CheckboxItem
-                    v-for="(item, index) in items"
-                    :key="index"
-                    :checked="item.checked"
-                    :label="item.label"
-                    :description="item.description"
-                    @update:checked="toggleItem(index)"
-                />
+                <template v-for="(item, index) in items" :key="index">
+                    <CheckboxItem
+                        :checked="item.checked"
+                        :label="item.label"
+                        :description="item.description"
+                        @update:checked="toggleItem(index)"
+                    />
+                    <!-- Sub-options that expand when parent is checked -->
+                    <div
+                        v-if="hasSubOptions(item) && item.checked"
+                        class="pl-8 space-y-2 border-l-2 border-gray-200 ml-2 mt-1"
+                    >
+                        <CheckboxItem
+                            v-for="(subItem, subIndex) in item.subOptions"
+                            :key="subIndex"
+                            :checked="subItem.checked"
+                            :label="subItem.label"
+                            :description="subItem.description"
+                            @update:checked="toggleSubItem(index, subIndex)"
+                        />
+                    </div>
+                </template>
             </div>
         </div>
     </div>
