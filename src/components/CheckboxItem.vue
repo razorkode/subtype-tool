@@ -51,7 +51,7 @@ const toggle = () => {
 
         <!-- Label and description -->
         <div class="flex-1">
-            <div class="font-bold text-sm text-gray-800">{{ label }}</div>
+            <div class="font-bold text-sm text-[#193BB8]">{{ label }}</div>
             <div v-if="description" class="text-xs text-gray-500">{{ description }}</div>
         </div>
     </button>
