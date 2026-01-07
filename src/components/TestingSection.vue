@@ -21,15 +21,15 @@ const colorClasses = computed(() => {
     const colors = {
         blue: {
             text: 'text-[#3AADE1]',
-            border: 'border-[#3AADE1]',
+            border: 'border-[#3AADE1] bg-[#3AADE1]',
         },
         teal: {
             text: 'text-[#52A5A4]',
-            border: 'border-[#52A5A4]',
+            border: 'border-[#52A5A4] bg-[#52A5A4]',
         },
         purple: {
             text: 'text-[#7B5295]',
-            border: 'border-[#7B5295]',
+            border: 'border-[#7B5295] bg-[#7B5295]',
         },
     }
     return colors[props.color]
@@ -40,18 +40,14 @@ const colorClasses = computed(() => {
     <div class="mb-4">
         <!-- Section header with lines -->
         <div class="flex items-center gap-2 mb-3">
-            <div
-                class="flex-1 h-[1px]"
-                :class="colorClasses.border"
-                style="background: currentColor"
-            ></div>
+            <div class="flex-1 h-[1px]" :class="colorClasses.border"></div>
             <span class="font-bold text-xs tracking-wide" :class="colorClasses.text">{{
                 title
             }}</span>
             <div
                 class="flex-1 h-[1px]"
                 :class="colorClasses.border"
-                style="background: currentColor"
+                :style="{ background: colorClasses.bg }"
             ></div>
         </div>
 
