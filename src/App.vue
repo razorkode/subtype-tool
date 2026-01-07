@@ -75,7 +75,7 @@ const allSubcategoryIds = clinicalDataStore.getAllSubcategoryIds()
                                      ${path.endX - 50} ${path.endY},
                                      ${path.endX + 6} ${path.endY}`
                         "
-                        stroke="#D1D5DB"
+                        stroke="#ABABAB"
                         stroke-width="2"
                         fill="none"
                     />
@@ -93,7 +93,7 @@ const allSubcategoryIds = clinicalDataStore.getAllSubcategoryIds()
                         :cy="path.startY"
                         r="6.5"
                         fill="none"
-                        stroke="#D1D5DB"
+                        stroke="#ABABAB"
                         stroke-width="1"
                     />
                     <!-- End dot (on box) - only for sub-options -->
@@ -111,7 +111,7 @@ const allSubcategoryIds = clinicalDataStore.getAllSubcategoryIds()
                             :cy="path.endY"
                             r="6.5"
                             fill="none"
-                            stroke="#D1D5DB"
+                            stroke="#ABABAB"
                             stroke-width="1"
                         />
                     </template>

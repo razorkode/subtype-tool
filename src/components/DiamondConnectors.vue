@@ -89,7 +89,7 @@ onUnmounted(() => {
             <!-- Main curved line -->
             <path
                 :d="connector.path"
-                stroke="#D1D5DB"
+                stroke="#ABABAB"
                 stroke-width="3"
                 fill="none"
                 stroke-linecap="round"
@@ -110,7 +110,7 @@ onUnmounted(() => {
                 :cy="connector.startY"
                 r="8.75"
                 fill="none"
-                stroke="#D1D5DB"
+                stroke="#ABABAB"
                 stroke-width="1.5"
             />
             <!-- Connection point circles at end -->
@@ -127,7 +127,7 @@ onUnmounted(() => {
                 :cy="connector.endY"
                 r="8.75"
                 fill="none"
-                stroke="#D1D5DB"
+                stroke="#ABABAB"
                 stroke-width="1.5"
             />
         </g>

@@ -53,13 +53,13 @@ const gradientTo = computed(() => colorConfig[props.color].gradientTo)
                 viewBox="0 0 30 15"
                 style="transform: translateY(-100%)"
             >
-                <path d="M 30 0 Q 10 0, 8 15" stroke="#D1D5DB" stroke-width="2" fill="none" />
+                <path d="M 30 0 Q 10 0, 8 15" stroke="#ABABAB" stroke-width="2" fill="none" />
             </svg>
 
             <!-- Straight line - stretches with content -->
             <div
                 class="absolute left-[7px] top-0 bottom-0 w-[2px]"
-                style="background-color: #d1d5db"
+                style="background-color: #ababab"
             ></div>
 
             <!-- Circle in middle -->
@@ -71,7 +71,7 @@ const gradientTo = computed(() => colorConfig[props.color].gradientTo)
                 style="transform: translateY(-50%); left: -2px"
             >
                 <circle cx="10" cy="10" r="5" :fill="lineColor" stroke="white" stroke-width="2" />
-                <circle cx="10" cy="10" r="6.5" fill="none" stroke="#D1D5DB" stroke-width="1" />
+                <circle cx="10" cy="10" r="6.5" fill="none" stroke="#ABABAB" stroke-width="1" />
             </svg>
 
             <!-- Bottom curve -->
@@ -82,13 +82,13 @@ const gradientTo = computed(() => colorConfig[props.color].gradientTo)
                 viewBox="0 0 30 15"
                 style="transform: translateY(100%)"
             >
-                <path d="M 8 0 Q 10 15, 30 15" stroke="#D1D5DB" stroke-width="2" fill="none" />
+                <path d="M 8 0 Q 10 15, 30 15" stroke="#ABABAB" stroke-width="2" fill="none" />
             </svg>
         </div>
 
         <!-- Content Box - white with gradient bar on left -->
         <div
-            class="relative w-full max-w-[380px] min-w-[234px] flex rounded-2xl overflow-hidden border border-gray-300"
+            class="relative w-full max-w-[380px] min-w-[234px] flex rounded-2xl overflow-hidden border-2 border-[#ABABAB]"
         >
             <!-- Gradient bar on left -->
             <div

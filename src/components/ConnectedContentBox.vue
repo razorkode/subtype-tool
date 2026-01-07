@@ -55,7 +55,7 @@ onMounted(() => {
                 :d="`M 0 ${boxHeight / 2}
                      C 30 ${boxHeight / 2}, 50 ${boxHeight / 2}, 60 20
                      L 80 20`"
-                stroke="#D1D5DB"
+                stroke="#ABABAB"
                 stroke-width="2"
                 fill="none"
             />
@@ -64,7 +64,7 @@ onMounted(() => {
                 :d="`M 0 ${boxHeight / 2}
                      C 30 ${boxHeight / 2}, 50 ${boxHeight / 2}, 60 ${boxHeight - 20}
                      L 80 ${boxHeight - 20}`"
-                stroke="#D1D5DB"
+                stroke="#ABABAB"
                 stroke-width="2"
                 fill="none"
             />
@@ -75,7 +75,7 @@ onMounted(() => {
                      Q 90 10, 80 20
                      L 80 ${boxHeight - 20}
                      Q 90 ${boxHeight - 10}, 120 ${boxHeight - 10}`"
-                stroke="#D1D5DB"
+                stroke="#ABABAB"
                 stroke-width="2"
                 fill="none"
             />
@@ -94,13 +94,13 @@ onMounted(() => {
                 :cy="boxHeight / 2"
                 r="6.5"
                 fill="none"
-                stroke="#D1D5DB"
+                stroke="#ABABAB"
                 stroke-width="1"
             />
 
             <!-- Top bracket circle -->
             <circle cx="80" cy="20" r="5" :fill="lineColor" stroke="white" stroke-width="2" />
-            <circle cx="80" cy="20" r="6.5" fill="none" stroke="#D1D5DB" stroke-width="1" />
+            <circle cx="80" cy="20" r="6.5" fill="none" stroke="#ABABAB" stroke-width="1" />
 
             <!-- Bottom bracket circle -->
             <circle
@@ -116,7 +116,7 @@ onMounted(() => {
                 :cy="boxHeight - 20"
                 r="6.5"
                 fill="none"
-                stroke="#D1D5DB"
+                stroke="#ABABAB"
                 stroke-width="1"
             />
         </svg>
