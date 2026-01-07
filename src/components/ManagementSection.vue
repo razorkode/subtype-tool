@@ -20,8 +20,8 @@ const emit = defineEmits(['update:items'])
 const colorClasses = computed(() => {
     const colors = {
         blue: {
-            bg: 'bg-gradient-to-r from-[#3AADE1] to-[#05319B]',
-            border: 'border-[#3AADE1]',
+            bg: 'bg-gradient-to-r from-[#05ADEE] to-[#62CAF4]',
+            border: 'border-[#05ADEE]',
         },
         teal: {
             bg: 'bg-gradient-to-r from-[#52A5A4] to-[#2D5A59]',

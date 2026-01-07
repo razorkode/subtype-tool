@@ -145,12 +145,12 @@ const closeModal = () => {
         >
             <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg mx-4 overflow-hidden">
                 <!-- Header -->
-                <div class="bg-gradient-to-r from-[#3AADE1] to-[#05319B] px-6 py-4">
+                <div class="bg-gray-300 px-6 py-4">
                     <div class="flex items-center justify-between">
-                        <h2 class="text-white font-bold text-lg">Email Report</h2>
+                        <h2 class="text-gray-600 font-semibold text-lg">Email Report</h2>
                         <button
                             @click="closeModal"
-                            class="text-white/80 hover:text-white transition-colors"
+                            class="text-gray-400 hover:text-white transition-colors cursor-pointer"
                         >
                             <svg
                                 class="w-6 h-6"

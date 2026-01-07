@@ -21,8 +21,8 @@ const props = defineProps({
 const colorConfig = {
     blue: {
         line: '#3AADE1',
-        gradientFrom: '#3AADE1',
-        gradientTo: '#05319B',
+        gradientFrom: '#05ADEE',
+        gradientTo: '#62CAF4',
     },
     teal: {
         line: '#52A5A4',
