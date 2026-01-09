@@ -54,7 +54,7 @@ const colorClasses = computed(() => {
         <!-- Testing items -->
         <div class="space-y-3 text-center">
             <div v-for="(item, index) in items" :key="index">
-                <div class="font-bold text-sm text-gray-600">{{ item.name }}</div>
+                <div class="font-bold text-sm text-gray-500">{{ item.name }}</div>
                 <div v-if="item.description || item.refs" class="text-xs text-gray-500">
                     {{ item.description }}{{ item.refs ? ' ' + item.refs.join(', ') : '' }}
                 </div>
