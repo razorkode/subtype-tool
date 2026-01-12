@@ -36,9 +36,9 @@ watch(
 )
 
 // EmailJS configuration
-const SERVICE_ID = 'service_wfg6mqc'
-const TEMPLATE_ID = 'template_s5bih8h'
-const PUBLIC_KEY = 'YejEOf7o8maKNlcFS'
+const SERVICE_ID = 'service_nzxejvg'
+const TEMPLATE_ID = 'template_vwmr6bt'
+const PUBLIC_KEY = '5GNj2ZunGUZFSgEgV'
 
 // Get all checked items for preview
 const checkedItems = computed(() => clinicalDataStore.getAllCheckedItems())
