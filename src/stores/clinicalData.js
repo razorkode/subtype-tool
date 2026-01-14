@@ -9,11 +9,11 @@ export const useClinicalDataStore = defineStore('clinicalData', () => {
                 {
                     name: 'INTERFEROMETRY',
                     description:
-                        'grade ≤ 3 (non-amorphous or colored pattern) or <72nm on LipiView 197, 320, 343',
+                        'grade ≤ 3 (non-amorphous or colored pattern) or <72nm on LipiView',
                 },
                 {
                     name: 'MEIBUM EXPRESSIBILITY/QUALITY',
-                    description: 'meibum not clear or limited expressibility 332, 371, 715',
+                    description: 'meibum not clear or limited expressibility',
                 },
             ],
             advanced: null,
@@ -22,15 +22,13 @@ export const useClinicalDataStore = defineStore('clinicalData', () => {
             standard: [
                 {
                     name: 'MENISCOMETRY',
-                    description: 'Tear meniscus height ≤0.20mm',
-                    refs: [39, 320, 380],
+                    description: 'tear meniscus height ≤0.20mm',
                 },
             ],
             advanced: [
                 {
                     name: 'STRIP MENISCOMETRY',
                     description: '2.5mm wetting length',
-                    refs: ['404-406'],
                 },
                 {
                     name: 'TEAR PROTEINS AND OTHER CHEMICAL COMPONENTS TESTING',
@@ -42,7 +40,6 @@ export const useClinicalDataStore = defineStore('clinicalData', () => {
                 {
                     name: 'ROSE BENGAL OR LISSAMINE GREEN STAINING',
                     description: '>9 punctate spots',
-                    refs: [581],
                 },
             ],
             advanced: [
@@ -60,7 +57,6 @@ export const useClinicalDataStore = defineStore('clinicalData', () => {
                 {
                     name: 'PARTIAL BLINKING OBSERVATION',
                     description: '>40% occurrence',
-                    refs: [463],
                 },
                 {
                     name: 'LAGOPHTHALMOS / INADEQUATE LID SEAL',
@@ -75,17 +71,14 @@ export const useClinicalDataStore = defineStore('clinicalData', () => {
                 {
                     name: 'MEIBOGRAPHY',
                     description: 'Gland length <75%',
-                    refs: [320, 372, 509],
                 },
                 {
                     name: 'GLAND PLUGGING',
                     description: 'Observed',
-                    refs: [715],
                 },
                 {
                     name: 'TELANGIECTASIA',
                     description: 'Observed',
-                    refs: [715],
                 },
                 { name: 'GLAND EXPRESSIBILITY' },
             ],
@@ -100,7 +93,6 @@ export const useClinicalDataStore = defineStore('clinicalData', () => {
                     name: 'PUFF OR PHYSICAL SENSATION',
                     description:
                         'Corneal and lid margin sensitivity thresholds ≥0.8 mbar although instruments are not comparable',
-                    refs: [550, 716],
                 },
             ],
             advanced: [
@@ -108,7 +100,6 @@ export const useClinicalDataStore = defineStore('clinicalData', () => {
                     name: 'IN VIVO CONFOCAL MICROSCOPY',
                     description:
                         'Normative values available for nerve length, branch and density metrics',
-                    refs: [717],
                 },
             ],
         },
@@ -117,17 +108,14 @@ export const useClinicalDataStore = defineStore('clinicalData', () => {
                 {
                     name: 'CORNEAL FLUORESCEIN STAINING',
                     description: '>5 punctate spots',
-                    refs: [250, 581],
                 },
                 {
                     name: 'CONJUNCTIVAL LISSAMINE GREEN STAINING',
                     description: '>9 punctate spots',
-                    refs: [250, 581],
                 },
                 {
                     name: 'LID WIPER STAINING',
                     description: '>2mm length and 25% width',
-                    refs: [250],
                 },
             ],
             advanced: null,
@@ -137,7 +125,6 @@ export const useClinicalDataStore = defineStore('clinicalData', () => {
                 {
                     name: 'BULBAR CONJUNCTIVAL HYPERAEMIA',
                     description: '>1.5 Efron scale or >0.95 objective JENVIS',
-                    refs: [604],
                 },
             ],
             advanced: [

@@ -18,6 +18,7 @@ const clinicalDataStore = useClinicalDataStore()
 
 // Form state
 const emailAddress = ref('')
+const pxReference = ref('')
 const sendingState = ref('idle') // 'idle', 'sending', 'success', 'error'
 const errorMessage = ref('')
 
@@ -59,10 +60,22 @@ const isValidEmail = computed(() => {
     return emailRegex.test(emailAddress.value)
 })
 
+// Validate Px Reference Number (alphanumeric, optional)
+const isValidPxReference = computed(() => {
+    if (!pxReference.value) return true // Optional field
+    const alphanumericRegex = /^[a-zA-Z0-9\s\-_]+$/
+    return alphanumericRegex.test(pxReference.value)
+})
+
 // Format items for email
 const formatItemsForEmail = () => {
     const items = checkedItems.value
     let text = ''
+
+    // Include Px Reference if provided
+    if (pxReference.value.trim()) {
+        text += `Px Reference: ${pxReference.value.trim()}\n\n`
+    }
 
     if (items.tearFilmDeficiencies.length > 0) {
         text += 'TEAR FILM DEFICIENCIES:\n'
@@ -98,7 +111,7 @@ const formatItemsForEmail = () => {
 
 // Send email
 const sendEmail = async () => {
-    if (!isValidEmail.value || !hasItems.value) return
+    if (!isValidEmail.value || !hasItems.value || !isValidPxReference.value) return
 
     sendingState.value = 'sending'
     errorMessage.value = ''
@@ -130,6 +143,7 @@ const sendEmail = async () => {
 // Close modal and reset state
 const closeModal = () => {
     emailAddress.value = ''
+    pxReference.value = ''
     sendingState.value = 'idle'
     errorMessage.value = ''
     emit('close')
@@ -216,6 +230,29 @@ const closeModal = () => {
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3AADE1] focus:border-transparent outline-none transition-all"
                                 :disabled="sendingState === 'sending'"
                             />
+                        </div>
+
+                        <!-- Px Reference Input (Optional) -->
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Px Reference
+                                <span class="text-gray-400 font-normal">(optional)</span>
+                            </label>
+                            <input
+                                v-model="pxReference"
+                                type="text"
+                                placeholder="Enter patient reference"
+                                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#3AADE1] focus:border-transparent outline-none transition-all"
+                                :class="
+                                    !isValidPxReference
+                                        ? 'border-red-300 bg-red-50'
+                                        : 'border-gray-300'
+                                "
+                                :disabled="sendingState === 'sending'"
+                            />
+                            <p v-if="!isValidPxReference" class="mt-1 text-xs text-red-500">
+                                Only letters, numbers, spaces, hyphens, and underscores are allowed
+                            </p>
                         </div>
 
                         <!-- Error Message -->
@@ -323,10 +360,18 @@ const closeModal = () => {
                         <!-- Send Button -->
                         <button
                             @click="sendEmail"
-                            :disabled="!isValidEmail || !hasItems || sendingState === 'sending'"
+                            :disabled="
+                                !isValidEmail ||
+                                !hasItems ||
+                                !isValidPxReference ||
+                                sendingState === 'sending'
+                            "
                             class="w-full py-3 rounded-full font-semibold transition-all flex items-center justify-center gap-2"
                             :class="
-                                isValidEmail && hasItems && sendingState !== 'sending'
+                                isValidEmail &&
+                                hasItems &&
+                                isValidPxReference &&
+                                sendingState !== 'sending'
                                     ? 'bg-[#05319B] text-white hover:bg-[#042578] cursor-pointer'
                                     : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                             "
