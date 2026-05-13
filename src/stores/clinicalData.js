@@ -177,8 +177,7 @@ export const useClinicalDataStore = defineStore('clinicalData', () => {
             },
             {
                 label: 'PHARMACOLOGICAL TEAR STIMULATION/RESTORATION',
-                description:
-                    'Selenium sulfide\nPharmacological neurostimulation\nTopical neurostimulation',
+                description: 'Pharmacological neurostimulation\nTopical neurostimulation',
                 checked: false,
             },
             {
@@ -194,7 +193,7 @@ export const useClinicalDataStore = defineStore('clinicalData', () => {
             { label: 'LIFESTYLE ADVICE', description: 'To be considered', checked: false },
             {
                 label: 'PHARMACOLOGICAL TEAR STIMULATION/RESTORATION',
-                description: '',
+                description: 'Secretagogues',
                 checked: false,
             },
             {
